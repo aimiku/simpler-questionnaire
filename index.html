@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+
+        <title>123</title>
+
+              <link rel="stylesheet" href="static/css/bootstrap.min.css">
+              <script src="static/js/jquery-2.1.4.min.js"></script>
+              <script src="static/js/bootstrap.min.js"></script>
+              <script src="static/js/layer/layer.js"></script>
+              <script src="static/js/template-web.js"></script>
+
+    </head>
+<style>
+    .radio-inline {
+        margin-bottom: 10px;
+        border: 1px solid #00aaee;
+        padding: 5px;
+        padding-left: 25px;
+        border-radius: 10px;
+        margin-left: 10px;
+    }
+</style>
+<body>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+
+<script type="text/html" id="script_list">
+    <a  href="wj.html?id=<%=id%>"><%=name%></a>
+    <hr>
+</script>
+
+<form>
+    <div style="padding-top: 20px;background-color: #604d94;color: #FFF;">
+        <div class="container"  id="container_title">
+            <p style="padding-top: 35px;font-size: 34px;">心理测试列表</p>
+            <p style="font-size: 18px;"></p>
+        </div>
+    </div>
+
+    <div class="container" style="padding-top: 35px;" id="container_list">
+
+    </div>
+    <br>
+
+</form>
+
+<script>
+    window.onload = function (){
+        init();
+
+    }
+</script>
+
+<script>
+    function init() {
+        $.get('/static/wj/list.json',{},function (data) {
+            if(data.io){
+                for(var i = 0; i < data.data.length; i++) {
+                    var unit = template('script_list', data.data[i]);
+                    $("#container_list").append(unit);
+                    console.log(data.data[i]);
+
+                };
+                console.log('ok');
+            }else{
+                console.debug(data.data);
+            }
+        },'json');
+        console.log('ok');
+    }
+
+</script>

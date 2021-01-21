@@ -1,0 +1,179 @@
+{
+  "io":true,
+  "data": {
+    "title": "你适合什么样的职业",
+    "info": "测试导语<br>每个人都会有梦想，常常憧憬着光辉灿烂的未来，向往着如花似锦的前程。可以说，在走向生活的前夜，每个人都要用艳丽的彩笔，把自己的梦想描绘得尽善尽美。那么，怎样才能实现自己的梦想呢?可供选择的答案很多，但其中最重要的一条是要选择一种适于自己做的、能发挥自己潜在才能的职业。有了这样的职业，就如同给自己的梦想插上了翅膀，可以在未来的天空中展翅飞翔。\n那么，你到底适合哪种职业呢?请你独立完成以下两组共20道测试题，或许就可以帮你做出一个不错的选择。每道题只要回答“是”或“否”即可。\n",
+    "topic": [
+      {
+        "no": 1,
+        "type": "SingleChoice",
+        "title": "就你的性格来说，你喜欢和年轻人而不是和年龄大的人在一起。",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 2,
+        "type": "SingleChoice",
+        "title": "你心目中的丈夫(妻子)应具有与众不同的见解和活跃的思想。",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 3,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 4,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 5,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 6,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 7,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 8,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 9,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 10,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 11,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 12,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 13,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 14,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 15,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 16,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 17,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 18,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 19,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      },
+      {
+        "no": 20,
+        "type": "SingleChoice",
+        "title": "",
+        "info": "",
+        "opt": ["是","否"],
+        "score": ["1","0"]
+      }
+    ],
+    "report": [
+      {
+        "abbr": "A",
+        "topic": ["1","2","3","4","5","6","7","8","9","10"]
+      },
+      {
+        "abbr": "B",
+        "topic": ["11","12","13","14","15","16","17","18","19","20"]
+      }
+    ]
+  }
+}

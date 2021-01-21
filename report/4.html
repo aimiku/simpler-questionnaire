@@ -1,0 +1,82 @@
+<!--{php}-->
+$_SYS['tpl']['title'] = '心理测试列表';
+$_SYS['tpl']['js'][] = 'static/js/template-web.js';
+
+$_SYS['tpl']['js'][] = 'static/wj/'.$this->id.'.js';
+<!--{/php}-->
+<!--{include common/head.html}-->
+
+<body>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+
+<script type="text/html" id="script_title">
+    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+</script>
+
+<script type="text/html" id="script_1">
+    测试结果:
+    <a style="font-size: 34px;"><%=name%>
+    </a>
+</script>
+
+
+<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+    <div class="container"  id="container_title">
+        <p style="padding-top: 35px;font-size: 34px;">title</p>
+    </div>
+</div>
+
+<div class="container" id="container_1">
+
+</div>
+
+<div class="container">
+    <p>心理视点:
+        人在一生中,难免会遇到各种困难,面对困难我们不该逃避、抱怨,而应该以坦然、乐观的态度对待困难。面对困难还应该树立不怕吃苦、不畏险的精神,面对长期的困难,耐心和坚持不懈的精神就显得特别重要了。面对困难我们必须勇往直前,奋力拼博,这样才能从困难的旋涡中解脱出来。
+        “宝剑锋从磨砺出,梅花香自苦寒来”,让我们以坚强的力、百倍的信充足的勇气坦然面对生活中的风风雨雨,做一个不畏艰险、敢于奋斗的攀登者吧。
+    </p>
+</div>
+
+<script>
+    window.onload = function (){
+        init();
+
+    }
+</script>
+
+<script>
+    var answer = JSON.parse('{$report['answer']}');
+    var score = 0;
+    var list = [];
+    function init() {
+        $.get('/static/wj/topic/{$this->id}.json',{},function (data) {
+            if(data.io){
+                var html = template('script_title', data.data);
+                $("#container_title").html(html);
+
+                var name = data.data['report']['abbr'];
+
+                for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
+                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
+                }
+
+                if(score <= 49){
+                    var html = template('script_1', {"name":data.data['report']['A']});
+                }else if(score >= 50 && score <= 75){
+                    var html = template('script_1', {"name":data.data['report']['B']});
+                }else{
+                    var html = template('script_1', {"name":data.data['report']['C']});
+                }
+
+                $("#container_1").append(html);
+
+            }else{
+                console.debug(data.data);
+            }
+        },'json');
+
+        console.log('ok');
+    }
+
+
+</script>

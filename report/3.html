@@ -1,0 +1,116 @@
+<!--{php}-->
+$_SYS['tpl']['title'] = '心理测试列表';
+$_SYS['tpl']['js'][] = 'static/js/template-web.js';
+
+$_SYS['tpl']['js'][] = 'static/wj/'.$this->id.'.js';
+<!--{/php}-->
+<!--{include common/head.html}-->
+
+<body>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+
+<script type="text/html" id="script_title">
+    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+</script>
+
+<script type="text/html" id="script_1">
+    测试结果:
+    <% for(var i = 0; i < name.length; i++){ %>
+    <a style="font-size: 34px;"><%=name[i]%>
+    </a>
+    <% } %>
+</script>
+
+
+<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+    <div class="container"  id="container_title">
+        <p style="padding-top: 35px;font-size: 34px;">title</p>
+    </div>
+</div>
+
+<div class="container" id="container_1">
+    <p>评分标准:
+    1.整套测试共20道题，前10题为第一组，后10题为第二组。
+    2.统计出两组答案中各有几个“是”。
+    3.如果第一组答案中的“是”比第二组多，为A。如果第二组答案中的“是比第一组多，为B;如果两组答案中的“是”大致相等，为C。
+    </p>
+</div>
+
+<div class="container">
+    <p id="A">
+        A.你最大的长处是思想活跃、擅长与人交往。
+        你喜欢把自己的想法交让人去实现，或者与大家共同去实现，适合你的职业是记者、演员、推销员、采购员、服务员、人事干部、宣传机构的工作人员等。
+    </p>
+    <p id="B">
+        B.你有耐心，爱思考、钻研，是个谨慎的人。
+        适合你的职业有编辑，律师、医生、技术人员、工程师、会计师、科学工作者等。
+    </p>
+    <p id="C">
+        C.你兼备A、B两种类型人的长处，不仅能独立思考、也能建立和维持良好的人际关系。
+        供你选择的职业包括教师、护士、秘书、美容师、理发师、各类管理人员等。
+    </p>
+    <p>心理视点:
+        气质是人的典型的稳定的心理特点，一般分为汁质、多血版、液质和控质4种。至于它们各自的心理特征我们之前已讲过，在这里不再赘述。
+        4种气质在工作中各有利弊，没有好坏之分，关键在于认识到自己的优缺点，学会扬长避短。当然，气质虽然分为4种，生活中却很少有人简单地属于哪一种人，一般的人都是好几种气质的混合，只是在这几种气质中，更向于其中的某一种，在选择职业上，也要根据自己的气质特点来选择合适的职业。
+        多血质合适的职业:导游，推销员，节目主持人、演讲者、外事接待员、演员，市场调查员等。
+        胆汁质合适的职业:管理工作，外交工作、驾驶员、服装纺织业、运动员、冒险家、军人等。
+        黏液质合适的职业，外科医生、法官，管理人员、出纳员，会计、播音员、话务员、教师等。
+        抑郁质合适的职业:校对、打字、排版、雕刻、刺绣、保管员，艺术工作者、编辑等。
+        一个人的职业选择会受到很多种因素的影响。在选择职业的过程中，我们可以对自己的个性特征进行分折，评价个人的生理、心理特征，进而分析我们可以选择的各种职业自己是否可以胜任，最后，在了解自己的特点和职业要求的基础上进行自己职业的选择，如果一个人的个性特征与其选择的职业要求匹配得非常好，那么这个人在职场上更是成功的可能性。
+        经典的职业兴趣量表制定者霍兰德在职业选择和性格之间的关系这一问题上认为，一个人的性格类型和他所选择的职业之间的关系并不是对的一对一的对应关系。一个人既可以适应某一种职业环境，同事也可以适应另外的职业环境，但前提是两者之间要有一定的相近性或者是中性的关系而不是相互排斥的关系。或许霍兰德的建议为我们进行职业选择提供了具有更大灵活性的自由空间。
+    </p>
+</div>
+
+<script>
+    window.onload = function (){
+        init();
+
+    }
+</script>
+
+<script>
+
+    var answer = JSON.parse('{$report['answer']}');
+    var A = 0;
+    var B = 0;
+    var list = [];
+    function init() {
+        $.get('/static/wj/topic/{$this->id}.json',{},function (data) {
+            if(data.io){
+                var html = template('script_title', data.data);
+                $("#container_title").html(html);
+
+                for(var i = 0; i < data.data['report'].length; i++) {
+                    var name = data.data['report'][i]['abbr'];
+
+                    for(var i2 = 0; i2 < data.data['report'][i]['topic'].length; i2++){
+                        eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i]['topic'][i2]))));
+                    }
+                };
+
+                if((A - B) > 2){
+                    var html = template('script_1', {"name":"A"});
+                    $("#container_1").append(html);
+                    $('#A').css("background-color","#FFFFCC");
+                }else if((B - A) > 2){
+                    var html = template('script_1', {"name":"B"});
+                    $("#container_1").append(html);
+                    $('#B').css("background-color","#FFFFCC");
+                }else{
+                    var html = template('script_1', {"name":"C"});
+                    $("#container_1").append(html);
+                    $('#A').css("background-color","#FFFFCC");
+                    $('#B').css("background-color","#FFFFCC");
+                    $('#C').css("background-color","#FFFFCC");
+                }
+
+            }else{
+                console.debug(data.data);
+            }
+        },'json');
+
+        console.log('ok');
+    }
+
+
+</script>

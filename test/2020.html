@@ -1,0 +1,202 @@
+<!--{php}-->
+$_SYS['tpl']['title'] .= ' &raquo; 埃科职业生涯规划教育培训';
+$_SYS['tpl']['css'][] = 'static/css/question.css';
+<!--{/php}-->
+<!--{include common/head.html}-->
+<!--{include common/navbar.html}-->
+
+<br>
+<div class="container">
+
+    <h2>埃科职业生涯规划教育培训</h2>
+    <h2>初级认证考核考试题目</h2>
+    <h2>（考试时间90分钟）</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>基本信息</h2>
+                <div class="form-group">
+                    <label for="mobile">联系电话</label>
+                    <input type="number" class="form-control" id="mobile" name="mobile" value="{$_SYS['account']['user']['mobile']}">
+
+                </div>
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{$_SYS['account']['user']['name']}">
+                </div>
+                <h2>一、基础知识（共25分）</h2>
+                <div class="form-group" id="q1">
+                    <label>1、下面属于职业生涯规划著名的模型是（    ）。</label>
+                    <br>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q1" value="A">A、马斯洛层次需求模型
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q1" value="B">B、三叶草模型
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q1" value="C">C、图灵模型
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q1" value="D">D、波特竞争力分析模型
+                    </label>
+                </div>
+
+                <div class="form-group" id="q2">
+                    <label>2、我国目前处于（    ）阶段。</label>
+                    <br>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q2" value="A">A、社会价值驱动阶段
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q2" value="B">B、要素驱动阶段
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q2" value="C">C、投资驱动阶段
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q2" value="D">D、创新驱动阶段
+                    </label>
+                </div>
+
+                <div class="form-group" id="q3">
+                    <label>3、职业规划流程有4步：（       ）、目标与标准设立、发展策略、实施管理。</label>
+                    <br>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q3" value="A">A、查阅资料
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q3" value="B">B、设计方案
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q3" value="C">C、求助专家
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q3" value="D">D、职业生涯诊断
+                    </label>
+                </div>
+
+                <div class="form-group" id="q4">
+                    <label>4、属于常用测评工具的有（      ）。多选题。</label>
+                    <br>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="q4_A" name="q4_A" value="A">A、大五人格测试
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="q4_B" name="q4_B" value="B">B、MBTI职业性格测试
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="q4_C" name="q4_C" value="C">C、星座测试
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="q4_D" name="q4_D" value="D">D、霍兰德职业兴趣测试
+                    </label>
+                </div>
+
+                <div class="form-group" id="q5">
+                    <label>5、大五人格测试、MBTI职业性格测试、霍兰德职业兴趣测试中，（    ）不属于人格测试。</label>
+                    <br>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q5" value="A">A、大五人格测试
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q5" value="B">B、MBTI职业性格测试
+                    </label>
+                    <label class="radio-inline">
+                        <input class="radio-input" type="radio" name="q5" value="C">C、霍兰德职业兴趣测试
+                    </label>
+                </div>
+
+                <h2>二、简答题（共20分）</h2>
+                <div class="form-group">
+                    <label>1、请简述影响职业生涯的因素有哪些。</label>
+                    <textarea class="form-control" rows="5" id="q6" name="q6" placeholder=""></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>2、简述人的价值是什么。并结合自身职业特点举例。</label>
+                    <textarea class="form-control" rows="5" id="q7" name="q7" placeholder=""></textarea>
+                </div>
+
+                <h2>三、案例题（共55分）</h2>
+                <label>1、根据案例报告1，回答问题。（20分）</label>
+                <div class="form-group">
+                    <label>（1）报告分为几个模块？</label>
+                    <textarea class="form-control" rows="5" id="q8" name="q8" placeholder=""></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>（2）测试者优势是什么？短板是什么？</label>
+                    <textarea class="form-control" rows="5" id="q9" name="q9" placeholder=""></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>（3）你的建议是什么？</label>
+                    <textarea class="form-control" rows="5" id="q10" name="q10" placeholder=""></textarea>
+                </div>
+
+                <label>2、请解读案例报告2。（35分）</label>
+
+                <div class="form-group">
+                    <textarea class="form-control" rows="5" id="q11" name="q11" placeholder=""></textarea>
+                </div>
+                <input type="submit" class="btn btn-primary" onclick="InputCheck()" value="提交试卷">
+                <hr>
+            </div>
+        </div>
+</div>
+
+<script>
+
+    var answer = {};
+    function InputCheck()
+    {
+        if(!$('#mobile').val()  || isNaN($('#mobile').val()))
+        {
+            layer.open({content:'请填写手机号，以便我们能更方便的联系您',skin:'msg',time:2});
+            return false;
+        }
+        if(!$('#name').val())
+        {
+            layer.open({content:'请填写姓名',skin:'msg',time:2});
+            return false;
+        }
+
+        answer['mobile'] = $('#mobile').val();
+        answer['name'] = $('#name').val();
+        answer['q1'] = $("input[name='q1']:checked").val();
+        answer['q2'] = $("input[name='q2']:checked").val();
+        answer['q3'] = $("input[name='q3']:checked").val();
+
+        answer['q4_A'] = $('#q4_A').is(':checked') ;
+        answer['q4_B'] = $('#q4_B').is(':checked') ;
+        answer['q4_C'] = $('#q4_C').is(':checked') ;
+        answer['q4_D'] = $('#q4_D').is(':checked') ;
+
+        answer['q5'] = $("input[name='q5']:checked").val();
+        answer['q6'] = $('#q6').val();
+        answer['q7'] = $('#q7').val();
+        answer['q8'] = $('#q8').val();
+        answer['q9'] = $('#q9').val();
+        answer['q10'] = $('#q10').val();
+        answer['q11'] = $('#q11').val();
+
+        $.post('?m=wj&c=wj&a=submit&id=2020',{'answer':JSON.stringify(answer)},function (data) {
+            if(data.io){
+                layer.open({
+                    content:'感谢您的参与!您的答卷已经提交，点击确定查看报告结果。',
+                    btn:'确定',
+                    shadeClose: false,
+                    yes:function(){
+                        location.href = '?m=wj&c=wj&a=report&id=2020&wid=' + data.data;
+                    }
+                });
+            }else{
+                layer.open({content:data.error,skin:'msg',time:2});
+                console.debug(data.error);
+            }
+        },'json');
+    }
+
+</script>
+
+<!--{include common/footer.html}-->

@@ -1,0 +1,55 @@
+<!--{php}-->
+$_SYS['tpl']['title'] = '心理测试列表';
+$_SYS['tpl']['js'][] = 'static/js/template-web.js';
+
+<!--{/php}-->
+<!--{include common/head.html}-->
+
+<body>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+
+<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+    <div class="container"  id="container_title">
+        <p style="padding-top: 35px;font-size: 34px;">埃科职业生涯规划教育培训</p>
+        <p>初级认证考核考试题目</p>
+    </div>
+</div>
+
+<div class="container" id="container_1">
+
+</div>
+
+
+<script>
+    window.onload = function (){
+        init();
+
+    }
+</script>
+
+<script>
+
+    var answer = JSON.parse('{$report['answer']}');
+    var score = 0;
+    var list = [];
+    function init() {
+
+        $("#container_1").append('<p>电话：<code>'+answer['mobile']+'</code></p>');
+        $("#container_1").append('<p>姓名：<code>'+answer['name']+'</code></p>');
+        $("#container_1").append('<p>1：<code>'+answer['q1']+'</code></p>');
+        $("#container_1").append('<p>2：<code>'+answer['q2']+'</code></p>');
+        $("#container_1").append('<p>3：<code>'+answer['q3']+'</code></p>');
+        $("#container_1").append('<p>4：<code>A:'+answer['q4_A']+'</code>、<code>B:'+answer['q4_B']+'</code>、<code>C:'+answer['q4_C']+'</code>、<code>D:'+answer['q4_D']+'</code></p>');
+        $("#container_1").append('<p>5：<code>'+answer['q5']+'</code></p>');
+        $("#container_1").append('<p>6：<code>'+answer['q6']+'</code></p>');
+        $("#container_1").append('<p>7：<code>'+answer['q7']+'</code></p>');
+        $("#container_1").append('<p>8：<code>'+answer['q8']+'</code></p>');
+        $("#container_1").append('<p>9：<code>'+answer['q9']+'</code></p>');
+        $("#container_1").append('<p>10：<code>'+answer['q10']+'</code></p>');
+        $("#container_1").append('<p>11：<code>'+answer['q11']+'</code></p>');
+
+        console.log('ok');
+    }
+
+
+</script>

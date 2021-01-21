@@ -1,0 +1,67 @@
+<!--{php}-->
+$_SYS['tpl']['title'] = '心理测试列表';
+$_SYS['tpl']['js'][] = 'static/js/template-web.js';
+
+$_SYS['tpl']['js'][] = 'static/wj/'.$this->id.'.js';
+<!--{/php}-->
+<!--{include common/head.html}-->
+
+<body>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+
+<script type="text/html" id="script_title">
+    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+</script>
+
+<script type="text/html" id="script_1">
+    测试结果:
+    <h4><%=answer%>
+    </h4>
+</script>
+
+
+<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+    <div class="container"  id="container_title">
+        <p style="padding-top: 35px;font-size: 34px;">title</p>
+    </div>
+</div>
+
+<div class="container" id="container_1">
+</div>
+
+<div class="container">
+    心理视点:
+    <p>领导的定义是:在一个群体中，占据了统治、权威和影响力位置的那个人。在心理学中，领导也指拥有这些成为领导所必需的素质的人。
+        成为一名成功的领导所需要的品质有很多，而成功的领导行为在很大程度上依赖于领导风格的类型。因此，关于何种性格类型能构成优秀的领导才能的问题，没有什么不可违逆的原则。例如，作为军队的高级领导必须同时具有组织能力和激励士兵的能力，这同样适用于工业背景下的许多领导。
+    </p>
+</div>
+
+<script>
+    window.onload = function (){
+        init();
+
+    }
+</script>
+
+<script>
+
+    var answer = JSON.parse('{$report['answer']}');
+    function init() {
+        $.get('/static/wj/topic/{$this->id}.json',{},function (data) {
+            if(data.io){
+                var html = template('script_title', data.data);
+                $("#container_title").html(html);
+
+                var html = template('script_1', {'answer':data.data['report'][answer['q1']]});
+                $("#container_1").append(html);
+
+            }else{
+                console.debug(data.data);
+            }
+        },'json');
+
+        console.log('ok');
+    }
+
+
+</script>

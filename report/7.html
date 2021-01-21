@@ -1,0 +1,90 @@
+<!--{php}-->
+$_SYS['tpl']['title'] = '心理测试列表';
+$_SYS['tpl']['js'][] = 'static/js/template-web.js';
+
+$_SYS['tpl']['js'][] = 'static/wj/'.$this->id.'.js';
+<!--{/php}-->
+<!--{include common/head.html}-->
+
+<body>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+
+<script type="text/html" id="script_title">
+    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+</script>
+
+<script type="text/html" id="script_1">
+    测试结果:
+    <a style="font-size: 34px;"><%=name%>
+    </a>
+</script>
+
+
+<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+    <div class="container"  id="container_title">
+        <p style="padding-top: 35px;font-size: 34px;">title</p>
+    </div>
+</div>
+
+<div class="container" id="container_1">
+
+</div>
+
+<div class="container">
+    <p>心理视点:
+        有很多好的做法，可以帮助我们开始自己的理财计划，以下6个要点完全可以帮助一个刚开始理财的人学会如何很好地控制其经济状况。这些规则会使你相信，从现在就开始制定一个理财计划绝对是个好主意，而且越早开始就越容易达到目标，即使是很小数目的投资都是值得的。
+        这6个理财要点是：
+        (1)记录财务情况。
+        (2)明确价值观和经济目标。
+        (3)确定净资产。
+        (4)了解收入及花销。
+        (5)制定预算，并参照实施。
+        (6)削减开销。
+        以上6个理财要点，可以帮助我们开始自己的理财生活。好的开始是成功的一半。长此以往坚持下去，相信你一定会实现自己的人生目标!
+    </p>
+</div>
+
+<script>
+    window.onload = function (){
+        init();
+
+    }
+</script>
+
+<script>
+
+    var answer = JSON.parse('{$report['answer']}');
+    var score = 0;
+    var list = [];
+    function init() {
+        $.get('/static/wj/topic/{$this->id}.json',{},function (data) {
+            if(data.io){
+                var html = template('script_title', data.data);
+                $("#container_title").html(html);
+
+                var name = data.data['report']['abbr'];
+
+                for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
+                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
+                }
+
+                if(score <= 25){
+                    var html = template('script_1', {"name":data.data['report']['A']});
+                }else if(score >= 26 && score <= 35){
+                    var html = template('script_1', {"name":data.data['report']['B']});
+                }else{
+                    var html = template('script_1', {"name":data.data['report']['C']});
+                }
+
+                $("#container_1").append(html);
+
+            }else{
+                console.debug(data.data);
+            }
+        },'json');
+
+        console.log('ok');
+    }
+
+
+</script>
