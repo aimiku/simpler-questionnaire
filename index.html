@@ -59,21 +59,19 @@
 </script>
 
 <script>
-    function init() {
-        $.get('/static/wj/list.json',{},function (data) {
-            if(data.io){
-                for(var i = 0; i < data.data.length; i++) {
-                    var unit = template('script_list', data.data[i]);
-                    $("#container_list").append(unit);
-                    console.log(data.data[i]);
-
-                };
-                console.log('ok');
-            }else{
-                console.debug(data.data);
-            }
-        },'json');
-        console.log('ok');
-    }
+	function init(){
+		$.get('/static/wj/list.json',{},function (data){
+			if(data.io){
+				for(var i=0; i<data.data.length; i++){
+					var unit =template('script_list',data.data[i]);
+					$("#container_list").append(unit);
+				};
+				console.log('ok');
+			}else {
+				console.debug(data.data)
+			}
+		},'json');
+		console.log('ok')
+	}
 
 </script>

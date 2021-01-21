@@ -1,11 +1,23 @@
-<!--{php}-->
-$_SYS['tpl']['title'] = '心理测试列表';
-$_SYS['tpl']['js'][] = 'static/js/template-web.js';
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+        <title>你适合什么样的职业</title>
 
-$_SYS['tpl']['js'][] = 'static/wj/'.$this->id.'.js';
-<!--{/php}-->
-<!--{include common/head.html}-->
+              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+              <script src="/static/js/jquery-2.1.4.min.js"></script>
+              <script src="/static/js/bootstrap.min.js"></script>
+              <script src="/static/js/layer/layer.js"></script>
+              <script src="/static/js/template-web.js"></script>
 
+
+    </head>
 <body>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
@@ -61,33 +73,63 @@ $_SYS['tpl']['js'][] = 'static/wj/'.$this->id.'.js';
     </p>
 </div>
 
-<script>
-    window.onload = function (){
-        init();
 
-    }
+<script>
+	function getUrlParam(name) {
+	    //构造一个含有目标参数的正则表达式对象
+	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	    //匹配目标参数
+	    var r = window.location.search.substr(1).match(reg);
+	    //返回参数
+	    if (r != null) {
+	        return unescape(r[2]);
+	    } else {
+	        return null;
+	    }
+	}
 </script>
-
 <script>
-
-    var answer = JSON.parse('{$report['answer']}');
-    var A = 0;
-    var B = 0;
-    var list = [];
+	var answer = {};
+	var A = 0;
+	var B = 0;
+	var list = [];
+	window.onload = function (){
+	    $.get('http://apoc.aikutest.com',{
+	        'm':'wj',
+	        'c':'wj',
+	        'a':'answer',
+	        'id':getUrlParam('id'),
+	    'wid':getUrlParam('wid')
+	},function (data) {
+	        if(data.io){
+	            answer = JSON.parse(data.data)
+	            init();
+	        }else{
+	            console.debug(data.data);
+	        }
+	    },'json');
+	
+	};
     function init() {
-        $.get('/static/wj/topic/{$this->id}.json',{},function (data) {
+        $.get('/static/wj/topic/'+getUrlParam('id')+'.json',{},function (data) {
             if(data.io){
                 var html = template('script_title', data.data);
                 $("#container_title").html(html);
-
                 for(var i = 0; i < data.data['report'].length; i++) {
                     var name = data.data['report'][i]['abbr'];
 
                     for(var i2 = 0; i2 < data.data['report'][i]['topic'].length; i2++){
-                        eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i]['topic'][i2]))));
-                    }
+                        eval(name +'='+ name + '+' + 
+							Number(
+								eval('answer.q'+Number(
+									data.data['report'][i]['topic'][i2]
+									)
+								)
+							)
+						);
+                    };
                 };
-
+				
                 if((A - B) > 2){
                     var html = template('script_1', {"name":"A"});
                     $("#container_1").append(html);
@@ -114,3 +156,4 @@ $_SYS['tpl']['js'][] = 'static/wj/'.$this->id.'.js';
 
 
 </script>
+</body>

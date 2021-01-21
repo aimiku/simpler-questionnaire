@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
-        <title>你的心理适应能力如何</title>
+        <title>你的心理衰老了吗？</title>
 
               <link rel="stylesheet" href="/static/css/bootstrap.min.css">
               <script src="/static/js/jquery-2.1.4.min.js"></script>
@@ -43,47 +43,50 @@
 </div>
 
 <div class="container">
-    <p>心理视点:
-        面对纷繁复杂的现代社会环境，人们应具有良好的心理适应能力，以胜任各种富有挑战性的工作，否则便会产生自卑感，自信心不足，跟不上现代社会的节奏。
-        如何增强心理适应能力呢?首先要客观地认识自我，树立起信心其是建立起一个现实的目标，对自己的发展必须建立在现实的基础上，扬长避短，争取成功，再次，对生活采取宽容态度，处处替他人着想，切忌以自我为中心，要胸襟坦荡，善于接受别人，最后，只有在工作中及与人交往上做好自我调节，平衡心理，才能在竞争激烈的社会中得到发展。
+    <p>心理视点
+					依照上面的自测结果，结合下面的心理使康10大标准，便可大致了解自己的心理年龄。
+					有充分的安全感，有自知之明，对自己的能力有恰如其分的评价，生活目标切合实际，能够现实地对待和处理身边所发生的间题，能与周围环境保持良好的接做，并能始终兴趣盎然;能保持自己人格的完整与和谐，具有经验中学习的能力情绪平和，自控能力强个性发挥良好、适度:能在个人身体允许的范围内适度发挥自己的个性;能在社会规范之内对个人的基本求恰如其分地感到满足。
+					
     </p>
 </div>
 
 <script>
-	function getUrlParam(name) {
-	    //构造一个含有目标参数的正则表达式对象
-	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-	    //匹配目标参数
-	    var r = window.location.search.substr(1).match(reg);
-	    //返回参数
-	    if (r != null) {
-	        return unescape(r[2]);
-	    } else {
-	        return null;
-	    }
-	}
+    function getUrlParam(name) {
+        //构造一个含有目标参数的正则表达式对象
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        //匹配目标参数
+        var r = window.location.search.substr(1).match(reg);
+        //返回参数
+        if (r != null) {
+            return unescape(r[2]);
+        } else {
+            return null;
+        }
+    }
 </script>
+
 <script>
-		var score = 0;
-		var list = [];
-    window.onload = function (){
-       $.get('http://apoc.aikutest.com',{
-				 'm':'wj',
-				 'c':'wj',
-				 'a':'answer',
-				 'id':getUrlParam('id'),
-				 'wid':getUrlParam('wid')
-			 },function (data){
-				 if(data.io){
-					 answer = JSON.parse(data.data)
-					 init();
-				 }else {
-					 console.debug(data.data);
-				 }
-			 },'json');
-    };
+    var score = 0;
+    var list = [];
+		window.onload = function (){
+		    $.get('http://apoc.aikutest.com',{
+		        'm':'wj',
+		        'c':'wj',
+		        'a':'answer',
+		        'id':getUrlParam('id'),
+		    'wid':getUrlParam('wid')
+		},function (data) {
+		        if(data.io){
+		            answer = JSON.parse(data.data)
+		            init();
+		        }else{
+		            console.debug(data.data);
+		        }
+		    },'json');
+		
+		};
     function init() {
-        $.get('/static/wj/topic/'+getUrlParam('id')+'.json',{},function (data) {
+        $.get('/static/wj/topic/'+ getUrlParam('id')+'.json',{},function (data) {
             if(data.io){
                 var html = template('script_title', data.data);
                 $("#container_title").html(html);
@@ -94,13 +97,17 @@
                     eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
                 }
 
-                if(score <= 20){
+                if(score <= 4){
                     var html = template('script_1', {"name":data.data['report']['A']});
-                }else if(score >= 21 && score <= 48){
+                }else if(score >= 5 && score <= 8){
                     var html = template('script_1', {"name":data.data['report']['B']});
-                }else{
+                }else if(score >=9 && score <= 12){
                     var html = template('script_1', {"name":data.data['report']['C']});
-                }
+                }else if(score >=13 && score <= 16){
+					var html = template('script_1', {"name":data.data['report']['D']});
+				}else{
+					var html = template('script_1', {"name":data.data['report']['E']});
+				}
 
                 $("#container_1").append(html);
 

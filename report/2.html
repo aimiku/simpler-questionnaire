@@ -49,10 +49,6 @@
 </div>
 
 <script>
-    window.onload = function (){
-        init();
-
-    }
     function getUrlParam(name) {
       //构造一个含有目标参数的正则表达式对象
       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -68,37 +64,40 @@
 </script>
 
 <script>
-    var answer
-    function init() {
-        $.get('http://apoc.aikutest.com',{
-            'm':'wj',
-            'c':'wj',
-            'a':'answer',
-            'id':getUrlParam('id'),
-        'wid':getUrlParam('wid')
-        },function (data) {
-            if(data.io){
-                answer = JSON.parse(data.data)
+  var answer
+	window.onload = function (){
+	    $.get('http://apoc.aikutest.com',{
+	            'm':'wj',
+	            'c':'wj',
+	            'a':'answer',
+	            'id':getUrlParam('id'),
+	        'wid':getUrlParam('wid')
+	    },function (data) {
+			if(data.io){
+				answer = JSON.parse(data.data)
+				init();
+			}else{
+				console.debug(data.data);
+			}
+		},'json');
+	    
 
-            }else{
-                console.debug(data.data);
-            }
-        },'json');
-        $.get('/static/wj/topic/'+getUrlParam('id')+'.json',{},function (data) {
-            if(data.io){
-                var html = template('script_title', data.data);
-                $("#container_title").html(html);
+		function init() {	
+			$.get('/static/wj/topic/'+getUrlParam('id')+'.json',{},function (data) {
+				if(data.io){
+					var html = template('script_title', data.data);
+					$("#container_title").html(html);
+					
+					var html = template('script_1', {'answer':data.data['report'][answer['q1']]});
+					$("#container_1").append(html);
 
-                var html = template('script_1', {'answer':data.data['report'][answer['q1']]});
-                $("#container_1").append(html);
-
-            }else{
-                console.debug(data.data);
-            }
-        },'json');
-
-        console.log('ok');
-    }
-
+				}else{
+					console.debug(data.data);
+				}
+			},'json');
+			console.log('ok');
+		}
+	
+	}
 
 </script>

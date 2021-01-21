@@ -1,0 +1,385 @@
+{
+	"io": true,
+	"data": {
+		"title": "你的睡眠还好吗？",
+		"info": "测试导语<br>睡眠与健康有密切的关系，睡眠状态的小细节就能显示你是否患有疾病。请在与你的实际情况相符的陈述下边打上钩。如果某条陈述不相符或不正确，继续进行下一条测试。很快你就可以得到你的分数。",
+		"topic": [{
+				"no": 1,
+				"type": "SingleChoice",
+				"title": "经常有人说我打呼噜。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 2,
+				"type": "SingleChoice",
+				"title": "我常常被告知睡觉时会出现呼吸抑制。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 3,
+				"type": "SingleChoice",
+				"title": "我患有高血压。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 4,
+				"type": "SingleChoice",
+				"title": "朋友和亲戚常常抱怨我脾气暴躁、性子急。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 5,
+				"type": "SingleChoice",
+				"title": "我常希望自己更加精力充沛。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 6,
+				"type": "SingleChoice",
+				"title": "晚上睡觉我常出汗。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 7,
+				"type": "SingleChoice",
+				"title": "我常常感到整晚心跳加剧或心律失常。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 8,
+				"type": "SingleChoice",
+				"title": "我早晨起床后常常感到头痛。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 9,
+				"type": "SingleChoice",
+				"title": "我常常会突然醒来，并因气喘而大回呼吸。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 10,
+				"type": "SingleChoice",
+				"title": "我体重超标",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 11,
+				"type": "SingleChoice",
+				"title": "我对性生活不感兴趣。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 12,
+				"type": "SingleChoice",
+				"title": "我嗜睡但时刻保持清醒。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 13,
+				"type": "SingleChoice",
+				"title": "我早晨起床后经常感到口干。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 14,
+				"type": "SingleChoice",
+				"title": "我入睡困难。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 15,
+				"type": "SingleChoice",
+				"title": "时常有各种想法向我袭来，使我难以入睡。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 16,
+				"type": "SingleChoice",
+				"title": "经常有人说我打呼噜。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 17,
+				"type": "SingleChoice",
+				"title": "我常常被告知睡觉时会出现呼吸抑制。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 18,
+				"type": "SingleChoice",
+				"title": "我患有高血压。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 19,
+				"type": "SingleChoice",
+				"title": "朋友和亲戚常常抱怨我脾气暴躁、性子急。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 20,
+				"type": "SingleChoice",
+				"title": "我常希望自己更加精力充沛。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 21,
+				"type": "SingleChoice",
+				"title": "晚上睡觉我常出汗。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 22,
+				"type": "SingleChoice",
+				"title": "我常常感到整晚心跳加剧或心律失常。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 23,
+				"type": "SingleChoice",
+				"title": "我早晨起床后常常感到头痛。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 24,
+				"type": "SingleChoice",
+				"title": "我常常会突然醒来，并因气喘而大回呼吸。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 25,
+				"type": "SingleChoice",
+				"title": "我体重超标",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 26,
+				"type": "SingleChoice",
+				"title": "我对性生活不感兴趣。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 27,
+				"type": "SingleChoice",
+				"title": "我嗜睡但时刻保持清醒。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 28,
+				"type": "SingleChoice",
+				"title": "我早晨起床后经常感到口干。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 29,
+				"type": "SingleChoice",
+				"title": "我入睡困难。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 30,
+				"type": "SingleChoice",
+				"title": "时常有各种想法向我袭来，使我难以入睡。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 31,
+				"type": "SingleChoice",
+				"title": "我患有高血压。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 32,
+				"type": "SingleChoice",
+				"title": "朋友和亲戚常常抱怨我脾气暴躁、性子急。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 33,
+				"type": "SingleChoice",
+				"title": "我常希望自己更加精力充沛。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 34,
+				"type": "SingleChoice",
+				"title": "晚上睡觉我常出汗。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 35,
+				"type": "SingleChoice",
+				"title": "我常常感到整晚心跳加剧或心律失常。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 35,
+				"type": "SingleChoice",
+				"title": "我早晨起床后常常感到头痛。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 36,
+				"type": "SingleChoice",
+				"title": "我常常会突然醒来，并因气喘而大回呼吸。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 37,
+				"type": "SingleChoice",
+				"title": "我体重超标",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 38,
+				"type": "SingleChoice",
+				"title": "我对性生活不感兴趣。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 39,
+				"type": "SingleChoice",
+				"title": "我嗜睡但时刻保持清醒。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 40,
+				"type": "SingleChoice",
+				"title": "我早晨起床后经常感到口干。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 41,
+				"type": "SingleChoice",
+				"title": "我入睡困难。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			},
+			{
+				"no": 42,
+				"type": "SingleChoice",
+				"title": "时常有各种想法向我袭来，使我难以入睡。",
+				"info": "",
+				"opt": ["是","否"],
+				"score": []
+			}
+
+		],
+		"report": [
+			{
+				"abbr": "score",
+				"topic": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"],
+				"name": "选择1-13项:你可能忠有睡眠时呼吸暂停症，一种潜在的睡眠素乱，睡眠呼暂停症患者晚上睡觉时会经历多次呼吸丧失。"
+			
+			},
+			{
+				"abbr": "score",
+				"topic": ["1", "2", "3", "4", "5", "6", "7"],
+				"name": "选择14-20项:你可能忠有失眠症，一种被定义为经常不能入睡或保持睡眠状态的疾病。"
+			
+			},
+			{
+				"abbr": "score",
+				"topic": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+				"name": "选择21-30项:你可能忠有嗜眠发作症，一种白天正常清醒时发生不可控制的睡眠侵袭为特征的终身性疾病。"
+			
+			},
+			{
+				"abbr": "score",
+				"topic": ["1", "2", "3", "4","5"],
+				"name": "选择31-35项:你可能患有胃食道食物倒流症，一种睡眼时由于胃酸倒流进人食道导致的疾病。"
+			
+			},
+			{
+				"abbr": "score",
+				"topic": ["1", "2", "3", "4", "5", "6", "7"],
+				"name": "选择36～42项:你可能忠有周期性肢体运动紊乱症，一种在睡觉时导致四肢不可控制运动的疾病。"
+			
+			}
+		]
+	}
+}
