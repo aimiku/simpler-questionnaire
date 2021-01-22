@@ -26,9 +26,10 @@
 </script>
 
 		<script type="text/html" id="script_1">
-			测试结果:
-    <a style="font-size: 34px;"><%=name%>
+			
+    <a style="font-size: 20px; text-decoration: none;"><%=name%>
     </a>
+	<br />
 </script>
 
 
@@ -39,7 +40,8 @@
 		</div>
 
 		<div class="container" id="container_1">
-
+			测试结果:
+			<br />
 		</div>
 
 		<div class="container">
@@ -70,6 +72,7 @@
 		</script>
 
 		<script>
+			
 			var score = 0;
 			var A = 0;
 			var B = 0;
@@ -95,7 +98,7 @@
 			};
 
 			function init() {
-				$.get('/static/wj/topic/' + getUrlParam('id') + '.json', {}, function(data) {
+				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t='+new Date().getMilliseconds(), {}, function(data) {
 					if (data.io) {
 						var html = template('script_title', data.data);
 						$("#container_title").html(html);
@@ -106,20 +109,22 @@
 							for (var i2 = 0; i2 < data.data['report'][i]['topic'].length; i2++) {
 								eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i]['topic'][i2]))));
 							};
-						}	
-						if (A > B && (A > C && (A > D && A > E))) {
-							var html = template('script_1', {"name":data.data['report'][0]['name']});
-						} else if (B > A && (B > C && (B > D && B > E)) ) {
-							var html = template('script_1', {"name":data.data['report'][1]['name']});
-						} else if (C > B && (C > D && (C > E && C > A)) ) {
-							var html = template('script_1', {"name":data.data['report'][2]['name']});
-						} else if (D > B && (D > A && (D > C && D > E)) ) {
-							var html = template('script_1', {"name":data.data['report'][3]['name']});
-						} else {
-							var html = template('script_1', {"name":data.data['report'][4]['name']});
 						}
-
-						$("#container_1").append(html);
+						if (A > '0') {
+							$("#container_1").append(template('script_1', {"name":data.data['report'][0]['name']+'('+A+'/13)'}));
+						} 
+						if (B > '0') {
+							$("#container_1").append(template('script_1', {"name":data.data['report'][1]['name']+'('+B+'/7)'}));
+						}
+						if (C > '0') {
+							$("#container_1").append(template('script_1', {"name":data.data['report'][2]['name']+'('+C+'/10)'}));
+						}
+						if (D > '0' ) {
+							$("#container_1").append(template('script_1', {"name":data.data['report'][3]['name']+'('+D+'/5)'}));
+						} 
+						if (E > '0' ){
+							$("#container_1").append(template('script_1', {"name":data.data['report'][4]['name']+'('+E+'/7)'}));
+						}
 
 					} else {
 						console.debug(data.data);
