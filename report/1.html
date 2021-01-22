@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="favicon.ico">
-        <title>你是哪种气质类型的人</title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="favicon.ico">
+		<title>你是哪种气质类型的人</title>
 
-              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-              <script src="/static/js/jquery-2.1.4.min.js"></script>
-              <script src="/static/js/bootstrap.min.js"></script>
-              <script src="/static/js/layer/layer.js"></script>
-              <script src="/static/js/template-web.js"></script>
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+		<script src="/static/js/jquery-2.1.4.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/layer/layer.js"></script>
+		<script src="/static/js/template-web.js"></script>
 
 
-    </head>
-<body>
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
-<script type="text/html" id="script_title">
-    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+		<script type="text/html" id="script_title">
+			<p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
     <p style="font-size: 18px;">若要保留该报告结果，请点击微信右上角添加到收藏</p>
 </script>
 
-<script type="text/html" id="script_1">
-    测试结果:
+		<script type="text/html" id="script_1">
+			测试结果:
     <% for(var i = 0; i < name.length; i++){ %>
     <a style="font-size: 34px;"><%=name[i]%>
     </a>
@@ -37,157 +37,171 @@
     如果3种气质得分均高于第4种，而且接近，则为3种气质的混合型。
 </script>
 
-<script type="text/html" id="script_2">
-    <p style="font-size: 34px;"><%=name%>
+		<script type="text/html" id="script_2">
+			<p style="font-size: 34px;"><%=name%>
         <a style="font-size: 18px;"><%-score%>分</a>
     </p>
 </script>
 
 
-<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-    <div class="container"  id="container_title">
-        <p style="padding-top: 35px;font-size: 34px;">title</p>
-    </div>
-</div>
+		<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+			<div class="container" id="container_title">
+				<p style="padding-top: 35px;font-size: 34px;">title</p>
+			</div>
+		</div>
 
-<div class="container" id="container_1">
-</div>
-
-
-
-<div class="container" id="container_2">
-
-</div>
-<div class="container">
-    <p id="s">1.多血质。
-        神经特点:感受性低;耐受性高;不随意反应性强;具有可塑性、情绪头奋性高，反应速度快而灵活。
-        心理特点:活泼好动，善于交际:思维敏捷，容易接受新鲜事物;情绪和情容易产生也容易变化和消失，容易外露:体验不深刻。
-        典型表现:多血质又称活泼型，敏捷好动，善于交际，在新的环境里不感到拘束。在工作、学习上富有精力而且效率高，表现出机敏的工作能力，善于适应环境变化。在集体中精神倫快，朝气蓬勃，愿意从事合乎实际的事业，会对事业心向神往，能迅速地把握新事物，在有充分自制能力和纪律性的情况下，会表现出巨大的积极性。兴趣广泛，但情感易变，如果事业上不顺利，热情可能消失、其消失速度与投身事业一样迅速。从事多样化的工作往往成绩卓越。
-    </p>
-    <p id="b">2.胆汁质。
-        神经特点:感受性低;耐受性高;不随意反应性强;外倾性明显;情绪兴奋性高:控制力弱，反应快但不灵活。
-        心理特点:坦率热情精力旺盛，容易冲动;牌气暴躁:思维敏捷，但准确性差;情感外露，但持续时间不长。
-        典型表现:胆汁质又称不可過止型或战斗型。具有强烈的兴奋过程和比较弱的抑郁过程，情结易激动，反应迅速，行动敏捷，暴躁而有力在语言上、表情上、姿态上都有一种强烈而迅速的情感表现;在克服困难上有不可過止和坚初不拔的劲头，但不善于思考;性急，情感易爆发而不能自制。这种人的工作特点带有明显的周期性，埋头于事业，努力去克服通向目标的重重困难和障碍。但是当精力耗尽时，易失去信心。
-    </p>
-    <p id="m">3.黏液质
-        神经特点:感受性低;耐受性高;不随意反应性低;外部表现少;情绪具有稳定性;反应速度快且灵活。
-        心理特点:稳重，考虑问题全面:安静，沉默，善于克制自己;善于忍耐。情绪不易外露;注意力稳定而不容易转移，外部动作少而缓慢。
-        典型表现：这种人又称为安静型，在生活中是一个坚定而稳定的辛勤工作者。由于这种人具有与兴奋过程相均衡的强的抑制、所以行动缓慢而沉着，严格恪守既定的生活秩序和工作制度，不为无所谓的诱因而分心。黏液质的人态度持重，交际适度，不做空泛之谈，情感上不易激动、不易发牌气、也不易流露情感，能自制，也不常常显露自己的才能。这种人长时间坚持不懈，有条不亲地从事自己的工作。其不足之处在于不够灵活、不善于转移自己的注意力。情性使他因循守旧，表现出固定性有余，而灵活性不足。具有从容不迫和严肃认真的品德，性格上表现出一贯性和确定性。
-    </p>
-    <p id="d">4.抑郁质。
-        神经特点:感受性高;耐受性低，随意反应性低:情结兴奋性高反应速度慢，刻板固执。
-        心理特点:沉静;对问题感受和体验深刻；持久;情绪不容易表露:反应迟缓但是深刻，准确性高。
-        典型表现:有较强的感受能力，易动感情，情绪体验的方式较少，但是体验时持久且有力，能观察到別人不容易察觉到的细节，对外部环境变化敏惑，内心体验深刻，外表行为非常迟缓，忸怩、怯弱、怀疑、孤僻、优柔寡断，容易恐惧。
-    </p>
-    <p>心理视点:
-        气质是心理活动的动态特征，与日常生活中所说的“牌气”、“秉性”相近。气质是人格特征的白然风貌，它的成因主要与大脑的神经活动类型及后天习惯有关。气质类型本身在社会价值评价方面无好坏优劣之分，可以说每一种气质类型中都有积极或消极的成分，在人格的自我完善过程中，应扬长避短。气质不能决定人的思想道德素养和活动成就的高低。各种气质类型的人都可以对社会作出贡献，当然其消板成分也会对人的行为产生和负面影响。
-        在人群中，典型的气质类型者较少，更多的人是综合型。多血质和胆汁质的气质类型易形成外向性格，黏液质和郁质气质类型的人一般较文静和内向。
-    </p>
-</div>
-<script>
-    function getUrlParam(name) {
-        //构造一个含有目标参数的正则表达式对象
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        //匹配目标参数
-        var r = window.location.search.substr(1).match(reg);
-        //返回参数
-        if (r != null) {
-            return unescape(r[2]);
-        } else {
-            return null;
-        }
-    }
-</script>
-
-<script>
-    var answer = {};
-    var b = 0;
-    var s = 0;
-    var m = 0;
-    var d = 0;
-    var list = [];
-    window.onload = function (){
-        $.get('http://apoc.aikutest.com',{
-            'm':'wj',
-            'c':'wj',
-            'a':'answer',
-            'id':getUrlParam('id'),
-        'wid':getUrlParam('wid')
-    },function (data) {
-            if(data.io){
-                answer = JSON.parse(data.data)
-                init();
-            }else{
-                console.debug(data.data);
-            }
-        },'json');
-
-    };
-
-    function init() {
-        $.get('http://apoc.aikutest.com',{
-            'm':'wj',
-            'c':'wj',
-            'a':'answer',
-            'id':getUrlParam('id'),
-        'wid':getUrlParam('wid')
-        },function (data) {
-            if(data.io){
-                answer = JSON.parse(data.data)
-
-            }else{
-                console.debug(data.data);
-            }
-        },'json');
-        $.get('/static/wj/topic/'+getUrlParam('id')+'.json',{},function (data) {
-            if(data.io){
-                var html = template('script_title', data.data);
-                $("#container_title").html(html);
-
-                for(var i = 0; i < data.data['report'].length; i++) {
-                    var name = data.data['report'][i]['abbr'];
-
-                    for(var i2 = 0; i2 < data.data['report'][i]['topic'].length; i2++){
-                        eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i]['topic'][i2]))));
-
-                    }
-                    report = {"abbr":data.data['report'][i]['abbr'],"name":data.data['report'][i]['name'],"score":eval(data.data['report'][i]['abbr'])};
-                    list[i] = report;
-                    var html = template('script_2', report);
-                    $("#container_2").append(html);
-                };
-
-                list = list.sort(function(a,b){
-                    return b.score - a.score;
-                });
-
-                if(list[0]["score"] > list[1]["score"] && (list[0]["score"] - list[1]["score"]) > 4){
-                    var html = template('script_1', {"name":list[0]['name'],"score":list[0]['score']});
-                    $("#container_1").append(html);
-                    $('#'+list[0]["abbr"]).css("background-color","#FFFFCC");
-                }else if((list[0]["score"] - list[1]["score"]) <= 3 && (list[1]["score"] - list[2]["score"]) > 4){
-                    var html = template('script_1', {"name":[list[0]['name'],list[1]['name']],"score":[list[0]['score'],list[1]['score']]});
-                    $("#container_1").append(html);
-                    $('#'+list[0]["abbr"]).css("background-color","#FFFFCC");
-                    $('#'+list[1]["abbr"]).css("background-color","#FFFFCC");
-                }else if((list[0]["score"] - list[2]["score"]) <= 3 && (list[0]["score"] - list[3]["score"]) >4){
-                    var html = template('script_1', {"name":[list[0]['name'],list[1]['name'],list[2]['name']],"score":[list[0]['score'],list[1]['score'],list[2]['score']]});
-                    $("#container_1").append(html);
-                    $('#'+list[0]["abbr"]).css("background-color","#FFFFCC");
-                    $('#'+list[1]["abbr"]).css("background-color","#FFFFCC");
-                    $('#'+list[2]["abbr"]).css("background-color","#FFFFCC");
-                }else{
-                    var html = template('script_1', {"name":'其他',"score":'其他'});
-                    $("#container_1").append(html);
-                }
-
-            }else{
-                console.debug(data.data);
-            }
-        },'json');
-
-        console.log('ok');
-    }
+		<div class="container" id="container_1">
+		</div>
 
 
-</script>
+
+		<div class="container" id="container_2">
+
+		</div>
+		<div class="container">
+			<p id="s">1.多血质。
+				神经特点:感受性低;耐受性高;不随意反应性强;具有可塑性、情绪头奋性高，反应速度快而灵活。
+				心理特点:活泼好动，善于交际:思维敏捷，容易接受新鲜事物;情绪和情容易产生也容易变化和消失，容易外露:体验不深刻。
+				典型表现:多血质又称活泼型，敏捷好动，善于交际，在新的环境里不感到拘束。在工作、学习上富有精力而且效率高，表现出机敏的工作能力，善于适应环境变化。在集体中精神倫快，朝气蓬勃，愿意从事合乎实际的事业，会对事业心向神往，能迅速地把握新事物，在有充分自制能力和纪律性的情况下，会表现出巨大的积极性。兴趣广泛，但情感易变，如果事业上不顺利，热情可能消失、其消失速度与投身事业一样迅速。从事多样化的工作往往成绩卓越。
+			</p>
+			<p id="b">2.胆汁质。
+				神经特点:感受性低;耐受性高;不随意反应性强;外倾性明显;情绪兴奋性高:控制力弱，反应快但不灵活。
+				心理特点:坦率热情精力旺盛，容易冲动;牌气暴躁:思维敏捷，但准确性差;情感外露，但持续时间不长。
+				典型表现:胆汁质又称不可過止型或战斗型。具有强烈的兴奋过程和比较弱的抑郁过程，情结易激动，反应迅速，行动敏捷，暴躁而有力在语言上、表情上、姿态上都有一种强烈而迅速的情感表现;在克服困难上有不可過止和坚初不拔的劲头，但不善于思考;性急，情感易爆发而不能自制。这种人的工作特点带有明显的周期性，埋头于事业，努力去克服通向目标的重重困难和障碍。但是当精力耗尽时，易失去信心。
+			</p>
+			<p id="m">3.黏液质
+				神经特点:感受性低;耐受性高;不随意反应性低;外部表现少;情绪具有稳定性;反应速度快且灵活。
+				心理特点:稳重，考虑问题全面:安静，沉默，善于克制自己;善于忍耐。情绪不易外露;注意力稳定而不容易转移，外部动作少而缓慢。
+				典型表现：这种人又称为安静型，在生活中是一个坚定而稳定的辛勤工作者。由于这种人具有与兴奋过程相均衡的强的抑制、所以行动缓慢而沉着，严格恪守既定的生活秩序和工作制度，不为无所谓的诱因而分心。黏液质的人态度持重，交际适度，不做空泛之谈，情感上不易激动、不易发牌气、也不易流露情感，能自制，也不常常显露自己的才能。这种人长时间坚持不懈，有条不亲地从事自己的工作。其不足之处在于不够灵活、不善于转移自己的注意力。情性使他因循守旧，表现出固定性有余，而灵活性不足。具有从容不迫和严肃认真的品德，性格上表现出一贯性和确定性。
+			</p>
+			<p id="d">4.抑郁质。
+				神经特点:感受性高;耐受性低，随意反应性低:情结兴奋性高反应速度慢，刻板固执。
+				心理特点:沉静;对问题感受和体验深刻；持久;情绪不容易表露:反应迟缓但是深刻，准确性高。
+				典型表现:有较强的感受能力，易动感情，情绪体验的方式较少，但是体验时持久且有力，能观察到別人不容易察觉到的细节，对外部环境变化敏惑，内心体验深刻，外表行为非常迟缓，忸怩、怯弱、怀疑、孤僻、优柔寡断，容易恐惧。
+			</p>
+			<p>心理视点:
+				气质是心理活动的动态特征，与日常生活中所说的“牌气”、“秉性”相近。气质是人格特征的白然风貌，它的成因主要与大脑的神经活动类型及后天习惯有关。气质类型本身在社会价值评价方面无好坏优劣之分，可以说每一种气质类型中都有积极或消极的成分，在人格的自我完善过程中，应扬长避短。气质不能决定人的思想道德素养和活动成就的高低。各种气质类型的人都可以对社会作出贡献，当然其消板成分也会对人的行为产生和负面影响。
+				在人群中，典型的气质类型者较少，更多的人是综合型。多血质和胆汁质的气质类型易形成外向性格，黏液质和郁质气质类型的人一般较文静和内向。
+			</p>
+		</div>
+		<script>
+			function getUrlParam(name) {
+				//构造一个含有目标参数的正则表达式对象
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				//匹配目标参数
+				var r = window.location.search.substr(1).match(reg);
+				//返回参数
+				if (r != null) {
+					return unescape(r[2]);
+				} else {
+					return null;
+				}
+			}
+		</script>
+
+		<script>
+			var answer = {};
+			var b = 0;
+			var s = 0;
+			var m = 0;
+			var d = 0;
+			var list = [];
+			window.onload = function() {
+				$.get('http://apoc.aikutest.com', {
+					'm': 'wj',
+					'c': 'wj',
+					'a': 'answer',
+					'id': getUrlParam('id'),
+					'wid': getUrlParam('wid')
+				}, function(data) {
+					if (data.io) {
+						answer = JSON.parse(data.data)
+						init();
+					} else {
+						console.debug(data.data);
+					}
+				}, 'json');
+
+			};
+
+			function init() {
+				$.get('http://apoc.aikutest.com', {
+					'm': 'wj',
+					'c': 'wj',
+					'a': 'answer',
+					'id': getUrlParam('id'),
+					'wid': getUrlParam('wid')
+				}, function(data) {
+					if (data.io) {
+						answer = JSON.parse(data.data)
+
+					} else {
+						console.debug(data.data);
+					}
+				}, 'json');
+				$.get('/static/wj/topic/' + getUrlParam('id') + '.json', {}, function(data) {
+					if (data.io) {
+						var html = template('script_title', data.data);
+						$("#container_title").html(html);
+
+						for (var i = 0; i < data.data['report'].length; i++) {
+							var name = data.data['report'][i]['abbr'];
+
+							for (var i2 = 0; i2 < data.data['report'][i]['topic'].length; i2++) {
+								eval(name + '+=' + Number(eval('answer.q' + Number(data.data['report'][i]['topic'][i2]))));
+
+							}
+							report = {
+								"abbr": data.data['report'][i]['abbr'],
+								"name": data.data['report'][i]['name'],
+								"score": eval(data.data['report'][i]['abbr'])
+							};
+							list[i] = report;
+							var html = template('script_2', report);
+							$("#container_2").append(html);
+						};
+
+						list = list.sort(function(a, b) {
+							return b.score - a.score;
+						});
+
+						if (list[0]["score"] > list[1]["score"] && (list[0]["score"] - list[1]["score"]) > 4) {
+							var html = template('script_1', {
+								"name": list[0]['name'],
+								"score": list[0]['score']
+							});
+							$("#container_1").append(html);
+							$('#' + list[0]["abbr"]).css("background-color", "#FFFFCC");
+						} else if ((list[0]["score"] - list[1]["score"]) <= 3 && (list[1]["score"] - list[2]["score"]) > 4) {
+							var html = template('script_1', {
+								"name": [list[0]['name'], list[1]['name']],
+								"score": [list[0]['score'], list[1]['score']]
+							});
+							$("#container_1").append(html);
+							$('#' + list[0]["abbr"]).css("background-color", "#FFFFCC");
+							$('#' + list[1]["abbr"]).css("background-color", "#FFFFCC");
+						} else if ((list[0]["score"] - list[2]["score"]) <= 3 && (list[0]["score"] - list[3]["score"]) > 4) {
+							var html = template('script_1', {
+								"name": [list[0]['name'], list[1]['name'], list[2]['name']],
+								"score": [list[0]['score'], list[1]['score'], list[2]['score']]
+							});
+							$("#container_1").append(html);
+							$('#' + list[0]["abbr"]).css("background-color", "#FFFFCC");
+							$('#' + list[1]["abbr"]).css("background-color", "#FFFFCC");
+							$('#' + list[2]["abbr"]).css("background-color", "#FFFFCC");
+						} else {
+							var html = template('script_1', {
+								"name": '其他',
+								"score": '其他'
+							});
+							$("#container_1").append(html);
+						}
+
+					} else {
+						console.debug(data.data);
+					}
+				}, 'json');
+
+				console.log('ok');
+			}
+		</script>
