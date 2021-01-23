@@ -88,8 +88,7 @@
 					var html = template('script_title', data.data);
 					$("#container_title").html(html);
 					
-					var html = template('script_1', {'answer':data.data['report'][answer['i1']]});
-					console.log(answer)
+					var html = template('script_1', {'answer':data.data['report'][answer['q1']]});
 					$("#container_1").append(html);
 
 				}else{
