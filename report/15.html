@@ -1,0 +1,120 @@
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+        <title>你的情绪健康吗</title>
+
+              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+              <script src="/static/js/jquery-2.1.4.min.js"></script>
+              <script src="/static/js/bootstrap.min.js"></script>
+              <script src="/static/js/layer/layer.js"></script>
+              <script src="/static/js/template-web.js"></script>
+
+
+    </head>
+<body>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+
+<script type="text/html" id="script_title">
+    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+</script>
+
+<script type="text/html" id="script_1">
+    测试结果:
+    <a style="font-size: 34px;text-decoration: none;"><%=name%>
+    </a>
+</script>
+
+
+<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+    <div class="container"  id="container_title">
+        <p style="padding-top: 35px;font-size: 34px;">title</p>
+    </div>
+</div>
+
+<div class="container" id="container_1">
+
+</div>
+
+<div class="container">
+    <p>心理视点:
+        情绪对我们的生理和心理健康有许多的作用。所以，不时地审视你自己的情绪，对健康不无裨益。
+        情绪包括5种:痛苦、愤怒、恐惧、快乐以及爱。这些是和我们的身体直接相关的。前3种情绪通常被认为属于“危险”的情绪，也就是不健康的情绪，它们意味着会或即将发生危险;而后两种则属于“令人愉快”的情绪，快乐和爱告诉我们，生活可以放松和享受，需要可以得到满足。当人们面对那些“危险”情绪时，如果不能及时缓解的话，可能会形成巨大的心理负担，而所有的这些情绪都和癌症以及其他危险疾病相关。一旦情结激化到一定程度，疾病将侵袭你的身体。    </p>
+</div>
+
+<script>
+	function getUrlParam(name) {
+	    //构造一个含有目标参数的正则表达式对象
+	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	    //匹配目标参数
+	    var r = window.location.search.substr(1).match(reg);
+	    //返回参数
+	    if (r != null) {
+	        return unescape(r[2]);
+	    } else {
+	        return null;
+	    }
+	}
+</script>
+
+<script>
+  var score = 0;
+	window.onload = function (){
+		$.get('http://apoc.aikutest.com',{
+				'm':'wj',
+				'c':'wj',
+				'a':'answer',
+				'id':getUrlParam('id'),
+				'wid':getUrlParam('wid')
+		},function (data) {
+				if(data.io){
+					answer = JSON.parse(data.data)
+					init();
+				}else{
+					console.debug(data.data);
+				}
+			},'json');
+		
+		};
+		function init() {
+			$.get('/static/wj/topic/'+getUrlParam('id') + '.json?t=' + new Date().getMilliseconds() ,{},function (data) {
+				if(data.io){
+					var html = template('script_title', data.data);
+					$("#container_title").html(html);
+
+					var name = data.data['report']['abbr'];
+
+					for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
+						eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
+					}
+					console.log(answer)
+					console.log(score)
+					if(score <= 30){
+						var html = template('script_1', {"name":data.data['report']['A']});
+					}else if(score >= 31 && score <= 61){
+						var html = template('script_1', {"name":data.data['report']['B']});
+					}else if(score >= 61 && score <= 80){
+						var html = template('script_1', {"name":data.data['report']['C']});
+					}else if(score >= 81 && score <= 100){
+						var html = template('script_1', {"name":data.data['report']['D']});
+					}else {
+						var html = template('script_1', {"name":data.data['report']['E']});
+					}
+
+					$("#container_1").append(html);
+
+				}else{
+					console.debug(data.data);
+				}
+			},'json');
+
+			console.log('ok');
+		}
+	
+
+</script>
