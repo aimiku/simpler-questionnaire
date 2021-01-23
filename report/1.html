@@ -164,7 +164,8 @@
 						list = list.sort(function(a, b) {
 							return b.score - a.score;
 						});
-
+						console.log(list)
+						console.log(b)
 						if (list[0]["score"] > list[1]["score"] && (list[0]["score"] - list[1]["score"]) > 4) {
 							var html = template('script_1', {
 								"name": list[0]['name'],
