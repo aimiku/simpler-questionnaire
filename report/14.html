@@ -63,7 +63,6 @@
 </script>
 <script>
 		var answer = {};
-		var blood = 0;
 		
     window.onload = function() {
     	$.get('http://apoc.aikutest.com', {
@@ -88,19 +87,10 @@
                 var html = template('script_title', data.data);
                 $("#container_title").html(html);
 
-                var name = data.data['report']['abbr'];
-								console.log(Number(data.data['topic'][0]['score'][0]))
-                for(var i2 = 0; i2 < data.data['report'].length; i2++){
-                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i2]))));
-                }
-
-                if(blood <= 20){
-                    var html = template('script_1', {"name":data.data['report']['A']});
-                }else if(blood >= 21 && blood <= 48){
-                    var html = template('script_1', {"name":data.data['report']['B']});
-                }else{
-                    var html = template('script_1', {"name":data.data['report']['C']});
-                }
+                if(answer.q10 != 0)
+                    var html = template('script_1', {"name":data.data['report'][answer.q10]});
+                else if(answer.q11 != 0)
+                    var html = template('script_1', {"name":data.data['report'][answer.q11]});
 
                 $("#container_1").append(html);
 
