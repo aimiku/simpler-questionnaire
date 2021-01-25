@@ -1,55 +1,90 @@
-<!--{php}-->
-$_SYS['tpl']['title'] = '心理测试列表';
-$_SYS['tpl']['js'][] = 'static/js/template-web.js';
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="favicon.ico">
+		<title>你是否心平气和</title>
 
-<!--{/php}-->
-<!--{include common/head.html}-->
-
-<body>
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
-
-<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-    <div class="container"  id="container_title">
-        <p style="padding-top: 35px;font-size: 34px;">埃科职业生涯规划教育培训</p>
-        <p>初级认证考核考试题目</p>
-    </div>
-</div>
-
-<div class="container" id="container_1">
-
-</div>
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+		<script src="/static/js/jquery-2.1.4.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/layer/layer.js"></script>
+		<script src="/static/js/template-web.js"></script>
 
 
-<script>
-    window.onload = function (){
-        init();
+	</head>
+	<body>
+		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
-    }
-</script>
+		<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+			<div class="container" id="container_title">
+				<p style="padding-top: 35px;font-size: 34px;">埃科职业生涯规划教育培训</p>
+				<p>初级认证考核考试题目</p>
+			</div>
+		</div>
 
-<script>
+		<div class="container" id="container_1">
 
-    var answer = JSON.parse('{$report['answer']}');
-    var score = 0;
-    var list = [];
-    function init() {
-
-        $("#container_1").append('<p>电话：<code>'+answer['mobile']+'</code></p>');
-        $("#container_1").append('<p>姓名：<code>'+answer['name']+'</code></p>');
-        $("#container_1").append('<p>1：<code>'+answer['q1']+'</code></p>');
-        $("#container_1").append('<p>2：<code>'+answer['q2']+'</code></p>');
-        $("#container_1").append('<p>3：<code>'+answer['q3']+'</code></p>');
-        $("#container_1").append('<p>4：<code>A:'+answer['q4_A']+'</code>、<code>B:'+answer['q4_B']+'</code>、<code>C:'+answer['q4_C']+'</code>、<code>D:'+answer['q4_D']+'</code></p>');
-        $("#container_1").append('<p>5：<code>'+answer['q5']+'</code></p>');
-        $("#container_1").append('<p>6：<code>'+answer['q6']+'</code></p>');
-        $("#container_1").append('<p>7：<code>'+answer['q7']+'</code></p>');
-        $("#container_1").append('<p>8：<code>'+answer['q8']+'</code></p>');
-        $("#container_1").append('<p>9：<code>'+answer['q9']+'</code></p>');
-        $("#container_1").append('<p>10：<code>'+answer['q10']+'</code></p>');
-        $("#container_1").append('<p>11：<code>'+answer['q11']+'</code></p>');
-
-        console.log('ok');
-    }
+		</div>
 
 
-</script>
+		<script>
+			function getUrlParam(name) {
+			    //构造一个含有目标参数的正则表达式对象
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			    //匹配目标参数
+			    var r = window.location.search.substr(1).match(reg);
+			    //返回参数
+			    if (r != null) {
+			        return unescape(r[2]);
+			    } else {
+			        return null;
+			    }
+			}
+		</script>
+
+		<script>
+			var score = 0;
+			var list = [];
+			window.onload = function (){
+				$.get('http://apoc.aikutest.com',{
+						'm':'wj',
+						'c':'wj',
+						'a':'answer',
+						'id':getUrlParam('id'),
+						'wid':getUrlParam('wid')
+				},function (data) {
+						if(data.io){
+							answer = JSON.parse(data.data)
+							init();
+						}else{
+							console.debug(data.data);
+						}
+					},'json');
+				
+				};
+			function init() {
+				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
+						$("#container_1").append('<p>电话：<code>' + answer['mobile'] + '</code></p>');
+						$("#container_1").append('<p>姓名：<code>' + answer['name'] + '</code></p>');
+						$("#container_1").append('<p>1：<code>' + answer['q1'] + '</code></p>');
+						$("#container_1").append('<p>2：<code>' + answer['q2'] + '</code></p>');
+						$("#container_1").append('<p>3：<code>' + answer['q3'] + '</code></p>');
+						$("#container_1").append('<p>4：<code>A:' + answer['q4_A'] + '</code>、<code>B:' + answer['q4_B'] +
+							'</code>、<code>C:' + answer['q4_C'] + '</code>、<code>D:' + answer['q4_D'] + '</code></p>');
+						$("#container_1").append('<p>5：<code>' + answer['q5'] + '</code></p>');
+						$("#container_1").append('<p>6：<code>' + answer['q6'] + '</code></p>');
+						$("#container_1").append('<p>7：<code>' + answer['q7'] + '</code></p>');
+						$("#container_1").append('<p>8：<code>' + answer['q8'] + '</code></p>');
+						$("#container_1").append('<p>9：<code>' + answer['q9'] + '</code></p>');
+						$("#container_1").append('<p>10：<code>' + answer['q10'] + '</code></p>');
+						$("#container_1").append('<p>11：<code>' + answer['q11'] + '</code></p>');
+
+						console.log('ok');
+					}
+				}
+		</script>

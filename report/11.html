@@ -110,11 +110,6 @@
 								eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i]['topic'][i2]))));
 							};
 						}
-						console.log(A)
-						console.log(B)
-						console.log(C)
-						console.log(D)
-						console.log(E)
 						if (A > '0') {
 							$("#container_1").append(template('script_1', {"name":data.data['report'][0]['name']+'('+A+'/13)'}));
 						} 

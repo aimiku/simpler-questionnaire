@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
-        <title>你的内在血型是什么</title>
+        <title>你能在E时代沟通自如吗</title>
 
               <link rel="stylesheet" href="/static/css/bootstrap.min.css">
               <script src="/static/js/jquery-2.1.4.min.js"></script>
@@ -44,7 +44,7 @@
 
 <div class="container">
     <p>心理视点:
-       内在血型的不同，并没有优劣之分，但是它决定了一个人的个性偏向。所以通过血型看一个人的性格是很准的。但是也不要迷信它，因为一个人的性格在很大程度上取决于后天影响，所以要自觉完善自己！    </p>
+      良好的沟通能力是处理好人际关系的关键，具有良好的沟通能力可使好地表达自己的思想和情感，获得别人的理解和支持。从而与上级、同事下保持良好的关系。海通技巧较差的人常常会被别人误解。给别人留下不好的印象，甚至无意中对别人造成伤害。一数来说，培养自己的沟通能力从两方面努カ。一是提高理解別人的能力、二是提高表达能力。在此基础上达成理解和共识。
 </div>
 
 <script>
@@ -63,7 +63,7 @@
 </script>
 <script>
 		var answer = {};
-		var blood = 0;
+		var score = 0;
 		
     window.onload = function() {
     	$.get('http://apoc.aikutest.com', {
@@ -94,11 +94,11 @@
                     eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i2]))));
                 }
 
-                if(blood <= 20){
+                if(score <= 15 && score >= 13){
                     var html = template('script_1', {"name":data.data['report']['A']});
-                }else if(blood >= 21 && blood <= 48){
+                }else if(score >= 12 && score <= 9){
                     var html = template('script_1', {"name":data.data['report']['B']});
-                }else{
+                }else if(score >= 3 && score <= 8){
                     var html = template('script_1', {"name":data.data['report']['C']});
                 }
 

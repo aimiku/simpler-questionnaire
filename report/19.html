@@ -1,0 +1,114 @@
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+        <title>你的人缘怎么样</title>
+
+              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+              <script src="/static/js/jquery-2.1.4.min.js"></script>
+              <script src="/static/js/bootstrap.min.js"></script>
+              <script src="/static/js/layer/layer.js"></script>
+              <script src="/static/js/template-web.js"></script>
+
+
+    </head>
+<body>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+
+<script type="text/html" id="script_title">
+    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+</script>
+
+<script type="text/html" id="script_1">
+    测试结果:
+    <a style="font-size: 24px;text-decoration: none;"><%=name%>
+    </a>
+		<hr />
+</script>
+
+
+<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+    <div class="container"  id="container_title">
+        <p style="padding-top: 35px;font-size: 24px;">title</p>
+    </div>
+</div>
+
+<div class="container" id="container_1">
+
+</div>
+
+<div class="container">
+    <p>心理视点:
+      如何才能拥有一份好人缘呢？俗话说得好，牵牛要牵牛鼻子。这人缘的事，只要贴近了人的心，就八九不离十了。也许有人会说，人心隔肚皮，哪能说贴就贴？看过了太多人世间的尔虞我诈、相互利用，很多人早已忽视了“真诚”二字。其实，这简单的二字，便是让人心贴心的强力胶。所谓真，便是真真切切做人，真心实意对人，真情真意留人。而所谓诚，便是诚实守信，诚恳真挚。真诚的人，人前人后一个样，少了掩饰多了自在；真诚的人，心存宽厚，面露和色，少了烦恼多了欢乐；真诚的人，话语中肯，将心比心，少了虚伪多了温情。本着你的真心，借着你的诚意，必能迎来人生完美的人缘。
+<script>
+	function getUrlParam(name) {
+	    //构造一个含有目标参数的正则表达式对象
+	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	    //匹配目标参数
+	    var r = window.location.search.substr(1).match(reg);
+	    //返回参数
+	    if (r != null) {
+	        return unescape(r[2]);
+	    } else {
+	        return null;
+	    }
+	}
+</script>
+
+<script>
+  var score = 0;
+	window.onload = function (){
+		$.get('http://apoc.aikutest.com',{
+				'm':'wj',
+				'c':'wj',
+				'a':'answer',
+				'id':getUrlParam('id'),
+				'wid':getUrlParam('wid')
+		},function (data) {
+				if(data.io){
+					answer = JSON.parse(data.data)
+					init();
+				}else{
+					console.debug(data.data);
+				}
+			},'json');
+		
+		};
+		function init() {
+			$.get('/static/wj/topic/'+getUrlParam('id') + '.json?t=' + new Date().getMilliseconds() ,{},function (data) {
+				if(data.io){
+					var html = template('script_title', data.data);
+					$("#container_title").html(html);
+
+					var name = data.data['report']['abbr'];
+
+					for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
+						eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
+					}
+					console.log(answer)
+					console.log(score)
+					if(score >= 36 && score <= 45){
+						var html = template('script_1', {"name":data.data['report']['A']});
+					}else if(score >= 26 && score <= 35){
+						var html = template('script_1', {"name":data.data['report']['B']});
+					}else if(score >= 15 && score <= 25){
+						var html = template('script_1', {"name":data.data['report']['C']});
+					}
+
+					$("#container_1").append(html);
+
+				}else{
+					console.debug(data.data);
+				}
+			},'json');
+
+			console.log('ok');
+		}
+	
+
+</script>

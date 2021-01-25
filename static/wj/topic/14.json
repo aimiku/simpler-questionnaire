@@ -10,7 +10,7 @@
 				"title": "不喜欢吃的食物，你一定不吃。",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": [{"click": "function(2){}"},{"click": "function(3)"}]
 			},
 			{
 				"no": 2,
@@ -18,7 +18,7 @@
 				"title": "你在约会的时候一向准时吗？",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": [{"click": "function(2)"},{"click": "function(3)"}]
 			},
 			{
 				"no": 3,
@@ -26,7 +26,7 @@
 				"title": "你每天都要收看电视里的新闻节目，不看不舒服吗？",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": [{"click": "function(2)"},{"click": "function(3"}]
 			},
 			{
 				"no": 4,
@@ -34,7 +34,7 @@
 				"title": "你在没有心情上班或上学的时候，会请假休息一天吗？",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": [{"click": "function(2)"},{"click": "function(3"}]
 			},
 			{
 				"no": 5,
@@ -42,7 +42,7 @@
 				"title": "心情不好的时候，你通常睡一觉就好了。",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": [{"click": "function(2)"},{"click": "function(3"}]
 			},
 			{
 				"no": 6,
@@ -50,7 +50,7 @@
 				"title": "有时候你会故意大声地打喷嚏。",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": [{"click": "function(2)"},{"click": "function(3"}]
 			},
 			{
 				"no": 7,
@@ -58,7 +58,7 @@
 				"title": "你喜欢卡通型的东西吗？",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": [{"click": "function(2)"},{"click": "function(3"}]
 			},
 			{
 				"no": 8,
@@ -66,15 +66,15 @@
 				"title": "在选择旅游的交通工具时，你比较喜欢快捷的飞机多于汽车或轮船。",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": [{"click": "function(2)"},{"click": "function(3"}]
 			},
 			{
 				"no": 9,
 				"type": "SingleChoice",
 				"title": "你很留意朋友们的衣着打扮。",
 				"info": "",
-				"opt": ["是	","否"],
-				"score": ["1","0"]
+				"opt": ["是","否"],
+				"score": [{"click": "function(2)"},{"click": "function(3"}]
 			},
 			{
 				"no": 10,
@@ -82,7 +82,7 @@
 				"title": "你很在乎你给别人的第一印象。",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": [{"click": "function(2)"},{"click": "function(3"}]
 			},
 			{
 				"no": 11,
@@ -90,7 +90,7 @@
 				"title": "一条铺满落叶的林荫小道会给你浪漫的感觉？",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": [{"click": "function(2)"},{"click": "function(3"}]
 			}
 		],
 		"report": {
