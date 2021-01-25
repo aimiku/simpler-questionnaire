@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
-        <title>你的内在血型是什么</title>
+        <title>你能在E时代沟通自如吗</title>
 
               <link rel="stylesheet" href="/static/css/bootstrap.min.css">
               <script src="/static/js/jquery-2.1.4.min.js"></script>
@@ -27,8 +27,9 @@
 
 <script type="text/html" id="script_1">
     测试结果:
-    <a style="font-size: 34px;text-decoration: none;"><%=name%>
+    <a style="font-size: 24px;text-decoration: none;"><%=name%>
     </a>
+		<hr />
 </script>
 
 
@@ -44,7 +45,17 @@
 
 <div class="container">
     <p>心理视点:
-       内在血型的不同，并没有优劣之分，但是它决定了一个人的个性偏向。所以通过血型看一个人的性格是很准的。但是也不要迷信它，因为一个人的性格在很大程度上取决于后天影响，所以要自觉完善自己！    </p>
+      与周国的人建立良好的关系，对你的身心健康以及职业生涯来说将会大有裨益。为了建立良好的人际关系，你可以按照以下几点去做
+      (1)做到彬彬有礼，尊重他人。你希望别人怎样对你，你就应该怎样对待别人。
+      (2)富有同情心。理解别人，体会他人的感受，设身处地为他人着想。
+      (3)乐于接受他人。不要浪费时间去试图改变他人，要认识到:你不可能真正改变一个人，但是你可以改变你对待他们的态度。
+      (4)要有时心。不要急于下判断，在反驳别人的观点之前，首先弄清楚别人究竟说了些什么。
+      (5)信守诺言。信守你所许下的诺官、要超越人们对你的期望，让你的工做比预期完成地更好、更快。
+      (6)欣赏他人。善于欣赏他人，就是给予他人的最大善意，这也是成熟的人格。
+      (7）懂得感恩。如果某人对你很好，要认识到这一点，不要把别人对你的友好视作理所当然。
+      (8)心胸开阔。倾听新想法，接受他人的意见。要承认这样一个事实:解决问题的方法绝不会只有
+      (9)谦虚谨慎。承认你的弱点，承认你也会犯错误，不要企图掩盖自己的错误。在承认错误的同时要表明你将怎样去解决这些问题
+		</p>
 </div>
 
 <script>
@@ -63,7 +74,7 @@
 </script>
 <script>
 		var answer = {};
-		var blood = 0;
+		var score = 0;
 		
     window.onload = function() {
     	$.get('http://apoc.aikutest.com', {
@@ -94,13 +105,15 @@
                     eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i2]))));
                 }
 
-                if(blood <= 20){
+                if(score <= 20 && score >= 18){
                     var html = template('script_1', {"name":data.data['report']['A']});
-                }else if(blood >= 21 && blood <= 48){
+                }else if(score >= 17 && score <= 14){
                     var html = template('script_1', {"name":data.data['report']['B']});
-                }else{
+                }else if(score >= 13 && score <= 8){
                     var html = template('script_1', {"name":data.data['report']['C']});
-                }
+                }else {
+										var html = template('script_1', {"name":data.data['report']['D']});
+								}
 
                 $("#container_1").append(html);
 

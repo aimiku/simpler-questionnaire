@@ -67,8 +67,20 @@
 	<hr>
 </script>
 
-
-
+<script type="text/html" id="MultiChoice">
+	<div class="form-inline">
+        <div class="form-group" id="q<%=no%>">
+            <label><%=title%></label>
+			<br>
+			<% for(var i = 0; i < opt.length; i++){ %>
+			<label class="radio-inline">
+					<input class="radio-input" type="checkbox" name="q<%=no%>" value="<%=score[i]%>"><%=opt[i]%>
+			</label>
+			<% } %>
+        </div>
+    </div>
+    <hr>
+</script>
 		<form>
 			<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
 				<div class="container" id="container_title">
@@ -130,6 +142,16 @@
 					}
 				}, 'json');
 			}
+			function get_multi(no){
+				var row = []; 
+				for(var i=0; i<$('input[name="q'+no+'"]').length;i++){
+					if($('input[name="q'+no+'"]')[i].checked == true){
+						console.log('ok');
+						row.push({[i]:$('input[name="q'+no+'"]')[i].value});
+					}
+				}
+				return JSON.stringify(row);
+			}
 
 			function animate(no){
 				$("html,body").animate({
@@ -141,11 +163,19 @@
 				});
 			}
 			function wj_submit() {
-
-
+				
 				for (var i = 0; i < topic['topic'].length; i++) {
-					if ($('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val() == null) {
-						animate(topic['topic'][i]['no']);
+					var val;
+					if(topic['topic'][i]['type'] == 'SingleChoice'){
+						val = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
+					}else if(topic['topic'][i]['type'] == 'MultiChoice'){
+						val = get_multi(topic['topic'][i]['no']);
+					}
+					if (val == null) {
+						$("html,body").animate({
+							scrollTop: $("#q" + topic['topic'][i]['no']).offset().top
+						}, 500);
+						$("#q" + topic['topic'][i]['no']).css("background-color", "#FFFFCC");
 						return;
 					}
 					anser['q' + topic['topic'][i]['no']] = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();

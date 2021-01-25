@@ -1,0 +1,103 @@
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+        <title>《灰姑娘》童话看你的为人</title>
+
+              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+              <script src="/static/js/jquery-2.1.4.min.js"></script>
+              <script src="/static/js/bootstrap.min.js"></script>
+              <script src="/static/js/layer/layer.js"></script>
+              <script src="/static/js/template-web.js"></script>
+
+
+    </head>
+<body>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+
+<script type="text/html" id="script_title">
+    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+</script>
+
+<script type="text/html" id="script_1">
+    测试结果:
+    <a style="font-size: 24px;text-decoration: none;"><%=answer%>
+    </a>
+		<hr />
+</script>
+
+
+<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+    <div class="container"  id="container_title">
+        <p style="padding-top: 35px;font-size: 24px;">title</p>
+    </div>
+</div>
+
+<div class="container" id="container_1">
+
+</div>
+
+<div class="container">
+    <p>心理视点:
+		为人处世的6字真言：
+ 　　和:礼之以和为贵。
+ 　　智:智者总令人多一份信任。
+ 　　诺:一诺千金。
+ 　　诚:真诚是制胜的法宝。
+ 　　德:高尚的品德是人际关系的基础。
+<script>
+	function getUrlParam(name) {
+	    //构造一个含有目标参数的正则表达式对象
+	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	    //匹配目标参数
+	    var r = window.location.search.substr(1).match(reg);
+	    //返回参数
+	    if (r != null) {
+	        return unescape(r[2]);
+	    } else {
+	        return null;
+	    }
+	}
+</script>
+
+<script>
+  var answer;
+	window.onload = function (){
+		$.get('http://apoc.aikutest.com',{
+				'm':'wj',
+				'c':'wj',
+				'a':'answer',
+				'id':getUrlParam('id'),
+				'wid':getUrlParam('wid')
+		},function (data) {
+				if(data.io){
+					answer = JSON.parse(data.data)
+					init();
+				}else{
+					console.debug(data.data);
+				}
+			},'json');	
+		};
+		function init() {
+			$.get('/static/wj/topic/'+getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(),{},function (data) {
+				if(data.io){
+					var html = template('script_title', data.data);
+					$("#container_title").html(html);
+					
+					var text = template('script_1', {'answer':data.data['report'][answer['q1']]});
+					$("#container_1").append(text);
+					console.log(html)
+				}else{
+					console.debug(data.data);
+				}
+			},'json');
+			console.log('ok');
+		}
+	
+
+</script>
