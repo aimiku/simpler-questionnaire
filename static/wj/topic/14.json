@@ -6,91 +6,102 @@
 		"topic": [
 			{
 				"no": 1,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "不喜欢吃的食物，你一定不吃。",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": ["1","0"],
+				"action": ["onclick=animate(2)","onclick=animate(3)"]
 			},
 			{
 				"no": 2,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "你在约会的时候一向准时吗？",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": ["1","0"],
+				"action": ["onclick=animate(4)","onclick=animate(5)"]
 			},
 			{
 				"no": 3,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "你每天都要收看电视里的新闻节目，不看不舒服吗？",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": ["1","0"],
+				"action": ["onclick=animate(5)","onclick=animate(4)"]
 			},
 			{
 				"no": 4,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "你在没有心情上班或上学的时候，会请假休息一天吗？",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": ["1","0"],
+				"action": ["onclick=animate(6)","onclick=animate(7)"]
 			},
 			{
 				"no": 5,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "心情不好的时候，你通常睡一觉就好了。",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": ["1","0"],
+				"action": ["onclick=animate(7)","onclick=animate(6)"]
 			},
 			{
 				"no": 6,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "有时候你会故意大声地打喷嚏。",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": ["1","0"],
+				"action": ["onclick=animate(8)","onclick=animate(9)"]
 			},
 			{
 				"no": 7,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "你喜欢卡通型的东西吗？",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": ["1","0"],
+				"action": ["onclick=animate(9)","onclick=animate(8)"]
 			},
 			{
 				"no": 8,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "在选择旅游的交通工具时，你比较喜欢快捷的飞机多于汽车或轮船。",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": ["1","0"],
+				"action": ["onclick=animate(10)","onclick=animate(11)"]
 			},
 			{
 				"no": 9,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "你很留意朋友们的衣着打扮。",
 				"info": "",
-				"opt": ["是	","否"],
-				"score": ["1","0"]
+				"opt": ["是","否"],
+				"score": ["1","0"],
+				"action": ["onclick=animate(11)","onclick=animate(10)"]
 			},
 			{
 				"no": 10,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "你很在乎你给别人的第一印象。",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": ["A","B"],
+				"action": ["onclick=wj_submit()","onclick=wj_submit()"]
 			},
 			{
 				"no": 11,
-				"type": "SingleChoice",
+				"type": "JumpChoice",
 				"title": "一条铺满落叶的林荫小道会给你浪漫的感觉？",
 				"info": "",
 				"opt": ["是","否"],
-				"score": ["1","0"]
+				"score": ["AB","O"],
+				"action": ["onclick=wj_submit()","onclick=wj_submit()"]
 			}
 		],
 		"report": {

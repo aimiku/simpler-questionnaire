@@ -36,19 +36,35 @@
     <p style="font-size: 18px;"><%-info%></p>
 </script>
 
-		<script type="text/html" id="SingleChoice">
-			<div class="form-inline">
-        <div class="form-group" id="q<%=no%>">
-            <label><%=title%></label>
-            <br>
-            <% for(var i = 0; i < opt.length; i++){ %>
-            <label class="radio-inline">
-                <input class="radio-input" type="radio" name="q<%=no%>" value="<%=score[i]%>"><%=opt[i]%>
-            </label>
-            <% } %>
-        </div>
-    </div>
-    <hr>
+<script type="text/html" id="SingleChoice">
+	<div class="form-inline">
+		<div class="form-group" id="q<%=no%>">
+			<label><%=title%></label>
+			<br>
+			<% for(var i = 0; i < opt.length; i++){ %>
+			<label class="radio-inline">
+				<input class="radio-input" type="radio" name="q<%=no%>" value="<%=score[i]%>" ><%=opt[i]%>
+			</label>
+			<% } %>
+		</div>
+	</div>
+	<hr>
+</script>
+
+<script type="text/html" id="JumpChoice">
+	<div class="form-inline">
+		<div class="form-group" id="q<%=no%>">
+			<label><%=title%></label>
+			<br>
+			<input class="radio-input" type="radio" name="q<%=no%>" value="0" checked style="display: none;">
+			<% for(var i = 0; i < opt.length; i++){ %>
+			<label class="radio-inline">
+				<input class="radio-input" type="radio" name="q<%=no%>" value="<%=score[i]%>" <%=action[i]%> ><%=opt[i]%>
+			</label>
+			<% } %>
+		</div>
+	</div>
+	<hr>
 </script>
 
 
@@ -74,9 +90,9 @@
 		</form>
 
 		<script>
+			document.write(" <script language=\"javascript\" src=\"\/static\/wj\/" + getUrlParam('id') + ".js \" > <\/script>");
 			window.onload = function() {
 				init();
-
 			}
 
 			function getUrlParam(name) {
@@ -113,20 +129,23 @@
 						console.debug(topic);
 					}
 				}, 'json');
-				console.log('ok');
 			}
 
-			function wj_submit() {
+			function animate(no){
+				$("html,body").animate({
+					scrollTop: $("#q" + no).offset().top
+				}, 500);
+				$("#q" + no).css("background-color", "#FFFFCC");
 				$(".form-group").mouseup(function() {
 					$(this).css("background-color", "#FFFFFF");
 				});
+			}
+			function wj_submit() {
+
 
 				for (var i = 0; i < topic['topic'].length; i++) {
 					if ($('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val() == null) {
-						$("html,body").animate({
-							scrollTop: $("#q" + topic['topic'][i]['no']).offset().top
-						}, 500);
-						$("#q" + topic['topic'][i]['no']).css("background-color", "#FFFFCC");
+						animate(topic['topic'][i]['no']);
 						return;
 					}
 					anser['q' + topic['topic'][i]['no']] = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();

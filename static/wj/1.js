@@ -1,15 +1,5 @@
-var wj = {
-    report: {
-        calculate:function () {
-
-        }
-    },
-    backup:
-        {
-            type_1: {
-
-            },
-            type_2: {
-            }
-        }
-};
+$(document).ready(function(){
+    $("button").click(function(){
+        $("p").hide();
+    });
+});
