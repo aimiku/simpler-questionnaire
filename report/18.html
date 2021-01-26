@@ -66,38 +66,37 @@
 </script>
 
 <script>
-  var answer;
+  var answer = {};
 	window.onload = function (){
-		$.get('http://apoc.aikutest.com',{
-				'm':'wj',
-				'c':'wj',
-				'a':'answer',
-				'id':getUrlParam('id'),
-				'wid':getUrlParam('wid')
-		},function (data) {
-				if(data.io){
-					answer = JSON.parse(data.data)
-					init();
-				}else{
-					console.debug(data.data);
-				}
-			},'json');	
-		};
-		function init() {
-			$.get('/static/wj/topic/'+getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(),{},function (data) {
+	    $.get('http://apoc.aikutest.com',{
+	            'm':'wj',
+	            'c':'wj',
+	            'a':'answer',
+	            'id':getUrlParam('id'),
+	        'wid':getUrlParam('wid')
+	    },function (data) {
+			if(data.io){
+				answer = JSON.parse(data.data)
+				init();
+			}else{
+				console.debug(data.data);
+			}
+		},'json');
+	    
+	};
+		function init() {	
+			$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(),{},function (data) {
 				if(data.io){
 					var html = template('script_title', data.data);
 					$("#container_title").html(html);
 					
-					var text = template('script_1', {'answer':data.data['report'][answer['q1']]});
-					$("#container_1").append(text);
-					console.log(html)
+					var html = template('script_1', {'answer':data.data['report'][answer['q1']]});
+					$("#container_1").append(html);
 				}else{
 					console.debug(data.data);
 				}
 			},'json');
 			console.log('ok');
 		}
-	
 
 </script>

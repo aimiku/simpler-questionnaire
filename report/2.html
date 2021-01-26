@@ -28,7 +28,7 @@
 
 <script type="text/html" id="script_1">
     测试结果:
-    <h4 style="color: #00aaff;"><%=answer%>
+    <h4><%=answer%>
     </h4>
 </script>
 
@@ -49,6 +49,10 @@
 </div>
 
 <script>
+    window.onload = function (){
+        init();
+
+    }
     function getUrlParam(name) {
       //构造一个含有目标参数的正则表达式对象
       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -64,40 +68,37 @@
 </script>
 
 <script>
-  var answer
-	window.onload = function (){
-	    $.get('http://apoc.aikutest.com',{
-	            'm':'wj',
-	            'c':'wj',
-	            'a':'answer',
-	            'id':getUrlParam('id'),
-	        'wid':getUrlParam('wid')
-	    },function (data) {
-			if(data.io){
-				answer = JSON.parse(data.data)
-				init();
-			}else{
-				console.debug(data.data);
-			}
-		},'json');
-	    
+    var answer
+    function init() {
+        $.get('http://apoc.aikutest.com',{
+            'm':'wj',
+            'c':'wj',
+            'a':'answer',
+            'id':getUrlParam('id'),
+        'wid':getUrlParam('wid')
+        },function (data) {
+            if(data.io){
+                answer = JSON.parse(data.data)
 
-		function init() {	
-			$.get('/static/wj/topic/'+getUrlParam('id')+'.json',{},function (data) {
-				if(data.io){
-					var html = template('script_title', data.data);
-					$("#container_title").html(html);
-					
-					var html = template('script_1', {'answer':data.data['report'][answer['q1']]});
-					$("#container_1").append(html);
+            }else{
+                console.debug(data.data);
+            }
+        },'json');
+        $.get('/static/wj/topic/'+getUrlParam('id')+'.json',{},function (data) {
+            if(data.io){
+                var html = template('script_title', data.data);
+                $("#container_title").html(html);
 
-				}else{
-					console.debug(data.data);
-				}
-			},'json');
-			console.log('ok');
-		}
-	
-	}
+                var html = template('script_1', {'answer':data.data['report'][answer['q1']]});
+                $("#container_1").append(html);
+
+            }else{
+                console.debug(data.data);
+            }
+        },'json');
+
+        console.log('ok');
+    }
+
 
 </script>
