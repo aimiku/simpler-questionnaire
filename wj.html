@@ -29,15 +29,15 @@
     }
 </style>
 	<body>
-	<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
-<script type="text/html" id="script_title">
-	<p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+		<script type="text/html" id="script_title">
+			<p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
     <p style="font-size: 18px;"><%-info%></p>
 </script>
 
-<script type="text/html" id="SingleChoice">
-	<div class="form-inline">
+		<script type="text/html" id="SingleChoice">
+			<div class="form-inline">
 		<div class="form-group" id="q<%=no%>">
 			<label><%=title%></label>
 			<br>
@@ -51,8 +51,8 @@
 	<hr>
 </script>
 
-<script type="text/html" id="JumpChoice">
-	<div class="form-inline">
+		<script type="text/html" id="JumpChoice">
+			<div class="form-inline">
 		<div class="form-group" id="q<%=no%>">
 			<label><%=title%></label>
 			<br>
@@ -67,8 +67,8 @@
 	<hr>
 </script>
 
-<script type="text/html" id="MultiChoice">
-	<div class="form-inline">
+		<script type="text/html" id="MultiChoice">
+			<div class="form-inline">
         <div class="form-group" id="q<%=no%>">
             <label><%=title%></label>
 			<br>
@@ -143,18 +143,31 @@
 					}
 				}, 'json');
 			}
-			function get_multi(no){
-				var row = []; 
-				for(var i=0; i<$('input[name="q'+no+'"]').length;i++){
-					if($('input[name="q'+no+'"]')[i].checked == true){
-						console.log('ok');
-						row.push({[i]:$('input[name="q'+no+'"]')[i].value});
+
+			function get_multi(no, min = 1, max = 100) {
+				var row = [];
+				for (var i = 0; i < $('input[name="q' + no + '"]').length; i++) {
+					if ($('input[name="q' + no + '"]')[i].checked == true) {
+						row.push({
+							[i]: $('input[name="q' + no + '"]')[i].value
+						});
 					}
 				}
+				if (row.length <= min - 1 || row.length > max) {
+					layer.open({
+						content: "多选题不符合要求",
+						skin: 'msg',
+						time: 3
+					})
+					animate(no);
+					return;
+				}
 				return JSON.stringify(row);
+
+
 			}
 
-			function scrolltab(no){
+			function scrolltab(no) {
 				$("html,body").animate({
 					scrollTop: $("#q" + no).offset().top
 				}, 500);
@@ -163,15 +176,16 @@
 					$(this).css("background-color", "#FFFFFF");
 				});
 			}
+
 			function wj_submit() {
-				
+
 				for (var i = 0; i < topic['topic'].length; i++) {
 					var val;
-					if(topic['topic'][i]['type'] == 'SingleChoice'){
+					if (topic['topic'][i]['type'] == 'SingleChoice') {
 						val = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
-					}else if(topic['topic'][i]['type'] == 'JumpChoice'){
+					} else if (topic['topic'][i]['type'] == 'JumpChoice') {
 						val = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
-					}else if(topic['topic'][i]['type'] == 'MultiChoice'){
+					} else if (topic['topic'][i]['type'] == 'MultiChoice') {
 						val = get_multi(topic['topic'][i]['no']);
 					}
 					if (val == null) {
