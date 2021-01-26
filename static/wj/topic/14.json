@@ -11,7 +11,7 @@
 				"info": "",
 				"opt": ["是","否"],
 				"score": ["1","0"],
-				"action": ["onclick=animate(2)","onclick=animate(3)"]
+				"action": ["onclick=scrolltab(2)","onclick=scrolltab(3)"]
 			},
 			{
 				"no": 2,
@@ -20,7 +20,7 @@
 				"info": "",
 				"opt": ["是","否"],
 				"score": ["1","0"],
-				"action": ["onclick=animate(4)","onclick=animate(5)"]
+				"action": ["onclick=scrolltab(4)","onclick=scrolltab(5)"]
 			},
 			{
 				"no": 3,
@@ -29,7 +29,7 @@
 				"info": "",
 				"opt": ["是","否"],
 				"score": ["1","0"],
-				"action": ["onclick=animate(5)","onclick=animate(4)"]
+				"action": ["onclick=scrolltab(5)","onclick=scrolltab(4)"]
 			},
 			{
 				"no": 4,
@@ -38,7 +38,7 @@
 				"info": "",
 				"opt": ["是","否"],
 				"score": ["1","0"],
-				"action": ["onclick=animate(6)","onclick=animate(7)"]
+				"action": ["onclick=scrolltab(6)","onclick=scrolltab(7)"]
 			},
 			{
 				"no": 5,
@@ -47,7 +47,7 @@
 				"info": "",
 				"opt": ["是","否"],
 				"score": ["1","0"],
-				"action": ["onclick=animate(7)","onclick=animate(6)"]
+				"action": ["onclick=scrolltab(7)","onclick=scrolltab(6)"]
 			},
 			{
 				"no": 6,
@@ -56,7 +56,7 @@
 				"info": "",
 				"opt": ["是","否"],
 				"score": ["1","0"],
-				"action": ["onclick=animate(8)","onclick=animate(9)"]
+				"action": ["onclick=scrolltab(8)","onclick=scrolltab(9)"]
 			},
 			{
 				"no": 7,
@@ -65,7 +65,7 @@
 				"info": "",
 				"opt": ["是","否"],
 				"score": ["1","0"],
-				"action": ["onclick=animate(9)","onclick=animate(8)"]
+				"action": ["onclick=scrolltab(9)","onclick=scrolltab(8)"]
 			},
 			{
 				"no": 8,
@@ -74,7 +74,7 @@
 				"info": "",
 				"opt": ["是","否"],
 				"score": ["1","0"],
-				"action": ["onclick=animate(10)","onclick=animate(11)"]
+				"action": ["onclick=scrolltab(10)","onclick=scrolltab(11)"]
 			},
 			{
 				"no": 9,
@@ -83,7 +83,7 @@
 				"info": "",
 				"opt": ["是","否"],
 				"score": ["1","0"],
-				"action": ["onclick=animate(11)","onclick=animate(10)"]
+				"action": ["onclick=scrolltab(11)","onclick=scrolltab(10)"]
 			},
 			{
 				"no": 10,
