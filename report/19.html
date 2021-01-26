@@ -90,8 +90,6 @@
 					for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
 						eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
 					}
-					console.log(answer)
-					console.log(score)
 					if(score >= 36 && score <= 45){
 						var html = template('script_1', {"name":data.data['report']['A']});
 					}else if(score >= 26 && score <= 35){
