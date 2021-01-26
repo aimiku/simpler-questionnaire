@@ -1,118 +1,135 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="favicon.ico">
-        <title>你有很高的创造力吗</title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="favicon.ico">
+		<title>你有很高的创造力吗</title>
 
-              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-              <script src="/static/js/jquery-2.1.4.min.js"></script>
-              <script src="/static/js/bootstrap.min.js"></script>
-              <script src="/static/js/layer/layer.js"></script>
-              <script src="/static/js/template-web.js"></script>
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+		<script src="/static/js/jquery-2.1.4.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/layer/layer.js"></script>
+		<script src="/static/js/template-web.js"></script>
 
 
-    </head>
-<body>
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
-<script type="text/html" id="script_title">
-    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+		<script type="text/html" id="script_title">
+			<p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
 </script>
 
-<script type="text/html" id="script_1">
-    测试结果:
+		<script type="text/html" id="script_1">
+			测试结果:
     <a style="font-size: 34px;text-decoration: none;"><%=name%>
     </a>
 </script>
 
 
-<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-    <div class="container"  id="container_title">
-        <p style="padding-top: 35px;font-size: 34px;">title</p>
-    </div>
-</div>
+		<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+			<div class="container" id="container_title">
+				<p style="padding-top: 35px;font-size: 34px;">title</p>
+			</div>
+		</div>
 
-<div class="container" id="container_1">
+		<div class="container" id="container_1">
 
-</div>
+		</div>
 
-<div class="container">
-    <p>心理视点:
-			创造力是指根据一定的目的和任务运用一切已知条件和信息开展能力思维活动，经过反复研究和实践，产生某种新颖的、独特的、有价值的成果，这种能力即为创造力。
-			创造力是21世纪生存和成功的关键条件，创造力不是天生不变的，实践、教育和主观努力对创造力的形成和发挥都有重大影响。
-		</p>
-</div>
+		<div class="container">
+			<p>心理视点:
+				创造力是指根据一定的目的和任务运用一切已知条件和信息开展能力思维活动，经过反复研究和实践，产生某种新颖的、独特的、有价值的成果，这种能力即为创造力。
+				创造力是21世纪生存和成功的关键条件，创造力不是天生不变的，实践、教育和主观努力对创造力的形成和发挥都有重大影响。
+			</p>
+		</div>
 
-<script>
-	function getUrlParam(name) {
-	    //构造一个含有目标参数的正则表达式对象
-	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-	    //匹配目标参数
-	    var r = window.location.search.substr(1).match(reg);
-	    //返回参数
-	    if (r != null) {
-	        return unescape(r[2]);
-	    } else {
-	        return null;
-	    }
-	}
-</script>
-<script>
-		var answer = {};
-		var blood = 0;
-		
-    window.onload = function() {
-    	$.get('http://apoc.aikutest.com', {
-    		'm': 'wj',
-    		'c': 'wj',
-    		'a': 'answer',
-    		'id': getUrlParam('id'),
-    		'wid': getUrlParam('wid')
-    	}, function(data) {
-    		if (data.io) {
-    			answer = JSON.parse(data.data)
-    			init();
-    		} else {
-    			console.debug(data.data);
-    		}
-    	}, 'json');
-    
-    };
-    function init() {
-        $.get('/static/wj/topic/'+ getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(),{},function (data) {
-            if(data.io){
-                var html = template('script_title', data.data);
-                $("#container_title").html(html);
+		<script>
+			function getUrlParam(name) {
+				//构造一个含有目标参数的正则表达式对象
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				//匹配目标参数
+				var r = window.location.search.substr(1).match(reg);
+				//返回参数
+				if (r != null) {
+					return unescape(r[2]);
+				} else {
+					return null;
+				}
+			}
+		</script>
+		<script>
+			var answer = {};
+			var blood = 0;
 
-                var name = data.data['report']['abbr'];
-								console.log(Number(data.data['topic'][0]['score'][0]))
-                for(var i2 = 0; i2 < data.data['report'].length; i2++){
-                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i2]))));
-                }
+			window.onload = function() {
+				$.get('http://apoc.aikutest.com', {
+					'm': 'wj',
+					'c': 'wj',
+					'a': 'answer',
+					'id': getUrlParam('id'),
+					'wid': getUrlParam('wid')
+				}, function(data) {
+					if (data.io) {
+						answer = JSON.parse(data.data)
+						init();
+					} else {
+						console.debug(data.data);
+					}
+				}, 'json');
 
-                if(blood <= 20){
-                    var html = template('script_1', {"name":data.data['report']['A']});
-                }else if(blood >= 21 && blood <= 48){
-                    var html = template('script_1', {"name":data.data['report']['B']});
-                }else{
-                    var html = template('script_1', {"name":data.data['report']['C']});
-                }
+			};
 
-                $("#container_1").append(html);
+			function init() {
+				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
+					if (data.io) {
+						var html = template('script_title', data.data);
+						$("#container_title").html(html);
 
-            }else{
-                console.debug(data.data);
-            }
-        },'json');
+						var name = data.data['report']['abbr'];
+						console.log(Number(data.data['topic'][0]['score'][0]))
+						for (var i2 = 0; i2 < data.data['report'].length; i2++) {
+							eval(name + '+=' + Number(eval('answer.q' + Number(data.data['report'][i2]))));
+						}
+						if (blood >= 110 && blood <= 137) {
+							var html = template('script_1', {
+								"name": data.data['report']['A']
+							});
+						} else if (blood >= 85 && blood <= 109) {
+							var html = template('script_1', {
+								"name": data.data['report']['B']
+							});
+						} else if (blood >= 58 && blood <= 84) {
+							var html = template('script_1', {
+								"name": data.data['report']['C']
+							});
+						} else if (blood >= 30 && blood <= 55) {
+							var html = template('script_1', {
+								"name": data.data['report']['D']
+							});
+						} else if (blood >= 15 && blood <= 29) {
+							var html = template('script_1', {
+								"name": data.data['report']['E']
+							});
+						}else {
+							var html = template('script_1', {
+								"name": data.data['report']['F']
+							});
+						}
+						
 
-        console.log('ok');
-    }
+						$("#container_1").append(html);
 
+					} else {
+						console.debug(data.data);
+					}
+				}, 'json');
 
-</script>
+				console.log('ok');
+			}
+		</script>

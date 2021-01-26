@@ -71,7 +71,8 @@
 	<div class="form-inline">
         <div class="form-group" id="q<%=no%>">
             <label><%=title%></label>
-			<br>
+			<br>	
+			<p><%=info%></p>
 			<% for(var i = 0; i < opt.length; i++){ %>
 			<label class="radio-inline">
 					<input class="radio-input" type="checkbox" name="q<%=no%>" value="<%=score[i]%>"><%=opt[i]%>
@@ -142,15 +143,26 @@
 					}
 				}, 'json');
 			}
-			function get_multi(no){
+			function get_multi(no,min=1,max=100){
 				var row = []; 
 				for(var i=0; i<$('input[name="q'+no+'"]').length;i++){
 					if($('input[name="q'+no+'"]')[i].checked == true){
-						console.log('ok');
+
 						row.push({[i]:$('input[name="q'+no+'"]')[i].value});
 					}
 				}
+				if(row.length <= min-1 || row.length > max){
+					layer.open({
+						content: "多选题不符合要求",
+						skin: 'msg',
+						time: 3
+					})
+					animate(no);
+					return ;
+					}
 				return JSON.stringify(row);
+			
+				
 			}
 
 			function animate(no){
@@ -169,16 +181,13 @@
 					if(topic['topic'][i]['type'] == 'SingleChoice'){
 						val = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
 					}else if(topic['topic'][i]['type'] == 'MultiChoice'){
-						val = get_multi(topic['topic'][i]['no']);
+						val = get_multi(topic['topic'][i]['no'],topic['topic'][i]['limit']['min'],topic['topic'][i]['limit']['max']);
 					}
 					if (val == null) {
-						$("html,body").animate({
-							scrollTop: $("#q" + topic['topic'][i]['no']).offset().top
-						}, 500);
-						$("#q" + topic['topic'][i]['no']).css("background-color", "#FFFFCC");
+						animate(topic['topic'][i]['no']);
 						return;
 					}
-					anser['q' + topic['topic'][i]['no']] = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
+					anser['q' + topic['topic'][i]['no']] = val;
 				};
 				$.post('http://apoc.aikutest.com/?m=wj&c=wj&a=submit&id=' + getUrlParam('id'), {
 					'answer': JSON.stringify(anser)
