@@ -1,0 +1,51 @@
+@media (min-width: 414px) and (max-width: 736px) {
+	.layui-form-item {
+		width: 100%;
+	}
+	.radio{
+		width: 50%;
+		margin-left: 20px;
+	}
+	.text_{
+		float: right;
+		font-size: 20px;
+	}
+}
+.click_button{
+	margin: 30px auto;
+}
+@media (min-width: 736px) and (max-width: 1440px) {
+	.layui-form-item {
+		width: 100%;
+	}
+
+	.radio{
+		width: 100%;
+	}
+}
+@media (min-width: 1440px) {
+	.layui-form-item {
+		width: 100%;
+	}
+	.layui-form-item input{
+		margin-left: 20px;
+	}
+	.radio{
+		width: 100%;
+		margin-left: 20px;
+	}
+}
+.layui-btn-primary{
+	margin-bottom: 20px;
+}
+.caret{
+	font-size: 35px;
+	cursor: pointer;
+}
+.layui-breadcrumb a {
+	margin-left: 5px;
+}
+.text_{
+		float: right;
+		font-size: 20px;
+	}

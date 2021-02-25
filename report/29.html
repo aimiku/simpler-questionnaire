@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+        <title>从笔迹分析人的性格</title>
+
+              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+              <script src="/static/js/jquery-2.1.4.min.js"></script>
+              <script src="/static/js/bootstrap.min.js"></script>
+              <script src="/static/js/layer/layer.js"></script>
+              <script src="/static/js/template-web.js"></script>
+
+
+    </head>
+<body>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+
+<script type="text/html" id="script_title">
+    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+</script>
+
+<script type="text/html" id="script_1">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					测试结果:
+				</h3>
+			</div>
+			<div class="panel-body">
+				<%=answer%>
+			</div>
+		</div>
+</script>
+
+
+<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+    <div class="container"  id="container_title">
+        <p style="padding-top: 35px;font-size: 34px;">title</p>
+    </div>
+</div>
+
+<div class="container" id="container_1">
+</div>
+
+<div class="container">
+	<div class="alert alert-success" role="alert">
+		<h4 class="alert-heading">心理视点:</h4>
+		<p class="mb-0"> 宏观上讲，人作为社会化的高级动物，在认识世界、改造世界的过程中不但能感知事物，而且能把感知的事物记下来，经过大脑复杂的思维活动，形成各不相同的世界观和个性特征，进入潜意识，在一定的条件下，通过定的形式表现出来。文字，是其中的一种表现形式。
+具体而言，笔迹与遗传有关。研究发现，直系亲属之间，尽管字体的大小、力度、肥瘦等具体特征不尽相同，但有些笔迹的神韵、构架、运、运势等方面却有着惊人的相似，说明笔迹像人的禀性、健康等一样有遗传性。笔迹还与人的生活经历、生活背景、所受教育的程度、与人交往的密切程度、所从事的社会活动等有密切的关系。如一个从小就拥有充裕生活条件的人的字，与从小在艰苦环境下长大的人的字，其字体在字态、字势、风格等有很多方面存在着差异。人的字是经常变化的，不同时期的字，特征不一样。一般来讲，学生时代的字体，由于没有彻底定型，笔画稚嫩、拘谨;中年时期的字，笔画熟练、流畅、个性突出，老年时候的字，笔画特重、笔锋老辣、略显僵硬。
+     不同心境的字，笔迹也不一致。但在长时期内，字体的主要特征，如运笔方式、习慣动作、字体开间是不变的。只是近期的字更能反映出最近的思想、感情、情绪变化、心理特点等。笔迹可以反映一个人的性格、能力、品质特征等内容，是客观现象，这是被许多事实所证明的。
+   笔迹分析的方法很多，由笔迹了解人的性格，可以从3个方面来观察即笔压、字体大小、字形这3个要点来研究分析</p>
+	</div>
+</div>
+
+<script>
+    function getUrlParam(name) {
+      //构造一个含有目标参数的正则表达式对象
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      //匹配目标参数
+      var r = window.location.search.substr(1).match(reg);
+      //返回参数
+      if (r != null) {
+          return unescape(r[2]);
+      } else {
+          return null;
+      }
+    }
+</script>
+
+<script>
+  var answer
+	window.onload = function (){
+	    $.get('http://apoc.aikutest.com',{
+	            'm':'wj',
+	            'c':'wj',
+	            'a':'answer',
+	            'id':getUrlParam('id'),
+	        'wid':getUrlParam('wid')
+	    },function (data) {
+			if(data.io){
+				answer = JSON.parse(data.data)
+				init();
+			}else{
+				console.debug(data.data);
+			}
+		},'json');
+	    
+
+		function init() {	
+			$.get('/static/wj/topic/'+getUrlParam('id')+'.json',{},function (data) {
+				if(data.io){
+					var html = template('script_title', data.data);
+					$("#container_title").html(html);
+					
+					var html = template('script_1', {'answer':data.data['report'][answer['q1']]});
+					$("#container_1").append(html);
+
+				}else{
+					console.debug(data.data);
+				}
+			},'json');
+			console.log('ok');
+		}
+	
+	}
+
+</script>
