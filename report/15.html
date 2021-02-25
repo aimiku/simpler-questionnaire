@@ -25,9 +25,16 @@
 </script>
 
 <script type="text/html" id="script_1">
-    测试结果:
-    <a style="font-size: 34px;text-decoration: none;"><%=name%>
-    </a>
+    <div class="panel panel-default">
+    	<div class="panel-heading">
+    		<h3 class="panel-title">
+    			测试结果:
+    		</h3>
+    	</div>
+    	<div class="panel-body">
+    		<%=name%>
+    	</div>
+    </div>
 </script>
 
 
@@ -42,9 +49,11 @@
 </div>
 
 <div class="container">
-    <p>心理视点:
-        情绪对我们的生理和心理健康有许多的作用。所以，不时地审视你自己的情绪，对健康不无裨益。
-        情绪包括5种:痛苦、愤怒、恐惧、快乐以及爱。这些是和我们的身体直接相关的。前3种情绪通常被认为属于“危险”的情绪，也就是不健康的情绪，它们意味着会或即将发生危险;而后两种则属于“令人愉快”的情绪，快乐和爱告诉我们，生活可以放松和享受，需要可以得到满足。当人们面对那些“危险”情绪时，如果不能及时缓解的话，可能会形成巨大的心理负担，而所有的这些情绪都和癌症以及其他危险疾病相关。一旦情结激化到一定程度，疾病将侵袭你的身体。    </p>
+	<div class="alert alert-success" role="alert">
+	  <h4 class="alert-heading">心理视点:</h4>
+	  <p class="mb-0">情绪对我们的生理和心理健康有许多的作用。所以，不时地审视你自己的情绪，对健康不无裨益。
+        情绪包括5种:痛苦、愤怒、恐惧、快乐以及爱。这些是和我们的身体直接相关的。前3种情绪通常被认为属于“危险”的情绪，也就是不健康的情绪，它们意味着会或即将发生危险;而后两种则属于“令人愉快”的情绪，快乐和爱告诉我们，生活可以放松和享受，需要可以得到满足。当人们面对那些“危险”情绪时，如果不能及时缓解的话，可能会形成巨大的心理负担，而所有的这些情绪都和癌症以及其他危险疾病相关。一旦情结激化到一定程度，疾病将侵袭你的身体。</p>
+	</div>
 </div>
 
 <script>
@@ -94,7 +103,7 @@
 					}
 					console.log(answer)
 					console.log(score)
-					if(score <= 30){
+					if(score <= 30 && score >=0){
 						var html = template('script_1', {"name":data.data['report']['A']});
 					}else if(score >= 31 && score <= 61){
 						var html = template('script_1', {"name":data.data['report']['B']});

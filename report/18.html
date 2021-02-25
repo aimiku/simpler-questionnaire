@@ -25,10 +25,16 @@
 </script>
 
 <script type="text/html" id="script_1">
-    测试结果:
-    <a style="font-size: 24px;text-decoration: none;"><%=answer%>
-    </a>
-		<hr />
+    <div class="panel panel-default">
+    	<div class="panel-heading">
+    		<h3 class="panel-title">
+    			测试结果:
+    		</h3>
+    	</div>
+    	<div class="panel-body">
+    		<%=answer%>
+    	</div>
+    </div>
 </script>
 
 
@@ -43,13 +49,15 @@
 </div>
 
 <div class="container">
-    <p>心理视点:
-		为人处世的6字真言：
+	<div class="alert alert-success" role="alert">
+	  <h4 class="alert-heading">心理视点:</h4>
+	  <p class="mb-0">为人处世的6字真言：
  　　和:礼之以和为贵。
  　　智:智者总令人多一份信任。
  　　诺:一诺千金。
  　　诚:真诚是制胜的法宝。
- 　　德:高尚的品德是人际关系的基础。
+ 　　德:高尚的品德是人际关系的基础。</p>
+	</div>
 <script>
 	function getUrlParam(name) {
 	    //构造一个含有目标参数的正则表达式对象

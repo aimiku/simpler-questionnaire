@@ -26,10 +26,12 @@
 </script>
 
 		<script type="text/html" id="script_1">
-			<a style="font-size: 24px;text-decoration: none;"><%=score%><br>
-			<a style="font-size: 24px;text-decoration: none;"><%=name%>
-    </a>
-		<br />
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<%=score%><br>
+					<%=name%>
+				</div>
+			</div>
 </script>
 
 
@@ -40,19 +42,24 @@
 		</div>
 
 		<div class="container" id="container_1">
-			测试结果:
-			<br />
+			<div class="panel panel-default">
+				<div class="panel-heading">
+						测试结果:
+				</div>
+			</div>
 		</div>
 
 		<div class="container">
-			<p>心理视点
-				大脑工作能力集中表现如下：
+			<div class="alert alert-success" role="alert">
+			  <h4 class="alert-heading">心理视点</h4>
+			  <p class="mb-0">大脑工作能力集中表现如下：
 				　　集中力：在工作、日常生活及学习中，我们往往要预先规定具体的目标，为了实现这些目标，就必须集中大脑的全部机能。大脑集中力的程度如何，是大脑机能是否健全的标准之一。
 				　　转换力：每个人都会面临大量的问题，而这些问题未必都能顺利解决，必要时就应该及时转换目标或方法。可以说，处理问题时思维的转换速度和判断的果决与否是衡量大脑转换能力的一个关键。
 				　　灵敏性：现代社会整合性、复杂性的提高，需要大脑能做出快速、机动的反应，以适应不断变化的情况，因此大脑的灵敏性非常重要。
 				　　调节性：为了有效地运用大脑，必须有节奏地解除大脑的兴奋和紧张，从而使大脑得到间歇性的休息放松，积蓄再生产的能量，以自动地适应任务需要而发挥作用，并保持良好的效率。倘若长时间不能很好地调节大脑的紧张度与松弛度，过度兴奋会导致抑制，神经系统对外界刺激就会产生拒绝反应，即丧失反应能力。能否保持大脑适度松弛和与环境相协调的觉醒程度是衡量大脑调节性的标准之一。
-				　　缜密性：大脑工作能力的发挥直接与其生理和心理健康有关，如果保健不当，大脑机能的精确度、缜密性将会下降，甚至衰退老化。
-			</p>
+				　　缜密性：大脑工作能力的发挥直接与其生理和心理健康有关，如果保健不当，大脑机能的精确度、缜密性将会下降，甚至衰退老化。</p>
+			</div>
+
 		</div>
 
 		<script>
@@ -100,7 +107,7 @@
 					if (data.io) {
 						var html = template('script_title', data.data);
 						$("#container_title").html(html);
-
+						console.log(html)
 						for (var i = 0; i < data.data["report"].length; i++) {
 							var abbr = data.data['report'][i]['abbr'];
 							var name = '';

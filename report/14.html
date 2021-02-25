@@ -26,9 +26,16 @@
 </script>
 
 <script type="text/html" id="script_1">
-    测试结果:
-    <a style="font-size: 34px;text-decoration: none;"><%=name%>
-    </a>
+    <div class="panel panel-default">
+    	<div class="panel-heading">
+    		<h3 class="panel-title">
+    			测试结果:
+    		</h3>
+    	</div>
+    	<div class="panel-body">
+    		<%=name%>
+    	</div>
+    </div>
 </script>
 
 
@@ -43,8 +50,10 @@
 </div>
 
 <div class="container">
-    <p>心理视点:
-       内在血型的不同，并没有优劣之分，但是它决定了一个人的个性偏向。所以通过血型看一个人的性格是很准的。但是也不要迷信它，因为一个人的性格在很大程度上取决于后天影响，所以要自觉完善自己！    </p>
+	<div class="alert alert-success" role="alert">
+	  <h4 class="alert-heading">心理视点：</h4>
+	  <p class="mb-0">内在血型的不同，并没有优劣之分，但是它决定了一个人的个性偏向。所以通过血型看一个人的性格是很准的。但是也不要迷信它，因为一个人的性格在很大程度上取决于后天影响，所以要自觉完善自己！</p>
+	</div>
 </div>
 
 <script>
@@ -91,7 +100,7 @@
                     var html = template('script_1', {"name":data.data['report'][answer.q10]});
                 else if(answer.q11 != 0)
                     var html = template('script_1', {"name":data.data['report'][answer.q11]});
-
+								
                 $("#container_1").append(html);
 
             }else{
