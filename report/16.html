@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
-        <title>你高度敏感吗</title>
+        <title id="atitle">你高度敏感吗</title>
 
               <!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
 							<link rel="stylesheet" href="../static/layui/css/layui.css" />
@@ -16,20 +16,19 @@
               <script src="/static/js/bootstrap.min.js"></script>
               <script src="/static/js/layer/layer.js"></script>
               <script src="/static/js/template-web.js"></script>
-
-
+							<script src="/static/js/Public.js"></script>
     </head>
 <body>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
 <script type="text/html" id="script_title">
-    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+    <%=title%>
 </script>
 
 <script type="text/html" id="script_1">
 	
     <div class="layui-container conta">
-    	<img src="../static/img/complete-icon1.jpg" style="width: 255px;">
+    	<img src="/static/img/complete-icon1.jpg" style="width: 255px;">
     	<div class="position" style="position: absolute;top: 125px;">
     			<h3 style="color: red;font-weight: 00;"><%=text%>分</h3>
     	</div>
@@ -51,8 +50,8 @@
 
 
 <div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-    <div class="layui-container"  id="container_title">
-        <p style="padding-top: 35px;font-size: 24px;">title</p>
+    <div class="layui-container">
+        <p id="container_title" style="padding-top: 35px;font-size: 34px;">title</p>
     </div>
 </div>
 
@@ -63,11 +62,11 @@
 <div class="layui-container">
 	
 	<fieldset class="layui-elem-field layui-field-title">
-		<legend class="viewpoint"><img src="../static/img/chinese-Amber.jpg" /></legend>
-		<div id="s" class="layui-field-box">高度敏感的人有两个最主要的特点：一是容易兴奋，对刺激极为敏感，表现为多疑、敏感、偏见、固执、易激动、爱生气、脾气古怪；二是容易疲劳，特别是在看书、学习、写作等脑力劳动时更明显，表现为记忆力减退、头脑昏沉、注意力不集中。为了消除这种敏感，建议大家做好以下工作：
-	 　　(1)学会相信自己。不要以别人的评价为转移，以别人的好恶为是非。如果别人以异样的眼光盯着你时，你不必局促不安，也不必神情窘迫，唯一的办法是—用你的眼波接住对方的眼波，久而久之，你就会发现自己就是自己，可以自如地生活在千万双眼睛织成的人生网格里。
-	 　　(2)不计较小事。每天生活中、人际交往中的矛盾、冲撞，甚至冲突，都是无法避免的。有些小事发生了，也就把它当做雨过天晴了。如果一个人被生活中的繁琐小事牵着鼻子走，人也会变得琐碎，不仅不讨人喜欢，也会使自己烦恼。
-	 　　(3)认识自己，善待自己。要认识到自己不能代替别人，别人也不能代替自己；别人不会事事赛过自己，自己也不可能事事出人头地。要有宽阔的胸怀，敢于公开自己的优缺点，而不尽力去遮掩一切；要有“走自己的路，让别人说去吧”的勇气。
+		<legend class="viewpoint"><img src="/static/img/chinese-Amber.jpg" /></legend>
+		<div id="s" class="layui-field-box">高度敏感的人有两个最主要的特点：一是容易兴奋，对刺激极为敏感，表现为多疑、敏感、偏见、固执、易激动、爱生气、脾气古怪；二是容易疲劳，特别是在看书、学习、写作等脑力劳动时更明显，表现为记忆力减退、头脑昏沉、注意力不集中。为了消除这种敏感，建议大家做好以下工作：<br />
+	 　　(1)学会相信自己。不要以别人的评价为转移，以别人的好恶为是非。如果别人以异样的眼光盯着你时，你不必局促不安，也不必神情窘迫，唯一的办法是—用你的眼波接住对方的眼波，久而久之，你就会发现自己就是自己，可以自如地生活在千万双眼睛织成的人生网格里。<br />
+	 　　(2)不计较小事。每天生活中、人际交往中的矛盾、冲撞，甚至冲突，都是无法避免的。有些小事发生了，也就把它当做雨过天晴了。如果一个人被生活中的繁琐小事牵着鼻子走，人也会变得琐碎，不仅不讨人喜欢，也会使自己烦恼。<br />
+	 　　(3)认识自己，善待自己。要认识到自己不能代替别人，别人也不能代替自己；别人不会事事赛过自己，自己也不可能事事出人头地。要有宽阔的胸怀，敢于公开自己的优缺点，而不尽力去遮掩一切；要有“走自己的路，让别人说去吧”的勇气。<br />
 	 　　(4)充实业余时间。参加集体娱乐或读点你自己感兴趣并有益的书籍。当有“敏感”干扰时，即用松弛身心的办法来对付。可进行自我暗示，转移注意力，如转移话题。另外，坚持经常性的体育锻炼，也有助于防止“心理过敏”现象的发生。		</div>
 	</fieldset>
 	
@@ -77,57 +76,18 @@
 	</div>
 </div>
 
-<script>
-	function getUrlParam(name) {
-	    //构造一个含有目标参数的正则表达式对象
-	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-	    //匹配目标参数
-	    var r = window.location.search.substr(1).match(reg);
-	    //返回参数
-	    if (r != null) {
-	        return unescape(r[2]);
-	    } else {
-	        return null;
-	    }
-	}
-</script>
-<script src="../static/layui/layui.js"></script>
+<script src="/static/layui/layui.js"></script>
 <script>
   var score = 0;
+	getUrlParam();
 	window.onload = function (){
-		$.get('http://apoc.aikutest.com',{
-				'm':'wj',
-				'c':'wj',
-				'a':'answer',
-				'id':getUrlParam('id'),
-				'wid':getUrlParam('wid')
-		},function (data) {
-				if(data.io){
-					answer = JSON.parse(data.data)
-					init();
-					layui.use(['element','rate'], function(){
-					  var element = layui.element; 
-						var rate = layui.rate;
-						rate.render({
-								elem: '#test1'
-								,value: 2.5 //初始值
-								,half: true //开启半星
-							})
-					  element.on('nav(demo)', function(elem){
-					    layer.msg(elem.text());
-					  });
-					});
-				}else{
-					console.debug(data.data);
-				}
-			},'json');
-		
+		ewindow();
 		};
 		function init() {
 			$.get('/static/wj/topic/'+getUrlParam('id') + '.json?t=' + new Date().getMilliseconds() ,{},function (data) {
 				if(data.io){
 					var html = template('script_title', data.data);
-					$("#container_title").html(html);
+					$("#container_title,#atitle").html(html);
 
 					var name = data.data['report']['abbr'];
 
