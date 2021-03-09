@@ -1,4 +1,16 @@
-@media (min-width: 414px) and (max-width: 736px) {
+@media (max-width: 598px) {
+	.conta{
+		display: flex;
+		justify-content: center;
+	}
+}
+/* @media all and (min-width: 414px) and (max-width: 736px) {
+	.conta{
+		display: flex;
+		justify-content: center;
+	}
+} */
+@media all and (min-width: 598px) and (max-width: 736px) {
 	.layui-form-item {
 		width: 100%;
 	}
@@ -10,20 +22,25 @@
 		float: right;
 		font-size: 20px;
 	}
+	.conta{
+		display: flex;
+		justify-content: center;
+	}
 }
-.click_button{
-	margin: 30px auto;
-}
-@media (min-width: 736px) and (max-width: 1440px) {
+
+@media all and (min-width: 736px) and (max-width: 1079px) {
 	.layui-form-item {
 		width: 100%;
 	}
-
+	.conta{
+		display: flex;
+		justify-content: center;
+	}
 	.radio{
 		width: 100%;
 	}
 }
-@media (min-width: 1440px) {
+@media all and (min-width: 1080px) and (max-width: 2100px) {
 	.layui-form-item {
 		width: 100%;
 	}
@@ -34,7 +51,12 @@
 		width: 100%;
 		margin-left: 20px;
 	}
+	.conta{
+		display: flex;
+		justify-content: center;
+	}
 }
+
 .layui-btn-primary{
 	margin-bottom: 20px;
 }
@@ -48,4 +70,56 @@
 .text_{
 		float: right;
 		font-size: 20px;
-	}
+}
+.score_picture img{
+	text-align: center;
+}
+.conta{
+		width: 25%;
+		height: 220.64px;
+		margin: 20px auto;
+}
+.position{
+	width: 80px;
+	position: absolute;
+	top: 117px;
+	display: table-cell;
+	text-align: center;
+}
+.position h3{
+	width: 80px;
+	height: 105px;
+	color: red;
+	font-weight: 800;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+/*测试结果样式*/
+.results{
+	margin-top: 5px;
+	padding: 10px;
+	background-color: #abe8c4;
+	cursor: pointer;
+}
+.layui-card-body{
+	background: #abe8c4;
+}
+
+/**/
+
+/*心理视点样式*/
+.viewpoint{
+	font-family: serif;
+	font-weight: 600;
+} 
+.viewpoint img{
+	height: 75px;
+}
+.layui-field-box {
+	text-indent: 2em; 
+	color: #0000FF;
+}
+/**/

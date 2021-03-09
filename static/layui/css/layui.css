@@ -1845,7 +1845,7 @@ a cite {
 }
 
 .layui-elem-field legend {
-	margin-left: 20px;
+	margin: 0 auto;
 	padding: 0 10px;
 	font-size: 20px;
 	font-weight: 300
@@ -1963,7 +1963,7 @@ a cite {
 	height: 42px;
 	line-height: 42px;
 	padding: 0 15px;
-	border-bottom: 1px solid #f6f6f6;
+	border-bottom: 5px solid #f3f3f3;
 	color: #333;
 	border-radius: 2px 2px 0 0;
 	font-size: 14px

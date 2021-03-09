@@ -11,7 +11,9 @@
         <link rel="icon" href="favicon.ico">
         <title>你对异性是否具备吸引力</title>
 
-              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+              <!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
+							<link rel="stylesheet" href="../static/layui/css/layui.css" />
+							<link rel="stylesheet" href="../static/css/main.css" />
               <script src="/static/js/jquery-2.1.4.min.js"></script>
               <script src="/static/js/bootstrap.min.js"></script>
               <script src="/static/js/layer/layer.js"></script>
@@ -27,37 +29,52 @@
 </script>
 
 <script type="text/html" id="script_1">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">
+	<div class="layui-container conta">
+		<img src="../static/img/complete-icon1.jpg" style="width: 255px;">
+		<div class="position">
+				<h3 style="position: absolute;top: 5px;"><%=text%></h3>
+		</div>
+	</div>
+	
+	<div class="results">
+		<div class="layui-card">
+			<div class="layui-card-header">
+				<h3>
 					测试结果:
 				</h3>
 			</div>
-			<div class="panel-body">
-				<%=answer%>
+			<div class="layui-card-body">
+					<%=answer%>
 			</div>
 		</div>
+	</div>
 </script>
 
 
 <div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-    <div class="container"  id="container_title">
+    <div class="layui-container"  id="container_title">
         <p style="padding-top: 35px;font-size: 34px;">title</p>
     </div>
 </div>
 
-<div class="container" id="container_1">
+<div class="layui-container" id="container_1">
 </div>
 
-<div class="container">
-	<div class="alert alert-success" role="alert">
-		<h4 class="alert-heading">心理视点:</h4>
-		<p class="mb-0"> 男性心中的女性美是
-(1)美丽、温柔、贤惠，善解人意而又心地善良，纯真、诚实、不吝音多情而不软弱，独立却不冷若冰霜，更不自以为美丽而拒人于千里之外。
-(2)自重自爱，平易谦和，彬彬有礼，为人处世好，富有同情心，能体谅人，正直，乐于助人，尊师长、老人，有自知之明，不忘乎所以。
-(3)活泼而不放荡，稳重而不果板，有内在魅力，坦率洒脱、性情开明、心胸开阔，不叽叽喳喳于大庭广众，或搬弄口舌于朋友同事，具有现代青年人的文化教养。
-(4)头脑灵活，虚心好学，不矫揉造作，有较强的事业心，谈吐不俗，热情开朗，不缩手缩脚、忸忸怩怩、羞羞答答。
-    这就是当代男性心中的女性美。他们普遍认为女性既要有“贤妻良母’的素养，又要有“居里夫人”的气质，希望所有女性都能成为有才识、有气量的知识型、开拓型、创造型女性。</p>
+<div class="layui-container">
+	
+	<fieldset class="layui-elem-field layui-field-title">
+		<legend class="viewpoint"><img src="../static/img/chinese-Amber.jpg" /></legend>
+		<div id="s" class="layui-field-box">男性心中的女性美是
+			(1)美丽、温柔、贤惠，善解人意而又心地善良，纯真、诚实、不吝音多情而不软弱，独立却不冷若冰霜，更不自以为美丽而拒人于千里之外。
+			(2)自重自爱，平易谦和，彬彬有礼，为人处世好，富有同情心，能体谅人，正直，乐于助人，尊师长、老人，有自知之明，不忘乎所以。
+			(3)活泼而不放荡，稳重而不果板，有内在魅力，坦率洒脱、性情开明、心胸开阔，不叽叽喳喳于大庭广众，或搬弄口舌于朋友同事，具有现代青年人的文化教养。
+			(4)头脑灵活，虚心好学，不矫揉造作，有较强的事业心，谈吐不俗，热情开朗，不缩手缩脚、忸忸怩怩、羞羞答答。
+			这就是当代男性心中的女性美。他们普遍认为女性既要有“贤妻良母’的素养，又要有“居里夫人”的气质，希望所有女性都能成为有才识、有气量的知识型、开拓型、创造型女性。		</div>
+	</fieldset>
+	
+	<div class="text_">
+		<h4>请给出你的评分</h4>
+		<div id="test1"></div>
 	</div>
 </div>
 
@@ -75,7 +92,7 @@
       }
     }
 </script>
-
+<script src="../static/layui/layui.js"></script>
 <script>
   var answer;
 	window.onload = function (){
@@ -89,6 +106,18 @@
 			if(data.io){
 				answer = JSON.parse(data.data)
 				init();
+				layui.use(['element','rate'], function(){
+				  var element = layui.element; 
+					var rate = layui.rate;
+					rate.render({
+							elem: '#test1'
+							,value: 2.5 //初始值
+							,half: true //开启半星
+						})
+				  element.on('nav(demo)', function(elem){
+				    layer.msg(elem.text());
+				  });
+				});
 			}else{
 				console.debug(data.data);
 			}
@@ -101,7 +130,15 @@
 					var html = template('script_title', data.data);
 					$("#container_title").html(html);
 					
-					var html = template('script_1', {'answer':data.data['report'][answer['q1']]});
+					if(answer['q1'] == 'A'){
+						var html = template('script_1', {'answer':data.data['report'][answer['q1']],'text':'致命指数99分'});
+					}else if(answer['q1'] == 'B'){
+						var html = template('script_1', {'answer':data.data['report'][answer['q1']],'text':'致命指数60分'});
+					}else if(answer['q1'] == 'C'){
+						var html = template('script_1', {'answer':data.data['report'][answer['q1']],'text':'致命指数40分'});
+					}else{
+						var html = template('script_1', {'answer':data.data['report'][answer['q1']],'text':'致命指数30分'});
+					}
 					$("#container_1").append(html);
 
 				}else{

@@ -8,7 +8,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
-		<title>123</title>
+		<title>测评</title>
 
 		<link rel="stylesheet" href="static/layui/css/layui.css">
 		<link rel="stylesheet" href="static/css/bootstrap.css" />
@@ -17,7 +17,7 @@
 		<script src="static/js/jquery-2.1.4.min.js"></script>
 		<script src="static/js/bootstrap.min.js"></script>
 		<script src="static/js/template-web.js"></script>
-
+		<script src="static/js/Public.js"></script>
 
 	</head>
 	<style>
@@ -56,25 +56,23 @@
 
 		<script type="text/html" id="SingleChoice">
 			<div class="layui-form-item" id="q<%=no%>">
-					<label><%=title%></label>
-					<br>
-					<% for(var i = 0; i < opt.length; i++){ %>
-					
-						<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
-					
-					<% } %>
-				</div>
+			<label><%=title%></label>
+			<br>
+			<% for(var i = 0; i < opt.length; i++){ %>
+				<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
+			<% } %>
+	</div>
 	<hr>
 </script>
 
 		<script type="text/html" id="JumpChoice">
 			<div class="layui-form-item layui-colo-md-4 layui-colo-sm-4 layui-col-xs-4" id="q<%=no%>">
 			<label><%=title%></label>
-				<br>
-				<% for(var i = 0; i < opt.length; i++){ %>
-					<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" <%=action[i]%> ><%=opt[i]%>
-				<% } %>
-		</div>
+	<br>
+	<% for(var i = 0; i < opt.length; i++){ %>
+		<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" <%=action[i]%> ><%=opt[i]%>
+	<% } %>
+	</div>
 	<hr>
 </script>
 		<script type="text/html" id="MultiChoice">
@@ -99,7 +97,7 @@
 </script>
 
 		<form class="layui-form scroll-bar">
-			
+
 			<div class="layui-progress" lay-showPercent="true" lay-filter="demo">
 				<div id="Process" class="layui-progress-bar layui-bg-blue" lay-percent="10%" style="position: fixed; top: 0px;"></div>
 			</div>
@@ -120,7 +118,7 @@
 
 		</form>
 		<script src="static/layui/layui.js"></script>
-
+		
 		<script>
 			var layer;
 			var form;
@@ -137,19 +135,7 @@
 					window_size();
 				};
 			}
-
-			function getUrlParam(name) {
-				//构造一个含有目标参数的正则表达式对象
-				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-				//匹配目标参数
-				var r = window.location.search.substr(1).match(reg);
-				//返回参数
-				if (r != null) {
-					return unescape(r[2]);
-				} else {
-					return null;
-				}
-			}
+			getUrlParam();
 		</script>
 
 		<script>
@@ -188,14 +174,15 @@
 				if (winWide <= 664) {
 					$('.Pull_hide').hide();
 					$('.layui-icon').show();
+					$('.layui-icon').unbind('click').click(function() {});
 					$('.layui-icon').click(function() {
 						num++;
 						$(this).css({
-							'transform': 'rotate(' + 180*num + 'deg)'
+							'transform': 'rotate(' + 180 * num + 'deg)'
 						});
-						if($('.Pull_hide').is(":hidden")){
+						if ($('.Pull_hide').is(":hidden")) {
 							$('.Pull_hide').show(800);
-						}else{
+						} else {
 							$('.Pull_hide').hide(800);
 						}
 					});

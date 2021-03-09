@@ -1,124 +1,123 @@
 <html lang="zh-CN">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="favicon.ico">
-        <title>你是否心平气和</title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="favicon.ico">
+		<title id="atitle">你是否心平气和</title>
 
-              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-              <script src="/static/js/jquery-2.1.4.min.js"></script>
-              <script src="/static/js/bootstrap.min.js"></script>
-              <script src="/static/js/layer/layer.js"></script>
-              <script src="/static/js/template-web.js"></script>
+		<!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="/static/layui/css/layui.css" />
+		<link rel="stylesheet" href="/static/css/main.css" />
+		<script src="/static/js/jquery-2.1.4.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/layer/layer.js"></script>
+		<script src="/static/js/template-web.js"></script>
+		<script src="/static/js/Public.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
+		<script type="text/html" id="script_title">
+			<%=title%>
+		</script>
 
-    </head>
-<body>
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+		<script type="text/html" id="script_1">
+			
+			<div class="layui-container conta">
+				<img src="/static/img/complete-icon1.jpg" style="width: 255px;">
+				<div class="position">
+						<h3 style="position: absolute;top: 8px;"><%=text%>分</h3>
+				</div>
+			</div>
+			
+			<div class="results">
+				<div class="layui-card">
+					<div class="layui-card-header">
+						<h3>
+							测试结果:
+						</h3>
+					</div>
+					<div class="layui-card-body">
+							<%=name%>
+					</div>
+				</div>
+			</div>
 
-<script type="text/html" id="script_title">
-    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
 </script>
 
-<script type="text/html" id="script_1">
-    <div class="panel panel-default">
-    	<div class="panel-heading">
-    		<h1 class="panel-title">
-    			测试结果:
-    		</h1>
-    	</div>
-    	<div class="panel-body">
-    		<%=name%>
-    	</div>
-    </div>
-</script>
 
+		<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+			<div class="layui-container">
+				<p id="container_title" style="padding-top: 35px;font-size: 34px;">title</p>
+			</div>
+		</div>
 
-<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-    <div class="container"  id="container_title">
-        <p style="padding-top: 35px;font-size: 24px;">title</p>
-    </div>
-</div>
+		<div class="layui-container" id="container_1">
 
-<div class="container" id="container_1">
+		</div>
 
-</div>
+		<div class="layui-container">
+			
+			<fieldset class="layui-elem-field layui-field-title">
+				<legend class="viewpoint"><img src="/static/img/chinese-Amber.jpg" /></legend>
+				<div class="layui-field-box">
+					如果你经常急躁不安，你可以认真分析一下导致心理紧张的原因，如果是外在的，要设法克服；如果是内在的，就应学会“忙里偷闲”，培养多方面的兴趣，使自己紧绷的弦放松下来。
+						如果你过于心平气和，以至缺乏进取心，请从现在开始改变自己，给自己设定一个目标，并为目标而努力奋斗。享受安逸，会使你的精神懒惰，从而导致抑郁等症状。
+				</div>
+			</fieldset>
+			
+			<div class="text_">
+				<h4>请给出你的评分</h4>
+				<div id="test1"></div>
+			</div>
+		</div>
+		<script src="/static/layui/layui.js"></script>
+		<script>
+			var score = 0;
+			getUrlParam();
+			window.onload = function() {
+				ewindow();
+			};
 
-<div class="container">
-	<div class="alert alert-success" role="alert">
-	  <h4 class="alert-heading">心理视点:</h4>
-	  <p class="mb-0">如果你经常急躁不安，你可以认真分析一下导致心理紧张的原因，如果是外在的，要设法克服；如果是内在的，就应学会“忙里偷闲”，培养多方面的兴趣，使自己紧绷的弦放松下来。
-			如果你过于心平气和，以至缺乏进取心，请从现在开始改变自己，给自己设定一个目标，并为目标而努力奋斗。享受安逸，会使你的精神懒惰，从而导致抑郁等症状。
-</p>
-	</div>
-<script>
-	function getUrlParam(name) {
-	    //构造一个含有目标参数的正则表达式对象
-	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-	    //匹配目标参数
-	    var r = window.location.search.substr(1).match(reg);
-	    //返回参数
-	    if (r != null) {
-	        return unescape(r[2]);
-	    } else {
-	        return null;
-	    }
-	}
-</script>
+			function init() {
+				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
+					if (data.io) {
+						var html = template('script_title', data.data);
+						$("#container_title,#atitle").html(html);
 
-<script>
-  var score = 0;
-	window.onload = function (){
-		$.get('http://apoc.aikutest.com',{
-				'm':'wj',
-				'c':'wj',
-				'a':'answer',
-				'id':getUrlParam('id'),
-				'wid':getUrlParam('wid')
-		},function (data) {
-				if(data.io){
-					answer = JSON.parse(data.data)
-					init();
-				}else{
-					console.debug(data.data);
-				}
-			},'json');
-		
-		};
-		function init() {
-			$.get('/static/wj/topic/'+getUrlParam('id') + '.json?t=' + new Date().getMilliseconds() ,{},function (data) {
-				if(data.io){
-					var html = template('script_title', data.data);
-					$("#container_title").html(html);
+						var name = data.data['report']['abbr'];
 
-					var name = data.data['report']['abbr'];
+						for (var i2 = 0; i2 < data.data['report']['topic'].length; i2++) {
+							eval(name + '+=' + Number(eval('answer.q' + Number(data.data['report']['topic'][i2]))));
+						}
+						if (score >= 16 && score <= 26) {
+							var html = template('script_1', {
+								"name": data.data['report']['A'],
+								"text": score
+							});
+						} else if (score >= 9 && score <= 15) {
+							var html = template('script_1', {
+								"name": data.data['report']['B'],
+								"text": score
+							});
+						} else {
+							var html = template('script_1', {
+								"name": data.data['report']['C'],
+								"text": score
+							});
+						}
+						console.log(score)
+						$("#container_1").append(html);
 
-					for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
-						eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
+					} else {
+						console.debug(data.data);
 					}
-					console.log(answer)
-					console.log(score)
-					if(score >= 16 && score <= 26){
-						var html = template('script_1', {"name":data.data['report']['A']});
-					}else if(score >= 9 && score <= 15){
-						var html = template('script_1', {"name":data.data['report']['B']});
-					}else{
-						var html = template('script_1', {"name":data.data['report']['C']});
-					}
+				}, 'json');
 
-					$("#container_1").append(html);
-
-				}else{
-					console.debug(data.data);
-				}
-			},'json');
-
-			console.log('ok');
-		}
-	
-
-</script>
+				console.log('ok');
+			}
+		</script>
