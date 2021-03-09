@@ -105,8 +105,8 @@
                 $("#container_title").html(html);
 
                 var name = data.data['report']['abbr'];
-                for(var i2 = 0; i2 < data.data['report'].length; i2++){
-                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i2]))));
+                for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
+                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
                 }
 
                 if(score >= 21){
@@ -118,7 +118,7 @@
                 }else {
 										var html = template('script_1', {"name":data.data['report']['D']});
 								}
-
+								console.log(score)
                 $("#container_1").append(html);
 
             }else{

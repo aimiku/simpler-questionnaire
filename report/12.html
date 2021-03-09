@@ -8,75 +8,87 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
-		<title>你的大脑工作能力如何</title>
+		<title id="atitle">你的大脑工作能力如何</title>
 
-		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="../static/layui/css/layui.css" />
+		<link rel="stylesheet" href="../static/css/main.css" />
 		<script src="/static/js/jquery-2.1.4.min.js"></script>
 		<script src="/static/js/bootstrap.min.js"></script>
 		<script src="/static/js/layer/layer.js"></script>
 		<script src="/static/js/template-web.js"></script>
-
-
+		<script src="/static/js/Public.js"></script>
 	</head>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
-
 		<script type="text/html" id="script_title">
-			<p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
-</script>
+			<%=title%>
+		</script>
 
-		<script type="text/html" id="script_1">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<%=score%><br>
-					<%=name%>
+		<script type="text/html" id="script_2">
+			<div class="layui-container conta">
+				<img src="../static/img/complete-icon1.jpg" style="width: 255px;">
+				<div class="position"style="width: 80px;">
+						<h3 style="width: 80px;position: absolute;top: 8px;-webkit-line-clamp: 3;"><%=I%></h3>
 				</div>
 			</div>
-</script>
+		</script>
+
+		<script type="text/html" id="script_1">
+			<div class="results">
+				<div class="layui-card">
+					<div class="layui-card-body">
+						<%=text%><br />
+						<%=name%>
+					</div>
+				</div>
+			</div>
+		</script>
 
 
 		<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-			<div class="container" id="container_title">
-				<p style="padding-top: 35px;font-size: 24px;">title</p>
+			<div class="layui-container">
+				<p id="container_title" style="padding-top: 35px;font-size: 34px;">title</p>
 			</div>
 		</div>
 
-		<div class="container" id="container_1">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-						测试结果:
+
+		<div class="layui-container" id="container_1">
+
+			<div class="results">
+				<div class="layui-card">
+					<div class="layui-card-header">
+						<h3>
+							测试结果:
+						</h3>
+					</div>
 				</div>
 			</div>
+
 		</div>
 
-		<div class="container">
-			<div class="alert alert-success" role="alert">
-			  <h4 class="alert-heading">心理视点</h4>
-			  <p class="mb-0">大脑工作能力集中表现如下：
-				　　集中力：在工作、日常生活及学习中，我们往往要预先规定具体的目标，为了实现这些目标，就必须集中大脑的全部机能。大脑集中力的程度如何，是大脑机能是否健全的标准之一。
-				　　转换力：每个人都会面临大量的问题，而这些问题未必都能顺利解决，必要时就应该及时转换目标或方法。可以说，处理问题时思维的转换速度和判断的果决与否是衡量大脑转换能力的一个关键。
-				　　灵敏性：现代社会整合性、复杂性的提高，需要大脑能做出快速、机动的反应，以适应不断变化的情况，因此大脑的灵敏性非常重要。
-				　　调节性：为了有效地运用大脑，必须有节奏地解除大脑的兴奋和紧张，从而使大脑得到间歇性的休息放松，积蓄再生产的能量，以自动地适应任务需要而发挥作用，并保持良好的效率。倘若长时间不能很好地调节大脑的紧张度与松弛度，过度兴奋会导致抑制，神经系统对外界刺激就会产生拒绝反应，即丧失反应能力。能否保持大脑适度松弛和与环境相协调的觉醒程度是衡量大脑调节性的标准之一。
-				　　缜密性：大脑工作能力的发挥直接与其生理和心理健康有关，如果保健不当，大脑机能的精确度、缜密性将会下降，甚至衰退老化。</p>
+		<div class="layui-container">
+
+			<fieldset class="layui-elem-field layui-field-title">
+				<legend class="viewpoint"><img src="/static/img/chinese-Amber.jpg" /></legend>
+				<div class="layui-field-box">
+					大脑工作能力集中表现如下:<br>
+					　　集中力：在工作、日常生活及学习中，我们往往要预先规定具体的目标，为了实现这些目标，就必须集中大脑的全部机能。大脑集中力的程度如何，是大脑机能是否健全的标准之一。<br />
+					　　转换力：每个人都会面临大量的问题，而这些问题未必都能顺利解决，必要时就应该及时转换目标或方法。可以说，处理问题时思维的转换速度和判断的果决与否是衡量大脑转换能力的一个关键。<br />
+					　　灵敏性：现代社会整合性、复杂性的提高，需要大脑能做出快速、机动的反应，以适应不断变化的情况，因此大脑的灵敏性非常重要。<br />
+					　　调节性：为了有效地运用大脑，必须有节奏地解除大脑的兴奋和紧张，从而使大脑得到间歇性的休息放松，积蓄再生产的能量，以自动地适应任务需要而发挥作用，并保持良好的效率。倘若长时间不能很好地调节大脑的紧张度与松弛度，过度兴奋会导致抑制，神经系统对外界刺激就会产生拒绝反应，即丧失反应能力。能否保持大脑适度松弛和与环境相协调的觉醒程度是衡量大脑调节性的标准之一。<br />
+					　　缜密性：大脑工作能力的发挥直接与其生理和心理健康有关，如果保健不当，大脑机能的精确度、缜密性将会下降，甚至衰退老化。<br />
+				</div>
+			</fieldset>
+
+			<div class="text_">
+				<h4>请给出你的评分</h4>
+				<div id="test1"></div>
 			</div>
 
+
 		</div>
-
-		<script>
-			function getUrlParam(name) {
-				//构造一个含有目标参数的正则表达式对象
-				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-				//匹配目标参数
-				var r = window.location.search.substr(1).match(reg);
-				//返回参数
-				if (r != null) {
-					return unescape(r[2]);
-				} else {
-					return null;
-				}
-			}
-		</script>
-
+		<script src="../static/layui/layui.js"></script>
 		<script>
 			var I = 0;
 			var II = 0;
@@ -84,21 +96,26 @@
 			var IV = 0;
 			var V = 0;
 			var list = [];
+			var rtitle;
+			// var ShareData = {
+			// 	title: rtitle, 
+			// 	link: 'http://192.168.20.62/', 
+			// 	imgUrl: '../static/img/Memory-ability.jpg', 
+			// }
+			getUrlParam();
 			window.onload = function() {
-				$.get('http://apoc.aikutest.com', {
-					'm': 'wj',
-					'c': 'wj',
-					'a': 'answer',
-					'id': getUrlParam('id'),
-					'wid': getUrlParam('wid')
-				}, function(data) {
-					if (data.io) {
-						answer = JSON.parse(data.data)
-						init();
-					} else {
-						console.debug(data.data);
-					}
-				}, 'json');
+				ewindow();
+						// wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
+						//   wx.updateAppMessageShareData({ 
+						//     title: ShareData.title, // 分享标题
+						//     desc: '', // 分享描述
+						//     link: ShareData.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+						//     imgUrl: ShareData.imgUrl, // 分享图标
+						//     success: function () {
+						//       // 设置成功
+						//     }
+						// 	})
+						// });
 
 			};
 
@@ -106,31 +123,35 @@
 				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
 					if (data.io) {
 						var html = template('script_title', data.data);
-						$("#container_title").html(html);
-						console.log(html)
+						$("#atitle,#container_title").html(html);
+
 						for (var i = 0; i < data.data["report"].length; i++) {
 							var abbr = data.data['report'][i]['abbr'];
 							var name = '';
+							var score = [];
 							for (var i2 = 0; i2 < data.data['report'][i]['topic'].length; i2++) {
 								eval(abbr + '+=' + Number(eval('answer.q' + Number(data.data['report'][i]['topic'][i2]))));
 							};
-							for(var i2 = 0; i2 < data.data["report"][i]["name_score"].length; i2++){
-								if(data.data["report"][i]["name_score"][i2][0] <= eval(abbr) && data.data["report"][i]["name_score"][i2][1] >= eval(abbr)){
-									name=data.data["report"][i]["name"][i2]
+							for (var i2 = 0; i2 < data.data["report"][i]["name_score"].length; i2++) {
+								if (data.data["report"][i]["name_score"][i2][0] <= eval(abbr) && data.data["report"][i]["name_score"][i2][1] >=
+									eval(abbr)) {
+									name = data.data["report"][i]["name"][i2]
 								}
 							}
-							
-							for(var c = 0; c < data.data["report"][i]["state_score"].length; c++){
-								console.log(eval(abbr));
-								if(data.data["report"][i]["state_score"][c][0] <= eval(abbr) && data.data["report"][i]["state_score"][c][1] >= eval(abbr) ){
+							for (var c = 0; c < data.data["report"][i]["state_score"].length; c++) {
+
+								if (data.data["report"][i]["state_score"][c][0] <= eval(abbr) && data.data["report"][i]["state_score"][c][1] >=
+									eval(abbr)) {
 									$("#container_1").append(template('script_1', {
-										"score":'测试状态：' + data.data['report'][i]['state'][c] + eval(abbr) + "分" + ";",
-										"name": "得分:'" + name + "'"
+										"text": data.data["report"][i]['textinfo'],
+										"name": "得分:'" + eval(abbr) + "分" + "," + name + "'"
 									}));
 								}
 							}
-							
 						};
+						$("#container_1").prepend(template('script_2', {
+							"I": parseInt(((I + II + III + IV + V) / 75) * 100)
+						}));
 					} else {
 						console.debug(data.data);
 					}

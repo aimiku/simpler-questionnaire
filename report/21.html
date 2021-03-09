@@ -107,21 +107,20 @@
                 $("#container_title").html(html);
 
                 var name = data.data['report']['abbr'];
-								console.log(Number(data.data['topic'][0]['score'][0]))
-                for(var i2 = 0; i2 < data.data['report'].length; i2++){
-                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i2]))));
+                for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
+                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
+										
                 }
 
                 if(score <= 20 && score >= 18){
                     var html = template('script_1', {"name":data.data['report']['A']});
-                }else if(score >= 17 && score <= 14){
+                }else if(score >= 14 && score <= 17){
                     var html = template('script_1', {"name":data.data['report']['B']});
-                }else if(score >= 13 && score <= 8){
+                }else if(score >= 8 && score <= 13){
                     var html = template('script_1', {"name":data.data['report']['C']});
                 }else {
 										var html = template('script_1', {"name":data.data['report']['D']});
 								}
-
                 $("#container_1").append(html);
 
             }else{

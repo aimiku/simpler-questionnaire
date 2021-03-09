@@ -10,7 +10,9 @@
 		<link rel="icon" href="favicon.ico">
 		<title>你的记忆能力如何</title>
 
-		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="../static/layui/css/layui.css" />
+		<link rel="stylesheet" href="../static/css/main.css" />
 		<script src="/static/js/jquery-2.1.4.min.js"></script>
 		<script src="/static/js/bootstrap.min.js"></script>
 		<script src="/static/js/layer/layer.js"></script>
@@ -23,37 +25,58 @@
 
 		<script type="text/html" id="script_title">
 			<p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
-</script>
-
+		</script>
+				
+		<script type="text/html" id="script_2">
+			<div class="layui-container conta">
+				<img src="../static/img/complete-icon1.jpg" style="width: 255px;">
+				<div class="position"style="position: absolute;top: 102px;width: 250px;">
+						<h3 style="width: 250px;"><%=textI%><br><%=text%><br><%=textv%></h3>
+				</div>
+			</div>
+		</script>
 		<script type="text/html" id="script_1">
-			<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">
-				测试结果: <%=scorew%>
-			</h3>
-		</div>
-		<div class="panel-body">
-			<%=name%>
-		</div>
-	</div>
-
-</script>
-
+			
+			 <div class="results">
+			 	<div class="layui-card">
+			 		<div class="layui-card-header">
+			 			<h3>
+			 				测试结果:
+			 			</h3>
+			 		</div>
+			 		<div class="layui-card-body">
+			 			<%=score%><br>
+			 			<%=name%>
+			 		</div>
+			 	</div>
+			 </div>
+		</script>
+		
 
 		<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-			<div class="container" id="container_title">
+			<div class="layui-container" id="container_title">
 				<p style="padding-top: 35px;font-size: 34px;">title</p>
 			</div>
+			
+		</div>
+		
+		
+		<div class="layui-container" id="container_1">
+			
 		</div>
 
-		<div class="container" id="container_1">
+		<div class="layui-container">
 
-		</div>
+			<fieldset class="layui-elem-field layui-field-title">
+				<legend class="viewpoint"><img src="../static/img/chinese-Amber.jpg" /></legend>
+				<div class="layui-field-box">
+					记忆能力很重要，在很大程度上决定了其是否能够胜任自己的本工作，如果你的记忆能力欠佳，甚至有严重的健忘症，就需要在平时的生活、工作中注意调节自己的情绪、缓解压力、放松心情，还要调节自己的生物钟，从饮食、睡眠等调节下工夫，相信你的记忆力会有所提高。
+				</div>
+			</fieldset>
 
-		<div class="container">
-			<div class="alert alert-success" role="alert">
-				<h4 class="alert-heading">心理视点:</h4>
-				<p class="mb-0">记忆能力很重要，在很大程度上决定了其是否能够胜任自己的本工作，如果你的记忆能力欠佳，甚至有严重的健忘症，就需要在平时的生活、工作中注意调节自己的情绪、缓解压力、放松心情，还要调节自己的生物钟，从饮食、睡眠等调节下工夫，相信你的记忆力会有所提高。</p>
+			<div class="text_">
+				<h4>请给出你的评分</h4>
+				<div id="test1"></div>
 			</div>
 		</div>
 
@@ -71,9 +94,13 @@
 				}
 			}
 		</script>
+		<script src="../static/layui/layui.js"></script>
 		<script>
 			var answer = {};
 			var score = [];
+			var score1 = 0;
+			var score2 = 0;
+			var score3 = 0;
 			window.onload = function() {
 				$.get('http://apoc.aikutest.com', {
 					'm': 'wj',
@@ -85,6 +112,18 @@
 					if (data.io) {
 						answer = JSON.parse(data.data)
 						init();
+						layui.use(['element','rate'], function(){
+						  var element = layui.element; 
+							var rate = layui.rate;
+							rate.render({
+									elem: '#test1'
+									,value: 2.5 //初始值
+									,half: true //开启半星
+								})
+						  element.on('nav(demo)', function(elem){
+						    layer.msg(elem.text());
+						  });
+						});
 					} else {
 						console.debug(data.data);
 					}
@@ -97,36 +136,45 @@
 					if (data.io) {
 						var html = template('script_title', data.data);
 						$("#container_title").html(html);
-
-						var name = data.data['report']['abbr'];
-
-						for (var i2 = 0; i2 < data.data['report']['topic'].length; i2++) {
-							eval(name + '+=' + Number(eval('answer.q' + data.data['report']['topic'][i2])));
-						}
-
-						var scorew = [];
-						for (var i = 0; i < score.length; i++) {
-							if (score[i] == 1) {
-								scorew += 1;
-								var html = template('script_1', {
-									"name": data.data['report']['C'],
-									"scorew": "你选择“是”有" + scorew.length + "题"
-								});
-								$("#container_1").html(html);
+						
+						for (var i = 0; i < data.data["report"].length; i++) {
+							var name = data.data['report'][i]['abbr'];
+							var name1 = '';
+							var Introduced;
+							for (var i2 = 0; i2 < data.data['report'][i]['topic'].length; i2++) {
+								eval(name + '+=' + Number(eval('answer.q' + data.data['report'][i]['topic'][i2])));
 							}
-							var html = template('script_1', {
-								"name": data.data['report']['B']
-							});
+							for(var i2 = 0; i2 < data.data["report"][i]["info-score"].length; i2++){
+								if(data.data["report"][i]["info-score"][i2][0] <= 9 && data.data["report"][i]["info-score"][i2][1] >= 0){
+									name1+=data.data["report"][i]["info"][i2]
+								}
+								if(answer.q2 == 1){
+									name1+=data.data["report"][1]["info"][0]
+								}
+								if(answer.q1 > 0 && answer.q1 < 2){
+									name1+=data.data["report"][0]["info"][3]
+								}else if(answer.q1 > 1 && answer.q1 < 3){
+									name1+=data.data["report"][0]["info"][2]
+								}else if(answer.q1 > 2 && answer.q1 < 4){
+									name1+=data.data["report"][0]["info"][1]
+								}else{
+									name1+=data.data["report"][0]["info"][0]
+								}
+							}
 							
-							$("#container_1").append(html);
-							var html = template('script_1', {
-								"name": data.data['report']['A']
-							});
+							
 						}
+						
+						var score=((score1+score2+score3)/23*100)
+						console.log(score)
+						$("#container_1").prepend(template('script_1', {
+							"name": name1
+						}));
 
-
-						$("#container_1").append(html);
-
+						$("#container_1").prepend(template('script_2', {
+							"text":  Math.round(score) + "分" 
+						}));
+						
 					} else {
 						console.debug(data.data);
 					}

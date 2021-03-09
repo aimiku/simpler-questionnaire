@@ -8,32 +8,38 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
-		<title>你是哪种气质类型的人</title>
+		<title id="atitle">你是哪种气质类型的人</title>
 		<!-- <link rel="stylesheet" href="../static/css/bootstrap.css" /> -->
 		<link rel="stylesheet" href="../static/layui/css/layui.css" />
 		<link rel="stylesheet" href="../static/css/main.css" />
 		<script src="/static/js/jquery-2.1.4.min.js"></script>
 		<script src="/static/js/template-web.js"></script>
+		<script src="/static/js/Public.js"></script>
 	</head>
-	<style>
-	</style>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
 		<script type="text/html" id="script_title">
-			<p style="padding: 50px 0 20px 1px;font-size: 34px;"><%=title%></p>
+			<%=title%>
     <p style="font-size: 18px;">若要保留该报告结果，请点击微信右上角添加到收藏</p>
 </script>
 
 		<script type="text/html" id="script_1">
-			<div style="padding: 10px; background-color: #F2F2F2; cursor: pointer;">
+			<div class="layui-container conta">
+				<img src="../static/img/complete-icon1.jpg" style="width: 255px;">
+				<div class="position">
+						<h3 style="position: absolute;top: 8px;"><%=text%></h3>
+				</div>
+			</div>
+			
+			<div class="results">
 				<div class="layui-card">
 					<div class="layui-card-header">
 							测试结果:
 					</div>
 					<div class="layui-card-body">
 						<% for(var i = 0; i < name.length; i++){ %>
-						<a style="font-size: 34px;"><%=name[i]%>
+						<a style="font-size: 30px;"><%=name[i]%>
 						</a>
 						<% } %>
 						如果某气质得分明显其他3种，均高出4分以上，则可定为该气质。
@@ -54,9 +60,9 @@
 </script>
 
 
-		<div style="margin-top: -34px;background-color: #604d94;color: #FFF;">
-			<div class="layui-container" id="container_title">
-				<p style="padding: 10px;font-size: 34px;">title</p>
+		<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
+			<div class="layui-container">
+				<p id="container_title" style="padding-top: 35px;font-size: 34px;">title</p>
 			</div>
 		</div>
 
@@ -108,35 +114,20 @@
 			</fieldset>
 			
 			<fieldset class="layui-elem-field layui-field-title">
-				<legend>心理视点:</legend>
+				<legend class="viewpoint"><img src="../static/img/chinese-Amber.jpg" /></legend>
 				<div class="layui-field-box">
 						气质是心理活动的动态特征，与日常生活中所说的“牌气”、“秉性”相近。气质是人格特征的白然风貌，它的成因主要与大脑的神经活动类型及后天习惯有关。气质类型本身在社会价值评价方面无好坏优劣之分，可以说每一种气质类型中都有积极或消极的成分，在人格的自我完善过程中，应扬长避短。气质不能决定人的思想道德素养和活动成就的高低。各种气质类型的人都可以对社会作出贡献，当然其消板成分也会对人的行为产生和负面影响。
 						在人群中，典型的气质类型者较少，更多的人是综合型。多血质和胆汁质的气质类型易形成外向性格，黏液质和郁质气质类型的人一般较文静和内向。
 				</div>
 			</fieldset>
 			
-			<div style="position: fixed;bottom: 30px;right: 20px;font-size: 20px;" class="text_">
+			<div class="text_">
 				<h4>请给出你的评分</h4>
 				<div id="test1"></div>
 			</div>
 		</div>
 		
-		
-		<script>
-			function getUrlParam(name) {
-				//构造一个含有目标参数的正则表达式对象
-				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-				//匹配目标参数
-				var r = window.location.search.substr(1).match(reg);
-				//返回参数
-				if (r != null) {
-					return unescape(r[2]);
-				} else {
-					return null;
-				}
-			}
-		</script>
-		<script src="../static/layui/layui.js"></script>
+		<script src="/static/layui/layui.js"></script>
 		<script>
 			var answer = {};
 			var b = 0;
@@ -144,57 +135,17 @@
 			var m = 0;
 			var d = 0;
 			var list = [];
+			getUrlParam();
 			window.onload = function() {
-				$.get('http://apoc.aikutest.com', {
-					'm': 'wj',
-					'c': 'wj',
-					'a': 'answer',
-					'id': getUrlParam('id'),
-					'wid': getUrlParam('wid')
-				}, function(data) {
-					if (data.io) {
-						answer = JSON.parse(data.data)
-						init();
-						console.log(answer)
-						layui.use(['element','rate'], function(){
-						  var element = layui.element; 
-							var rate = layui.rate;
-							rate.render({
-									elem: '#test1'
-									,value: 2.5 //初始值
-									,half: true //开启半星
-								})
-						  element.on('nav(demo)', function(elem){
-						    layer.msg(elem.text());
-						  });
-						});
-					} else {
-						console.debug(data.data);
-					}
-				}, 'json');
-
+				ewindow();
+				console.log(f(),getUrlParam())
 			};
-
 			function init() {
-				$.get('http://apoc.aikutest.com', {
-					'm': 'wj',
-					'c': 'wj',
-					'a': 'answer',
-					'id': getUrlParam('id'),
-					'wid': getUrlParam('wid')
-				}, function(data) {
-					if (data.io) {
-						answer = JSON.parse(data.data)
-						console.log(answer)
-					} else {
-						console.debug(data.data);
-					}
-				}, 'json');
+				einit();
 				$.get('/static/wj/topic/' + getUrlParam('id') + '.json', {}, function(data) {
 					if (data.io) {
 						var html = template('script_title', data.data);
-						$("#container_title").html(html);
-						console.log(data.data)
+						$("#atitle,#container_title").html(html);
 						for (var i = 0; i < data.data['report'].length; i++) {
 							var name = data.data['report'][i]['abbr'];
 
@@ -218,14 +169,17 @@
 						if (list[0]["score"] > list[1]["score"] && (list[0]["score"] - list[1]["score"]) > 4) {
 							var html = template('script_1', {
 								"name": list[0]['name'],
-								"score": list[0]['score']
+								"score": list[0]['score'],
+								"text": list[0]['score']
 							});
+							console.log(html)
 							$("#container_1").append(html);
 							$('#' + list[0]["abbr"]).css("background-color", "#FFFFCC");
 						} else if ((list[0]["score"] - list[1]["score"]) <= 3 && (list[1]["score"] - list[2]["score"]) > 4) {
 							var html = template('script_1', {
 								"name": [list[0]['name'], list[1]['name']],
-								"score": [list[0]['score'], list[1]['score']]
+								"score": [list[0]['score'], list[1]['score']],
+								"text": list[0]['score']
 							});
 							$("#container_1").append(html);
 							$('#' + list[0]["abbr"]).css("background-color", "#FFFFCC");
@@ -233,7 +187,8 @@
 						} else if ((list[0]["score"] - list[2]["score"]) <= 3 && (list[0]["score"] - list[3]["score"]) > 4) {
 							var html = template('script_1', {
 								"name": [list[0]['name'], list[1]['name'], list[2]['name']],
-								"score": [list[0]['score'], list[1]['score'], list[2]['score']]
+								"score": [list[0]['score'], list[1]['score'], list[2]['score']],
+								"text": list[0]['score']
 							});
 							$("#container_1").append(html);
 							$('#' + list[0]["abbr"]).css("background-color", "#FFFFCC");
@@ -242,7 +197,8 @@
 						} else {
 							var html = template('script_1', {
 								"name": '其他',
-								"score": '其他'
+								"score": '其他',
+								"text": '其他'
 							});
 							$("#container_1").append(html);
 						}

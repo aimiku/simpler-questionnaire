@@ -8,100 +8,92 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
-        <title>你适合什么样的职业</title>
+        <title id="atitle">你的膳食是否合理</title>
 
-              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+              <!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
+							<link rel="stylesheet" href="../static/layui/css/layui.css" />
+							<link rel="stylesheet" href="../static/css/main.css" />
               <script src="/static/js/jquery-2.1.4.min.js"></script>
               <script src="/static/js/bootstrap.min.js"></script>
               <script src="/static/js/layer/layer.js"></script>
               <script src="/static/js/template-web.js"></script>
-
-
+							<script src="/static/js/Public.js"></script>
     </head>
 <body>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
 <script type="text/html" id="script_title">
-    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+    <%=title%>
 </script>
 
 <script type="text/html" id="script_1">
-   <div class="panel panel-default">
-   	<div class="panel-heading">
-   		<h3 class="panel-title">
-   			测试结果:
-   		</h3>
+   <div class="layui-container conta">
+   		<img src="/static/img/complete-icon1.jpg" style="width: 255px;">
+   		<div class="position">
+   				<h3 style="position: absolute;top: 8px;"><%=text%>分</h3>
+   		</div>
    	</div>
-   	<div class="panel-body">
-   		<%=name%>
+   
+   <div class="results">
+   	<div class="layui-card">
+   		<div class="layui-card-header">
+   			<h3>
+   				测试结果:
+   			</h3>
+   		</div>
+   		<div class="layui-card-body">
+   			<%=name%>
+   		</div>
    	</div>
    </div>
 </script>
 
 
 <div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-    <div class="container"  id="container_title">
-        <p style="padding-top: 35px;font-size: 34px;">title</p>
+    <div class="layui-container">
+        <p id="container_title" style="padding-top: 35px;font-size: 34px;">title</p>
     </div>
 </div>
 
-<div class="container" id="container_1">
+<div class="layui-container" id="container_1">
 
 </div>
 
-<div class="container">
-	<div class="alert alert-success" role="alert">
-	  <h4 class="alert-heading">心理视点</h4>
-	  <p class="mb-0">中国居民平衡食宝塔是根据中国居民膳食指南，结合中国居民的膳食，把平衡膳食的原则转化成各类食物的重量便于大家在日常生活中实行。
-					平衡膳食宝塔共分5层，包含我们每天应吃的主要食物种类。宝塔各层位置和面积不同，这在一定程度上反应出各类食物在膳食中的地位和应占的比重。
-					第一层(底层):谷类。包括米、面、杂粮。主要提供碳水化合物、蛋白质、膳食纤维及B族维生素。它们是膳食中能量的主要来源，多种谷类接着吃比单吃一种好。每人每天要吃350～500克。
-					第二层:蔬菜和水果。蔬菜和水果各有特点，不能完全相互替代，一般来说红、绿，黄色较深的蔬菜和深黄色水果含着营养比较キ富，所以应多选用深色蔬菜和水果。每天应吃蔬菜400-500克，水果100～200克。
-					第三层:鱼、虾、肉、蛋(肉类包括畜肉，禽肉及内脏)类。它们彼此间营养素含量有所区别。每天应吃150～200克
-					第四层:奶类和豆类食物。奶类主要包括鲜牛奶，奶粉等。它们是天然钙质的极好来源。每天应饮鲜奶250-500克，吃豆类及豆制品50~100克
-					第五层(塔尖)2油脂类。主要提供能量。植物油还可提供维生素E和必需胞脂肪酸。每天不超过25克。</p>
+<div class="layui-container">
+	<fieldset class="layui-elem-field layui-field-title">
+	  <legend class="viewpoint"><img src="/static/img/chinese-Amber.jpg" /></legend>
+	  <div class="layui-field-box">
+			中国居民平衡食宝塔是根据中国居民膳食指南，结合中国居民的膳食，把平衡膳食的原则转化成各类食物的重量便于大家在日常生活中实行。
+			平衡膳食宝塔共分5层，包含我们每天应吃的主要食物种类。宝塔各层位置和面积不同，这在一定程度上反应出各类食物在膳食中的地位和应占的比重。
+			第一层(底层):谷类。包括米、面、杂粮。主要提供碳水化合物、蛋白质、膳食纤维及B族维生素。它们是膳食中能量的主要来源，多种谷类接着吃比单吃一种好。每人每天要吃350～500克。
+			第二层:蔬菜和水果。蔬菜和水果各有特点，不能完全相互替代，一般来说红、绿，黄色较深的蔬菜和深黄色水果含着营养比较キ富，所以应多选用深色蔬菜和水果。每天应吃蔬菜400-500克，水果100～200克。
+			第三层:鱼、虾、肉、蛋(肉类包括畜肉，禽肉及内脏)类。它们彼此间营养素含量有所区别。每天应吃150～200克
+			第四层:奶类和豆类食物。奶类主要包括鲜牛奶，奶粉等。它们是天然钙质的极好来源。每天应饮鲜奶250-500克，吃豆类及豆制品50~100克
+			第五层(塔尖)2油脂类。主要提供能量。植物油还可提供维生素E和必需胞脂肪酸。每天不超过25克。
+		</div>
+	</fieldset>
+		<div class="text_">
+			<h4>请给出你的评分</h4>
+			<div id="test1"></div>
+		</div>
 	</div>
 </div>
 
 <script>
-    function getUrlParam(name) {
-        //构造一个含有目标参数的正则表达式对象
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        //匹配目标参数
-        var r = window.location.search.substr(1).match(reg);
-        //返回参数
-        if (r != null) {
-            return unescape(r[2]);
-        } else {
-            return null;
-        }
-    }
+    getUrlParam();
 </script>
-
+<script src="/static/layui/layui.js"></script>
 <script>
     var score = 0;
     var list = [];
 		window.onload = function (){
-		    $.get('http://apoc.aikutest.com',{
-		        'm':'wj',
-		        'c':'wj',
-		        'a':'answer',
-		        'id':getUrlParam('id'),
-		    'wid':getUrlParam('wid')
-		},function (data) {
-		        if(data.io){
-		            answer = JSON.parse(data.data)
-		            init();
-		        }else{
-		            console.debug(data.data);
-		        }
-		    },'json');
-		
+		   ewindow();
 		};
     function init() {
         $.get('/static/wj/topic/'+ getUrlParam('id')+'.json',{},function (data) {
             if(data.io){
                 var html = template('script_title', data.data);
-                $("#container_title").html(html);
+                $("#container_title,#atitle").html(html);
 
                 var name = data.data['report']['abbr'];
 
@@ -109,14 +101,13 @@
                     eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
                 }
 
-                if(score <= 25){
-                    var html = template('script_1', {"name":data.data['report']['A']});
-                }else if(score >= 26 && score <= 35){
-                    var html = template('script_1', {"name":data.data['report']['B']});
+                if(score <= 32 && score >= 22){
+                    var html = template('script_1', {"name":data.data['report']['C'],"text":score});
+                }else if(score >= 11 && score <= 21){
+                    var html = template('script_1', {"name":data.data['report']['B'],"text":score});
                 }else{
-                    var html = template('script_1', {"name":data.data['report']['C']});
+                    var html = template('script_1', {"name":data.data['report']['A'],"text":score});
                 }
-
                 $("#container_1").append(html);
 
             }else{

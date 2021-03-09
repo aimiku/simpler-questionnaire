@@ -4,31 +4,38 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        
+				<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
-        <title>你看人或事物的眼光如何？</title>
+        <title id="atitle">你看人或事物的眼光如何？</title>
 
               <!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
 							<link rel="stylesheet" href="../static/layui/css/layui.css" />
 							<link rel="stylesheet" href="../static/css/main.css" />
               <script src="/static/js/jquery-2.1.4.min.js"></script>
-              <script src="/static/js/bootstrap.min.js"></script>
               <script src="/static/js/layer/layer.js"></script>
               <script src="/static/js/template-web.js"></script>
-
+							<script src="/static/js/Public.js"></script>
 
     </head>
 <body>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
 <script type="text/html" id="script_title">
-    <p style="padding: 50px 0 20px 1px;font-size: 34px;"><%=title%></p>
+    <%=title%>
 </script>
 
 <script type="text/html" id="script_1">
-	<div style="padding: 10px; background-color: #F2F2F2; cursor: pointer;">
+		<div class="layui-container conta">
+			<img src="../static/img/answer-options.jpg" style="width: 255px;">
+			<div class="position">
+				<h3 style="position: absolute;top: 8px;"><%=text%></h3>
+			</div>
+		</div>
+
+	<div class="results">
 		<div class="layui-card">
 			<div class="layui-card-header">
 				<h3>
@@ -44,8 +51,8 @@
 
 
 <div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-    <div class="layui-container"  id="container_title">
-        <p style="padding-top: 35px;font-size: 34px;">title</p>
+    <div class="layui-container">
+        <p id="container_title" style="padding-top: 35px;font-size: 34px;">title</p>
     </div>
 </div>
 
@@ -54,7 +61,7 @@
 
 <div class="layui-container">
 	<fieldset class="layui-elem-field layui-field-title">
-	  <legend>心理视点:</legend>
+	  <legend class="viewpoint"><img src="../static/img/chinese-Amber.jpg" /></legend>
 	  <div class="layui-field-box">
 			我们处在瞬息万变的现代社会中、每个人都要与各种各样的人交往其中有许多不很熟悉或者完全陌生的人，如何在最短的时间内看透一个人洞察他深藏不露的内心玄机，辨别他的本质，已经成为适应社会、认清环境、建立人际网络和成就事业所必须具备的生存技能。这种技能的练就需要你多观察、多学习，观察他人的言行和习惯、因为言行是一个人固有习惯的集中表现、而习惯又是心理使然。
 		</div>
@@ -65,69 +72,28 @@
 		</div>
 </div>
 
-
-<script>
-    function getUrlParam(name) {
-      //构造一个含有目标参数的正则表达式对象
-      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-      //匹配目标参数
-      var r = window.location.search.substr(1).match(reg);
-      //返回参数
-      if (r != null) {
-          return unescape(r[2]);
-      } else {
-          return null;
-      }
-    }
-</script>
 <script src="../static/layui/layui.js"></script>
 <script>
-  var answer
+  var answer;
+	getUrlParam();
 	window.onload = function (){
-	    $.get('http://apoc.aikutest.com',{
-	            'm':'wj',
-	            'c':'wj',
-	            'a':'answer',
-	            'id':getUrlParam('id'),
-	        'wid':getUrlParam('wid')
-	    },function (data) {
-			if(data.io){
-				answer = JSON.parse(data.data)
-				init();
-				layui.use(['element','rate'], function(){
-				  var element = layui.element; 
-					var rate = layui.rate;
-					rate.render({
-							elem: '#test1'
-							,value: 2.5 //初始值
-							,half: true //开启半星
-						})
-				  element.on('nav(demo)', function(elem){
-				    layer.msg(elem.text());
-				  });
-				});
-			}else{
-				console.debug(data.data);
+	    ewindow();
 			}
-		},'json');
-	    
-
 		function init() {	
 			$.get('/static/wj/topic/'+getUrlParam('id')+'.json',{},function (data) {
 				if(data.io){
 					var html = template('script_title', data.data);
-					$("#container_title").html(html);
+					$("#container_title,#atitle").html(html);
+				
+					var html = template('script_1', {'answer':data.data['report'][answer['q1']],'text':answer['q1']});
 					
-					var html = template('script_1', {'answer':data.data['report'][answer['q1']]});
 					$("#container_1").append(html);
-
+	
 				}else{
 					console.debug(data.data);
 				}
 			},'json');
 			console.log('ok');
 		}
-	
-	}
 
 </script>
