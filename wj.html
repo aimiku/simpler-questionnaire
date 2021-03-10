@@ -8,14 +8,16 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
-		<title>123</title>
+		<title>测评</title>
 
+		<link rel="stylesheet" href="static/layui/css/layui.css">
+		<link rel="stylesheet" href="static/css/bootstrap.css" />
 		<link rel="stylesheet" href="static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/css/main.css?v=1" />
 		<script src="static/js/jquery-2.1.4.min.js"></script>
 		<script src="static/js/bootstrap.min.js"></script>
-		<script src="static/js/layer/layer.js"></script>
 		<script src="static/js/template-web.js"></script>
-
+		<script src="static/js/Public.js"></script>
 
 	</head>
 	<style>
@@ -23,103 +25,117 @@
         margin-bottom: 10px;
         border: 1px solid #00aaee;
         padding: 5px;
-        padding-left: 25px;
+        padding-left: 10px;
         border-radius: 10px;
         margin-left: 10px;
     }
+		.radio{
+			vertical-align:text-bottom;
+			margin-bottom:-1px;
+			margin-bottom:-2px;
+			border: 1px solid red;
+		}
+		.layui-form-radio{
+			border: 1px solid #00aaee;
+			padding: 5px;
+			border-radius: 15px;
+		}
 </style>
 	<body>
-	<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
+		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
-<script type="text/html" id="script_title">
-	<p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
-    <p style="font-size: 18px;"><%-info%></p>
+		<script type="text/html" id="script_title">
+			<p class="Pull_show" style="padding-top: 35px;font-size: 34px;"><%=title%>
+					<span class="layui-icon layui-icon-down"></span>
+			</p>
+			<p class="Pull_hide" style="font-size: 18px;"><%-info%></p>
+			<div class="click_button" style="text-align: center;">
+				<button type="button" class="layui-btn layui-btn-radius layui-btn-primary">点击测评</button>
+			</div>
 </script>
 
-<script type="text/html" id="SingleChoice">
-	<div class="form-inline">
-		<div class="form-group" id="q<%=no%>">
+		<script type="text/html" id="SingleChoice">
+			<div class="layui-form-item" id="q<%=no%>">
 			<label><%=title%></label>
 			<br>
 			<% for(var i = 0; i < opt.length; i++){ %>
-			<label class="radio-inline">
-				<input class="radio-input" type="radio" name="q<%=no%>" value="<%=score[i]%>" ><%=opt[i]%>
-			</label>
+				<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
 			<% } %>
-		</div>
 	</div>
 	<hr>
 </script>
 
-<script type="text/html" id="JumpChoice">
-	<div class="form-inline">
-		<div class="form-group" id="q<%=no%>">
+		<script type="text/html" id="JumpChoice">
+			<div class="layui-form-item layui-colo-md-4 layui-colo-sm-4 layui-col-xs-4" id="q<%=no%>">
 			<label><%=title%></label>
-			<br>
-			<input class="radio-input" type="radio" name="q<%=no%>" value="0" checked style="display: none;">
-			<% for(var i = 0; i < opt.length; i++){ %>
-			<label class="radio-inline">
-				<input class="radio-input" type="radio" name="q<%=no%>" value="<%=score[i]%>" <%=action[i]%> ><%=opt[i]%>
-			</label>
-			<% } %>
-		</div>
+	<br>
+	<% for(var i = 0; i < opt.length; i++){ %>
+		<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" <%=action[i]%> ><%=opt[i]%>
+	<% } %>
 	</div>
 	<hr>
 </script>
-
-<script type="text/html" id="MultiChoice">
-	<div class="form-inline">
-        <div class="form-group" id="q<%=no%>">
-            <label><%=title%></label>
-			<br>
-			<% for(var i = 0; i < opt.length; i++){ %>
-			<label class="radio-inline">
-					<input class="radio-input" type="checkbox" name="q<%=no%>" value="<%=score[i]%>"><%=opt[i]%>
-			</label>
-			<% } %>
-        </div>
-    </div>
+		<script type="text/html" id="MultiChoice">
+			<div class="layui-form-item" id="q<%=no%>">
+				 <label class=""><%=title%></label>
+				 <br />
+				<% for(var i = 0; i < opt.length; i++){ %>
+					<input class="radio" type="checkbox" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
+				<% } %>
+			</div>
+    <hr>
+</script>
+		<script type="text/html" id="EnterAnswer">
+			<div class="layui-form-item" id="q<%=no%>">
+				<label><%=title%></label>
+				<br>
+				<% for(var i = 0; i < opt.length; i++){ %>
+					<input type="text" required  lay-verify="required" placeholder="请输入你的答案" autocomplete="off" class="layui-input" name="q<%=no%>" value="<%=opt[i]%>">
+				<% } %>
+      </div>
     <hr>
 </script>
 
-		<form>
+		<form class="layui-form scroll-bar">
+
+			<div class="layui-progress" lay-showPercent="true" lay-filter="demo">
+				<div id="Process" class="layui-progress-bar layui-bg-blue" lay-percent="10%" style="position: fixed; top: 0px;"></div>
+			</div>
 			<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-				<div class="container" id="container_title">
+				<div class="layui-container" id="container_title">
 					<p style="padding-top: 35px;font-size: 34px;">title</p>
-					<p style="font-size: 18px;">info</p>
 				</div>
 			</div>
 
-			<div id="wj" class="container" style="padding-top: 35px;">
+			<div id="wj" class="layui-container information" style="padding-top: 35px;">
 
 			</div>
 
-			<div class="container" style="margin-top: 20px;">
-
-				<button type="button" onclick="wj_submit();" class="btn btn-success">提交</button>
+			<div class="layui-container information" style="margin-top: 20px;">
+				<button type="button" onclick="wj_submit();" class="layui-btn layui-btn-success">提交</button>
 			</div>
 			<br>
 
 		</form>
-
+		<script src="static/layui/layui.js"></script>
+		
 		<script>
+			var layer;
+			var form;
+			var element;
 			document.write(" <script language=\"javascript\" src=\"\/static\/wj\/" + getUrlParam('id') + ".js \" > <\/script>");
 			window.onload = function() {
 				init();
+				layui.use(['layer', 'form', 'element'], function() {
+					layer = layui.layer;
+					form = layui.form;
+					element = layui.element;
+				});
+				window.onresize = function() {
+					window_size();
+				};
 			}
-
-			function getUrlParam(name) {
-				//构造一个含有目标参数的正则表达式对象
-				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-				//匹配目标参数
-				var r = window.location.search.substr(1).match(reg);
-				//返回参数
-				if (r != null) {
-					return unescape(r[2]);
-				} else {
-					return null;
-				}
-			}
+			getUrlParam();
 		</script>
 
 		<script>
@@ -132,54 +148,123 @@
 					if (data.io) {
 						var html = template('script_title', topic);
 						$("#container_title").html(html);
+						$(".information").hide();
 
-						for (var i = 0; i < topic['topic'].length; i++) {
-							var unit = template(topic['topic'][i]['type'], topic['topic'][i]);
-							$("#wj").append(unit);
-						};
-						console.debug(topic);
+						$(".click_button").click(function() {
+							$(this).hide();
+							$(".information").show();
+							for (var i = 0; i < topic['topic'].length; i++) {
+								var unit = template(topic['topic'][i]['type'], topic['topic'][i]);
+								$("#wj").append(unit);
+							};
+							form.render();
+							$(".layui-form-radio").click(function() {
+								num_clicks(data_packet(2));
+							});
+						});
 					} else {
 						console.debug(topic);
 					}
 				}, 'json');
+			};
+
+			function window_size() {
+				var winWide = document.documentElement.clientWidth;
+				var num = 0;
+				if (winWide <= 664) {
+					$('.Pull_hide').hide();
+					$('.layui-icon').show();
+					$('.layui-icon').unbind('click').click(function() {});
+					$('.layui-icon').click(function() {
+						num++;
+						$(this).css({
+							'transform': 'rotate(' + 180 * num + 'deg)'
+						});
+						if ($('.Pull_hide').is(":hidden")) {
+							$('.Pull_hide').show(800);
+						} else {
+							$('.Pull_hide').hide(800);
+						}
+					});
+				} else {
+					$('.Pull_hide').show();
+					$('.layui-icon').hide();
+				}
 			}
-			function get_multi(no){
-				var row = []; 
-				for(var i=0; i<$('input[name="q'+no+'"]').length;i++){
-					if($('input[name="q'+no+'"]')[i].checked == true){
-						console.log('ok');
-						row.push({[i]:$('input[name="q'+no+'"]')[i].value});
+
+			function num_clicks(isp) {
+				var no = topic['topic'].length;
+				var len_process = isp / no * 90;
+				element.progress('demo', len_process + 10 + '%');
+			}
+
+			function get_multi(no, min = 1, max = 100) {
+				var row = [];
+				for (var i = 0; i < $('input[name="q' + no + '"]').length; i++) {
+					if ($('input[name="q' + no + '"]')[i].checked == true) {
+						row.push({
+							[i]: $('input[name="q' + no + '"]')[i].value
+						});
 					}
+				}
+				if (row.length <= min - 1 || row.length > max) {
+					layer.open({
+						content: "多选题不符合要求",
+						skin: 'msg',
+						time: 3
+					})
+					return;
 				}
 				return JSON.stringify(row);
 			}
 
-			function scrolltab(no){
+			function scrolltab(no) {
 				$("html,body").animate({
 					scrollTop: $("#q" + no).offset().top
 				}, 500);
 				$("#q" + no).css("background-color", "#FFFFCC");
-				$(".form-group").mouseup(function() {
+				$(".layui-form-item").mouseup(function() {
 					$(this).css("background-color", "#FFFFFF");
 				});
 			}
-			function wj_submit() {
-				
+
+			function data_packet(type) {
+				var len = 0;
 				for (var i = 0; i < topic['topic'].length; i++) {
 					var val;
-					if(topic['topic'][i]['type'] == 'SingleChoice'){
+					if (topic['topic'][i]['type'] == 'SingleChoice') {
 						val = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
-					}else if(topic['topic'][i]['type'] == 'JumpChoice'){
+
+					} else if (topic['topic'][i]['type'] == 'JumpChoice') {
 						val = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
-					}else if(topic['topic'][i]['type'] == 'MultiChoice'){
-						val = get_multi(topic['topic'][i]['no']);
+					} else if (topic['topic'][i]['type'] == 'MultiChoice') {
+						val = get_multi(topic['topic'][i]['no'], topic['topic'][i]['limit']['min'], topic['topic'][i]['limit']['max']);
+					} else if (topic['topic'][i]['type'] == 'EnterAnswer') {
+						val = $('input[name="q' + topic['topic'][i]['no'] + '"]').val();
 					}
-					if (val == null) {
-						scrolltab(topic['topic'][i]['no'])
-						return;
+					if (val == null || val == '') {
+						if (type == '1') {
+							scrolltab(topic['topic'][i]['no']);
+							return;
+						}
+					} else {
+						if (type == '1') {
+							answer['q' + topic['topic'][i]['no']] = val;
+						} else {
+							len += 1;
+						}
 					}
-					answer['q' + topic['topic'][i]['no']] = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
 				};
+				if (type == '1') {
+					return answer;
+				} else {
+					return len;
+				}
+
+			}
+
+			function wj_submit() {
+				answer = data_packet('1');
 				$.post('http://apoc.aikutest.com/?m=wj&c=wj&a=submit&id=' + getUrlParam('id'), {
 					'answer': JSON.stringify(answer)
 				}, function(data) {
@@ -187,12 +272,13 @@
 						layer.open({
 							content: '感谢您的参与!您的答卷已经提交，点击确定查看报告结果。',
 							btn: '确定',
+							area: '40%',
+							closeBtn: 0,
 							shadeClose: false,
 							yes: function() {
 								location.href = '/report/' + getUrlParam('id') + '.html?id=' + getUrlParam('id') + '&wid=' + data.data;
 							}
 						});
-
 						// layer.open({
 						// 	content: '感谢您的参与!您的答卷已经提交，点击确定查看报告结果。'
 						// 	,btn: '确定'
@@ -204,8 +290,7 @@
 						console.debug(topic);
 					}
 				}, 'json');
-
-
-				console.log(JSON.stringify(answer));
 			}
 		</script>
+	</body>
+</html>

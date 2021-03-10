@@ -10,7 +10,9 @@
 		<link rel="icon" href="favicon.ico">
 		<title>你有很高的创造力吗</title>
 
-		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="../static/layui/css/layui.css" />
+		<link rel="stylesheet" href="../static/css/main.css" />
 		<script src="/static/js/jquery-2.1.4.min.js"></script>
 		<script src="/static/js/bootstrap.min.js"></script>
 		<script src="/static/js/layer/layer.js"></script>
@@ -26,27 +28,52 @@
 </script>
 
 		<script type="text/html" id="script_1">
-			测试结果:
-    <a style="font-size: 34px;text-decoration: none;"><%=name%>
-    </a>
+			<div class="layui-container conta">
+				<img src="../static/img/complete-icon.jpg" style="width: 255px;">
+				<div class="position">
+						<%=text%>
+				</div>
+			</div>
+			
+			<div class="results">
+				<div class="layui-card">
+					<div class="layui-card-header">
+						<h3>
+							测试结果:
+						</h3>
+					</div>
+					<div class="layui-card-body">
+						<%=name%>
+					</div>
+				</div>
+			</div>
 </script>
 
 
 		<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-			<div class="container" id="container_title">
+			<div class="layui-container" id="container_title">
 				<p style="padding-top: 35px;font-size: 34px;">title</p>
 			</div>
 		</div>
 
-		<div class="container" id="container_1">
+		<div class="layui-container" id="container_1">
 
 		</div>
 
-		<div class="container">
-			<p>心理视点:
-				创造力是指根据一定的目的和任务运用一切已知条件和信息开展能力思维活动，经过反复研究和实践，产生某种新颖的、独特的、有价值的成果，这种能力即为创造力。
-				创造力是21世纪生存和成功的关键条件，创造力不是天生不变的，实践、教育和主观努力对创造力的形成和发挥都有重大影响。
-			</p>
+		<div class="layui-container">
+			
+			<fieldset class="layui-elem-field layui-field-title">
+			  <label class="viewpoint">心理视点:</label>
+			  <div class="layui-field-box">
+					创造力是指根据一定的目的和任务运用一切已知条件和信息开展能力思维活动，经过反复研究和实践，产生某种新颖的、独特的、有价值的成果，这种能力即为创造力。
+					创造力是21世纪生存和成功的关键条件，创造力不是天生不变的，实践、教育和主观努力对创造力的形成和发挥都有重大影响。
+				</div>
+			</fieldset>
+			
+			<div class="text_">
+				<h4>请给出你的评分</h4>
+				<div id="test1"></div>
+			</div>
 		</div>
 
 		<script>
@@ -63,9 +90,10 @@
 				}
 			}
 		</script>
+		<script src="../static/layui/layui.js"></script>
 		<script>
 			var answer = {};
-			var blood = 0;
+			var score = 0;
 
 			window.onload = function() {
 				$.get('http://apoc.aikutest.com', {
@@ -78,6 +106,18 @@
 					if (data.io) {
 						answer = JSON.parse(data.data)
 						init();
+						layui.use(['element','rate'], function(){
+						  var element = layui.element; 
+							var rate = layui.rate;
+							rate.render({
+									elem: '#test1'
+									,value: 2.5 //初始值
+									,half: true //开启半星
+								})
+						  element.on('nav(demo)', function(elem){
+						    layer.msg(elem.text());
+						  });
+						});
 					} else {
 						console.debug(data.data);
 					}
@@ -92,36 +132,42 @@
 						$("#container_title").html(html);
 
 						var name = data.data['report']['abbr'];
-						console.log(Number(data.data['topic'][0]['score'][0]))
-						for (var i2 = 0; i2 < data.data['report'].length; i2++) {
-							eval(name + '+=' + Number(eval('answer.q' + Number(data.data['report'][i2]))));
+						
+						for (var i = 0; i < data.data['report']['topic'].length; i++) {
+								eval(name + '+=' + Number(eval('answer.q' + Number(data.data['report']['topic'][i]))));
+								console.log(eval(name))
 						}
-						if (blood >= 110 && blood <= 137) {
+						if (score >= 110 && score <= 137) {
 							var html = template('script_1', {
-								"name": data.data['report']['A']
+								"name": data.data['report']['A'],
+								"text": score
 							});
-						} else if (blood >= 85 && blood <= 109) {
+						} else if (score >= 85 && score <= 109) {
 							var html = template('script_1', {
-								"name": data.data['report']['B']
+								"name": data.data['report']['B'],
+								"text": score
 							});
-						} else if (blood >= 58 && blood <= 84) {
+						} else if (score >= 58 && score <= 84) {
 							var html = template('script_1', {
-								"name": data.data['report']['C']
+								"name": data.data['report']['C'],
+								"text": score
 							});
-						} else if (blood >= 30 && blood <= 55) {
+						} else if (score >= 30 && score <= 55) {
 							var html = template('script_1', {
-								"name": data.data['report']['D']
+								"name": data.data['report']['D'],
+								"text": score
 							});
-						} else if (blood >= 15 && blood <= 29) {
+						} else if (score >= 15 && score <= 29) {
 							var html = template('script_1', {
-								"name": data.data['report']['E']
+								"name": data.data['report']['E'],
+								"text": score
 							});
 						}else {
 							var html = template('script_1', {
-								"name": data.data['report']['F']
+								"name": data.data['report']['F'],
+								"text": score
 							});
 						}
-						
 
 						$("#container_1").append(html);
 

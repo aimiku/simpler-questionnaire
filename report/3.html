@@ -8,114 +8,107 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
-		<title>你适合什么样的职业</title>
+		<title id="atitle">你适合什么样的职业</title>
 
-		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" href="/static/layui/css/layui.css" />
+		<link rel="stylesheet" href="/static/css/main.css" />
 		<script src="/static/js/jquery-2.1.4.min.js"></script>
 		<script src="/static/js/bootstrap.min.js"></script>
 		<script src="/static/js/layer/layer.js"></script>
 		<script src="/static/js/template-web.js"></script>
-
-
+		<script src="/static/js/Public.js"></script>
 	</head>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
 		<script type="text/html" id="script_title">
-			<p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
-</script>
+			<%=title%>
+		</script>
 
 		<script type="text/html" id="script_1">
-			测试结果:
-    <% for(var i = 0; i < name.length; i++){ %>
-    <a style="font-size: 34px;text-decoration: none;"><%=name[i]%>
-    </a>
-    <% } %>
-</script>
+			
+			<div class="layui-container conta">
+				<img src="../static/img/answer-options.jpg" style="width: 255px;">
+				<div class="position">
+						<h3 style="position: absolute;top: 8px;"><%=text%></h3>
+				</div>
+			</div>
+			
+			<div class="results">
+				<div class="layui-card">
+					<div class="layui-card-header">
+						<h3>
+							测试结果:
+						</h3>
+					</div>
+					<div class="layui-card-body">
+						<% for(var i = 0; i < name.length; i++){ %>
+							<%=name[i]%>
+						<% } %>
+					</div>
+				</div>
+			</div>
+		</script>
 
 
 		<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-			<div class="container" id="container_title">
-				<p style="padding-top: 35px;font-size: 34px;">title</p>
+		    <div class="layui-container">
+		        <p id="container_title" style="padding-top: 35px;font-size: 34px;">title</p>
+		    </div>
+		</div>
+
+		<div class="layui-container" id="container_1">
+
+		</div>
+
+		<div class="layui-container">
+			<div style="padding-top: 20px;">
+					<p id="A" style="padding-top: 20px;">
+						A.你最大的长处是思想活跃、擅长与人交往。
+						你喜欢把自己的想法交让人去实现，或者与大家共同去实现，适合你的职业是记者、演员、推销员、采购员、服务员、人事干部、宣传机构的工作人员等。
+					</p>
+					<p id="B" style="padding: 20px 0px;">
+						B.你有耐心，爱思考、钻研，是个谨慎的人。
+						适合你的职业有编辑，律师、医生、技术人员、工程师、会计师、科学工作者等。
+					</p>
+					<p id="C" style="padding: 20px 0px;">
+						C.你兼备A、B两种类型人的长处，不仅能独立思考、也能建立和维持良好的人际关系。
+						供你选择的职业包括教师、护士、秘书、美容师、理发师、各类管理人员等。
+					</p>
 			</div>
+			<fieldset class="layui-elem-field layui-field-title">
+				<legend class="viewpoint"><img src="../static/img/chinese-Amber.jpg" /></legend>
+				<div id="s" class="layui-field-box">多血质。
+					我们处在瞬息万变的现代社会中、每个人都要与各种各样的人交往其中有许多不很熟悉或者完全陌生的人，如何在最短的时间内看透一个人洞察他深藏不露的内心玄机，辨别他的本质，已经成为适应社会、认清环境、建立人际网络和成就事业所必须具备的生存技能。这种技能的练就需要你多观察、多学习，观察他人的言行和习惯、因为言行是一个人固有习惯的集中表现、而习惯又是心理使然。
+				</div>
+			</fieldset>
+			
+			<div class="text_">
+				<h4>请给出你的评分</h4>
+				<div id="test1"></div>
+			</div>
+			
 		</div>
-
-		<div class="container" id="container_1">
-			<p>评分标准:
-				1.整套测试共20道题，前10题为第一组，后10题为第二组。
-				2.统计出两组答案中各有几个“是”。
-				3.如果第一组答案中的“是”比第二组多，为A。如果第二组答案中的“是比第一组多，为B;如果两组答案中的“是”大致相等，为C。
-			</p>
-		</div>
-
-		<div class="container">
-			<p id="A">
-				A.你最大的长处是思想活跃、擅长与人交往。
-				你喜欢把自己的想法交让人去实现，或者与大家共同去实现，适合你的职业是记者、演员、推销员、采购员、服务员、人事干部、宣传机构的工作人员等。
-			</p>
-			<p id="B">
-				B.你有耐心，爱思考、钻研，是个谨慎的人。
-				适合你的职业有编辑，律师、医生、技术人员、工程师、会计师、科学工作者等。
-			</p>
-			<p id="C">
-				C.你兼备A、B两种类型人的长处，不仅能独立思考、也能建立和维持良好的人际关系。
-				供你选择的职业包括教师、护士、秘书、美容师、理发师、各类管理人员等。
-			</p>
-			<p>心理视点:
-				气质是人的典型的稳定的心理特点，一般分为汁质、多血版、液质和控质4种。至于它们各自的心理特征我们之前已讲过，在这里不再赘述。
-				4种气质在工作中各有利弊，没有好坏之分，关键在于认识到自己的优缺点，学会扬长避短。当然，气质虽然分为4种，生活中却很少有人简单地属于哪一种人，一般的人都是好几种气质的混合，只是在这几种气质中，更向于其中的某一种，在选择职业上，也要根据自己的气质特点来选择合适的职业。
-				多血质合适的职业:导游，推销员，节目主持人、演讲者、外事接待员、演员，市场调查员等。
-				胆汁质合适的职业:管理工作，外交工作、驾驶员、服装纺织业、运动员、冒险家、军人等。
-				黏液质合适的职业，外科医生、法官，管理人员、出纳员，会计、播音员、话务员、教师等。
-				抑郁质合适的职业:校对、打字、排版、雕刻、刺绣、保管员，艺术工作者、编辑等。
-				一个人的职业选择会受到很多种因素的影响。在选择职业的过程中，我们可以对自己的个性特征进行分折，评价个人的生理、心理特征，进而分析我们可以选择的各种职业自己是否可以胜任，最后，在了解自己的特点和职业要求的基础上进行自己职业的选择，如果一个人的个性特征与其选择的职业要求匹配得非常好，那么这个人在职场上更是成功的可能性。
-				经典的职业兴趣量表制定者霍兰德在职业选择和性格之间的关系这一问题上认为，一个人的性格类型和他所选择的职业之间的关系并不是对的一对一的对应关系。一个人既可以适应某一种职业环境，同事也可以适应另外的职业环境，但前提是两者之间要有一定的相近性或者是中性的关系而不是相互排斥的关系。或许霍兰德的建议为我们进行职业选择提供了具有更大灵活性的自由空间。
-			</p>
-		</div>
-
 
 		<script>
-			function getUrlParam(name) {
-				//构造一个含有目标参数的正则表达式对象
-				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-				//匹配目标参数
-				var r = window.location.search.substr(1).match(reg);
-				//返回参数
-				if (r != null) {
-					return unescape(r[2]);
-				} else {
-					return null;
-				}
-			}
+			getUrlParam();
 		</script>
+		<script src="/static/layui/layui.js"></script>
 		<script>
 			var answer = {};
 			var A = 0;
 			var B = 0;
 			var list = [];
 			window.onload = function() {
-				$.get('http://apoc.aikutest.com', {
-					'm': 'wj',
-					'c': 'wj',
-					'a': 'answer',
-					'id': getUrlParam('id'),
-					'wid': getUrlParam('wid')
-				}, function(data) {
-					if (data.io) {
-						answer = JSON.parse(data.data)
-						init();
-					} else {
-						console.debug(data.data);
-					}
-				}, 'json');
-
+				ewindow();
 			};
 
 			function init() {
 				$.get('/static/wj/topic/' + getUrlParam('id') + '.json', {}, function(data) {
 					if (data.io) {
 						var html = template('script_title', data.data);
-						$("#container_title").html(html);
+						$("#container_title,#atitle").html(html);
 						for (var i = 0; i < data.data['report'].length; i++) {
 							var name = data.data['report'][i]['abbr'];
 
@@ -132,19 +125,22 @@
 						
 						if ((A - B) > 2) {
 							var html = template('script_1', {
-								"name": "A"
+								"name": "A",
+								"text": "A"
 							});
 							$("#container_1").append(html);
 							$('#A').css("background-color", "#FFFFCC");
 						} else if ((B - A) > 2) {
 							var html = template('script_1', {
-								"name": "B"
+								"name": "B",
+								"text": "B"
 							});
 							$("#container_1").append(html);
 							$('#B').css("background-color", "#FFFFCC");
 						} else {
 							var html = template('script_1', {
-								"name": "C"
+								"name": "C",
+								"text": "C"
 							});
 							$("#container_1").append(html);
 							$('#A').css("background-color", "#FFFFCC");

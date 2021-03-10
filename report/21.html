@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
-        <title>你能在E时代沟通自如吗</title>
+        <title>你具备圆熟的社交技巧吗</title>
 
               <link rel="stylesheet" href="/static/css/bootstrap.min.css">
               <script src="/static/js/jquery-2.1.4.min.js"></script>
@@ -26,10 +26,16 @@
 </script>
 
 <script type="text/html" id="script_1">
-    测试结果:
-    <a style="font-size: 24px;text-decoration: none;"><%=name%>
-    </a>
-		<hr />
+    <div class="panel panel-default">
+    	<div class="panel-heading">
+    		<h3 class="panel-title">
+    			测试结果:
+    		</h3>
+    	</div>
+    	<div class="panel-body">
+    		<%=name%>
+    	</div>
+    </div>
 </script>
 
 
@@ -44,8 +50,9 @@
 </div>
 
 <div class="container">
-    <p>心理视点:
-      与周国的人建立良好的关系，对你的身心健康以及职业生涯来说将会大有裨益。为了建立良好的人际关系，你可以按照以下几点去做
+	<div class="alert alert-success" role="alert">
+	  <h4 class="alert-heading">心理视点:</h4>
+	  <p class="mb-0">与周国的人建立良好的关系，对你的身心健康以及职业生涯来说将会大有裨益。为了建立良好的人际关系，你可以按照以下几点去做
       (1)做到彬彬有礼，尊重他人。你希望别人怎样对你，你就应该怎样对待别人。
       (2)富有同情心。理解别人，体会他人的感受，设身处地为他人着想。
       (3)乐于接受他人。不要浪费时间去试图改变他人，要认识到:你不可能真正改变一个人，但是你可以改变你对待他们的态度。
@@ -54,8 +61,8 @@
       (6)欣赏他人。善于欣赏他人，就是给予他人的最大善意，这也是成熟的人格。
       (7）懂得感恩。如果某人对你很好，要认识到这一点，不要把别人对你的友好视作理所当然。
       (8)心胸开阔。倾听新想法，接受他人的意见。要承认这样一个事实:解决问题的方法绝不会只有
-      (9)谦虚谨慎。承认你的弱点，承认你也会犯错误，不要企图掩盖自己的错误。在承认错误的同时要表明你将怎样去解决这些问题
-		</p>
+      (9)谦虚谨慎。承认你的弱点，承认你也会犯错误，不要企图掩盖自己的错误。在承认错误的同时要表明你将怎样去解决这些问题</p>
+	</div>
 </div>
 
 <script>
@@ -100,21 +107,20 @@
                 $("#container_title").html(html);
 
                 var name = data.data['report']['abbr'];
-								console.log(Number(data.data['topic'][0]['score'][0]))
-                for(var i2 = 0; i2 < data.data['report'].length; i2++){
-                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i2]))));
+                for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
+                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
+										
                 }
 
                 if(score <= 20 && score >= 18){
                     var html = template('script_1', {"name":data.data['report']['A']});
-                }else if(score >= 17 && score <= 14){
+                }else if(score >= 14 && score <= 17){
                     var html = template('script_1', {"name":data.data['report']['B']});
-                }else if(score >= 13 && score <= 8){
+                }else if(score >= 8 && score <= 13){
                     var html = template('script_1', {"name":data.data['report']['C']});
                 }else {
 										var html = template('script_1', {"name":data.data['report']['D']});
 								}
-
                 $("#container_1").append(html);
 
             }else{

@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
-        <title>你能在E时代沟通自如吗</title>
+        <title>你是活跃的社交明星吗</title>
 
               <link rel="stylesheet" href="/static/css/bootstrap.min.css">
               <script src="/static/js/jquery-2.1.4.min.js"></script>
@@ -26,10 +26,16 @@
 </script>
 
 <script type="text/html" id="script_1">
-    测试结果:
-    <a style="font-size: 24px;text-decoration: none;"><%=name%>
-    </a>
-		<hr />
+    <div class="panel panel-default">
+    	<div class="panel-heading">
+    		<h3 class="panel-title">
+    			测试结果:
+    		</h3>
+    	</div>
+    	<div class="panel-body">
+    		<%=name%>
+    	</div>
+    </div>
 </script>
 
 
@@ -44,16 +50,17 @@
 </div>
 
 <div class="container">
-    <p>心理视点:
-      罗斯福说:“成功公式中，最重要的一项因素是与人相处。”保罗・盖帝说:“一个主管，不管他拥有多少知识，如果他不能带动人完成使命，他是毫无价值的。可见，拥有良好的交际能力对我们是至关重要的，主要表现在
+	<div class="alert alert-success" role="alert">
+	  <h4 class="alert-heading">心理视点:</h4>
+	  <p class="mb-0">罗斯福说:“成功公式中，最重要的一项因素是与人相处。”保罗・盖帝说:“一个主管，不管他拥有多少知识，如果他不能带动人完成使命，他是毫无价值的。可见，拥有良好的交际能力对我们是至关重要的，主要表现在
       (1)人脉会成为你很有价值的资源。
       (2)你有机会成为优秀的领袖，人们乐意协助你
       (3)你能把智慧、精力集中在创造性的建设。紧张的人际关系常把情感力量消耗殆尽。
       (4)你对自己较有自信，自我形象较佳。
       (5)与你共事的人工作效率较高。
       (6)你会是快乐的人，心理比较健康。
-      (7)你拥有较多成功机会。
-		</p>
+      (7)你拥有较多成功机会。</p>
+	</div>
 </div>
 
 <script>
@@ -98,9 +105,8 @@
                 $("#container_title").html(html);
 
                 var name = data.data['report']['abbr'];
-								console.log(Number(data.data['topic'][0]['score'][0]))
-                for(var i2 = 0; i2 < data.data['report'].length; i2++){
-                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report'][i2]))));
+                for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
+                    eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
                 }
 
                 if(score >= 21){
@@ -112,7 +118,7 @@
                 }else {
 										var html = template('script_1', {"name":data.data['report']['D']});
 								}
-
+								console.log(score)
                 $("#container_1").append(html);
 
             }else{
