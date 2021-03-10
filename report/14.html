@@ -17,6 +17,7 @@
               <script src="/static/js/bootstrap.min.js"></script>
               <script src="/static/js/layer/layer.js"></script>
               <script src="/static/js/template-web.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
 							<script src="/static/js/Public.js"></script>
     </head>
 <body>
@@ -76,10 +77,14 @@
 </div>
 <script src="/static/layui/layui.js"></script>
 <script>
-		var answer = {};
-		getUrlParam();
+	var answer = {};
+	var url = location.href;
     window.onload = function() {
-    	ewindow();
+		$.ajaxSettings.async = false;
+    	answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
+    	console.log(answer);
+		init();
+		raterInit();
     };
     function init() {
         $.get('/static/wj/topic/'+ getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(),{},function (data) {
@@ -94,6 +99,26 @@
 								
                 $("#container_1").append(html);
 
+                //
+				wxsdk(url,['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']);
+				wx.ready(function () {
+					var shareData = {
+						title: data.data['title'],
+						desc: data.data['info'],
+						link: url,
+						imgUrl: 'http://www.aikutest.com/minitest/img/test/'+getUrlParam('id')+'.jpg'
+					};
+					wx.onMenuShareAppMessage(shareData);//分享给好友
+					wx.onMenuShareTimeline(shareData);//分享到朋友圈
+					wx.onMenuShareQQ(shareData);//分享给手机QQ
+					wx.onMenuShareWeibo(shareData);//分享腾讯微博
+					wx.onMenuShareQZone(shareData);//分享到QQ空间
+				});
+				wx.error(function (res) {
+					layer.msg(res.errMsg);//错误提示
+
+				});
+
             }else{
                 console.debug(data.data);
             }
@@ -101,6 +126,7 @@
 
         console.log('ok');
     }
+
 
 
 </script>
