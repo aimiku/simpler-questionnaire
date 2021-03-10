@@ -1,4 +1,4 @@
-var getUrlParam = function getUrlParam(name) {
+function getUrlParam(name) {
 	//构造一个含有目标参数的正则表达式对象
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
 	//匹配目标参数
@@ -10,50 +10,56 @@ var getUrlParam = function getUrlParam(name) {
 		return null;
 	}
 }
-var ewindow = window.onload = function() {
+function getAnswer(id,wid) {
 	$.get('http://apoc.aikutest.com', {
 		'm': 'wj',
 		'c': 'wj',
 		'a': 'answer',
-		'id': getUrlParam('id'),
-		'wid': getUrlParam('wid')
+		'id': id,
+		'wid': wid
 	}, function(data) {
 		if (data.io) {
-			answer = JSON.parse(data.data)
-			console.log(answer)
-			init();
-			layui.use(['element', 'rate'], function() {
-				var element = layui.element;
-				var rate = layui.rate;
-				rate.render({
-					elem: '#test1',
-					value: 2.5 //初始值
-						,
-					half: true //开启半星
-				})
-				element.on('nav(demo)', function(elem) {
-					layer.msg(elem.text());
-				});
-			});
+			answer = JSON.parse(data.data);
 		} else {
-			console.debug(data.data);
+			console.log(data.data);
+			return null;
 		}
 	}, 'json');
-};
+	return answer;
+}
 
+function raterInit(){
+	layui.use(['element', 'rate'], function() {
+		var element = layui.element;
+		var rate = layui.rate;
+		rate.render({
+			elem: '#test1',
+			value: 2.5 //初始值
+			,
+			half: true //开启半星
+		})
+		element.on('nav(demo)', function(elem) {
+			layer.msg(elem.text());
+		});
+	});
+}
 
-var einit = function einit(){
-	$.get('http://apoc.aikutest.com', {
-		'm': 'wj',
-		'c': 'wj',
-		'a': 'answer',
-		'id': getUrlParam('id'),
-		'wid': getUrlParam('wid')
-	}, function(data) {
+function wxsdk(url,jsApiList) {
+	var appid = 'wx7f142ce5ed1b539a';
+	var url = location.href;
+	if (!Array.isArray(jsApiList)) return console.log(data.data);
+	$.get('http://apoc.aikutest.com/?m=wechat&c=api&a=jsapi_signature&url='.url, {}, function (data) {
 		if (data.io) {
-			answer = JSON.parse(data.data)
+			wx.config({
+				debug: false,
+				appId: appid,
+				timestamp: data.timestamp,
+				nonceStr: data.nonceStr,
+				signature: data.signature,
+				jsApiList: jsApiList
+			});
 		} else {
-			console.debug(data.data);
+			console.log(data.data);
 		}
 	}, 'json');
 }
