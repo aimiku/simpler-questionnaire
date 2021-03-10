@@ -146,7 +146,7 @@
 								title: data.data['title'],
 								desc: data.data['info'],
 								link: url,
-								imgUrl: 'http://www.aikutest.com/minitest/img/test/'+getUrlParam('id')+'.jpg'
+								imgUrl: 'http://www.aikutest.com/minitest/img/test/'+ data.data['img']
 							};
 							wx.onMenuShareAppMessage(shareData);//分享给好友
 							wx.onMenuShareTimeline(shareData);//分享到朋友圈
