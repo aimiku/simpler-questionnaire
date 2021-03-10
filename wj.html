@@ -9,16 +9,12 @@
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
 		<title>测评</title>
-
 		<link rel="stylesheet" href="static/layui/css/layui.css">
-		<link rel="stylesheet" href="static/css/bootstrap.css" />
-		<link rel="stylesheet" href="static/css/bootstrap.min.css">
 		<link rel="stylesheet" href="static/css/main.css?v=1" />
 		<script src="static/js/jquery-2.1.4.min.js"></script>
 		<script src="static/js/bootstrap.min.js"></script>
 		<script src="static/js/template-web.js"></script>
 		<script src="static/js/Public.js"></script>
-
 	</head>
 	<style>
 		.radio-inline {
@@ -46,35 +42,35 @@
 
 		<script type="text/html" id="script_title">
 			<p class="Pull_show" style="padding-top: 35px;font-size: 34px;"><%=title%>
-					<span class="layui-icon layui-icon-down"></span>
+					<span id="layui-icon-hide" class="layui-icon layui-icon-down"></span>
 			</p>
-			<p class="Pull_hide" style="font-size: 18px;"><%-info%></p>
+			<p id="Pull_hide" style="font-size: 18px;"><%-info%></p>
 			<div class="click_button" style="text-align: center;">
 				<button type="button" class="layui-btn layui-btn-radius layui-btn-primary">点击测评</button>
 			</div>
-</script>
+		</script>
 
 		<script type="text/html" id="SingleChoice">
 			<div class="layui-form-item" id="q<%=no%>">
-			<label><%=title%></label>
-			<br>
-			<% for(var i = 0; i < opt.length; i++){ %>
-				<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
-			<% } %>
-	</div>
-	<hr>
-</script>
+				<label><%=title%></label>
+				<br>
+					<% for(var i = 0; i < opt.length; i++){ %>
+						<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
+					<% } %>
+				</div>
+			<hr>
+		</script>
 
 		<script type="text/html" id="JumpChoice">
 			<div class="layui-form-item layui-colo-md-4 layui-colo-sm-4 layui-col-xs-4" id="q<%=no%>">
-			<label><%=title%></label>
-	<br>
-	<% for(var i = 0; i < opt.length; i++){ %>
-		<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" <%=action[i]%> ><%=opt[i]%>
-	<% } %>
-	</div>
-	<hr>
-</script>
+				<label><%=title%></label>
+				<br>
+				<% for(var i = 0; i < opt.length; i++){ %>
+					<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" <%=action[i]%> ><%=opt[i]%>
+				<% } %>
+			</div>
+			<hr>
+		</script>
 		<script type="text/html" id="MultiChoice">
 			<div class="layui-form-item" id="q<%=no%>">
 				 <label class=""><%=title%></label>
@@ -83,8 +79,8 @@
 					<input class="radio" type="checkbox" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
 				<% } %>
 			</div>
-    <hr>
-</script>
+			<hr>
+		</script>
 		<script type="text/html" id="EnterAnswer">
 			<div class="layui-form-item" id="q<%=no%>">
 				<label><%=title%></label>
@@ -93,8 +89,8 @@
 					<input type="text" required  lay-verify="required" placeholder="请输入你的答案" autocomplete="off" class="layui-input" name="q<%=no%>" value="<%=opt[i]%>">
 				<% } %>
       </div>
-    <hr>
-</script>
+			<hr>
+		</script>
 
 		<form class="layui-form scroll-bar">
 
@@ -118,7 +114,7 @@
 
 		</form>
 		<script src="static/layui/layui.js"></script>
-		
+
 		<script>
 			var layer;
 			var form;
@@ -132,10 +128,12 @@
 					element = layui.element;
 				});
 				window.onresize = function() {
-					window_size();
+					var winWide = document.documentElement.clientWidth;
+					window_size(winWide);
 				};
 			}
-			getUrlParam();
+			var func = fgetUrlParam;
+			func()
 		</script>
 
 		<script>
@@ -149,7 +147,8 @@
 						var html = template('script_title', topic);
 						$("#container_title").html(html);
 						$(".information").hide();
-
+						$('#layui-icon-hide').hide();
+						
 						$(".click_button").click(function() {
 							$(this).hide();
 							$(".information").show();
@@ -167,28 +166,29 @@
 					}
 				}, 'json');
 			};
-
-			function window_size() {
-				var winWide = document.documentElement.clientWidth;
+			
+			function window_size(winWide) {
+				// var winWide = document.documentElement.clientWidth;
 				var num = 0;
-				if (winWide <= 664) {
-					$('.Pull_hide').hide();
-					$('.layui-icon').show();
-					$('.layui-icon').unbind('click').click(function() {});
-					$('.layui-icon').click(function() {
+				
+				if (winWide <= 684) {
+					$('#Pull_hide').hide();
+					$('#layui-icon-hide').show();
+					$('#layui-icon-hide').unbind('click').click(function() {});
+					$('#layui-icon-hide').click(function() {
 						num++;
 						$(this).css({
 							'transform': 'rotate(' + 180 * num + 'deg)'
 						});
-						if ($('.Pull_hide').is(":hidden")) {
-							$('.Pull_hide').show(800);
+						if ($('#Pull_hide').is(":hidden")) {
+							$('#Pull_hide').show(800);
 						} else {
-							$('.Pull_hide').hide(800);
+							$('#Pull_hide').hide(800);
 						}
 					});
 				} else {
-					$('.Pull_hide').show();
-					$('.layui-icon').hide();
+					$('#Pull_hide').show();
+					$('#layui-icon-hide').hide();
 				}
 			}
 

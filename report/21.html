@@ -8,118 +8,107 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
-        <title>你具备圆熟的社交技巧吗</title>
-
-              <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-              <script src="/static/js/jquery-2.1.4.min.js"></script>
-              <script src="/static/js/bootstrap.min.js"></script>
-              <script src="/static/js/layer/layer.js"></script>
-              <script src="/static/js/template-web.js"></script>
-
-
+        <title id="atitle">你具备圆熟的社交技巧吗</title>
+				<link rel="stylesheet" href="/static/layui/css/layui.css" />
+				<link rel="stylesheet" href="/static/css/main.css" />
+				<script src="/static/js/jquery-2.1.4.min.js"></script>
+				<script src="/static/js/bootstrap.min.js"></script>
+				<script src="/static/js/layer/layer.js"></script>
+				<script src="/static/js/template-web.js"></script>
+				<script src="/static/js/Public.js"></script>
     </head>
 <body>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
 <script type="text/html" id="script_title">
-    <p style="padding-top: 35px;font-size: 34px;"><%=title%></p>
+    <%=title%>
 </script>
 
 <script type="text/html" id="script_1">
-    <div class="panel panel-default">
-    	<div class="panel-heading">
-    		<h3 class="panel-title">
-    			测试结果:
-    		</h3>
+	
+    <div class="layui-container conta">
+    	<img src="../static/img/complete-icon1.jpg" style="width: 255px;">
+    	<div class="position">
+    			<h3 style="position: absolute;top: 8px;"><%=text%>分</h3>
     	</div>
-    	<div class="panel-body">
-    		<%=name%>
+    </div>
+    
+    <div class="results">
+    	<div class="layui-card">
+    		<div class="layui-card-header">
+    			<h3>
+    				测试结果:
+    			</h3>
+    		</div>
+    		<div class="layui-card-body">
+    				<%=name%>
+    		</div>
     	</div>
     </div>
 </script>
 
 
 <div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
-    <div class="container"  id="container_title">
-        <p style="padding-top: 35px;font-size: 34px;">title</p>
+    <div class="layui-container">
+        <p id="container_title" style="padding-top: 35px;font-size: 34px;">title</p>
     </div>
 </div>
 
-<div class="container" id="container_1">
+<div class="layui-container" id="container_1">
 
 </div>
 
-<div class="container">
-	<div class="alert alert-success" role="alert">
-	  <h4 class="alert-heading">心理视点:</h4>
-	  <p class="mb-0">与周国的人建立良好的关系，对你的身心健康以及职业生涯来说将会大有裨益。为了建立良好的人际关系，你可以按照以下几点去做
-      (1)做到彬彬有礼，尊重他人。你希望别人怎样对你，你就应该怎样对待别人。
-      (2)富有同情心。理解别人，体会他人的感受，设身处地为他人着想。
-      (3)乐于接受他人。不要浪费时间去试图改变他人，要认识到:你不可能真正改变一个人，但是你可以改变你对待他们的态度。
-      (4)要有时心。不要急于下判断，在反驳别人的观点之前，首先弄清楚别人究竟说了些什么。
-      (5)信守诺言。信守你所许下的诺官、要超越人们对你的期望，让你的工做比预期完成地更好、更快。
-      (6)欣赏他人。善于欣赏他人，就是给予他人的最大善意，这也是成熟的人格。
-      (7）懂得感恩。如果某人对你很好，要认识到这一点，不要把别人对你的友好视作理所当然。
-      (8)心胸开阔。倾听新想法，接受他人的意见。要承认这样一个事实:解决问题的方法绝不会只有
-      (9)谦虚谨慎。承认你的弱点，承认你也会犯错误，不要企图掩盖自己的错误。在承认错误的同时要表明你将怎样去解决这些问题</p>
+<div class="layui-container">	
+	<fieldset class="layui-elem-field layui-field-title">
+	  <legend class="viewpoint"><img src="/static/img/chinese-Amber.jpg" /></legend>
+	  <div class="layui-field-box">
+			与周国的人建立良好的关系，对你的身心健康以及职业生涯来说将会大有裨益。为了建立良好的人际关系，你可以按照以下几点去
+			  (1)做到彬彬有礼，尊重他人。你希望别人怎样对你，你就应该怎样对待别人。<br />
+			  (2)富有同情心。理解别人，体会他人的感受，设身处地为他人着想。<br />
+			  (3)乐于接受他人。不要浪费时间去试图改变他人，要认识到:你不可能真正改变一个人，但是你可以改变你对待他们的态度。<br />
+			  (4)要有时心。不要急于下判断，在反驳别人的观点之前，首先弄清楚别人究竟说了些什么。<br />
+			  (5)信守诺言。信守你所许下的诺官、要超越人们对你的期望，让你的工做比预期完成地更好、更快。<br />
+			  (6)欣赏他人。善于欣赏他人，就是给予他人的最大善意，这也是成熟的人格。<br />
+			  (7）懂得感恩。如果某人对你很好，要认识到这一点，不要把别人对你的友好视作理所当然。<br />
+			  (8)心胸开阔。倾听新想法，接受他人的意见。要承认这样一个事实:解决问题的方法绝不会只有<br />
+			  (9)谦虚谨慎。承认你的弱点，承认你也会犯错误，不要企图掩盖自己的错误。在承认错误的同时要表明你将怎样去解决这些问题
+		</div>
+	</fieldset>
+	
+	<div class="text_">
+		<h4>请给出你的评分</h4>
+		<div id="test1"></div>
 	</div>
+	
 </div>
 
-<script>
-	function getUrlParam(name) {
-	    //构造一个含有目标参数的正则表达式对象
-	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-	    //匹配目标参数
-	    var r = window.location.search.substr(1).match(reg);
-	    //返回参数
-	    if (r != null) {
-	        return unescape(r[2]);
-	    } else {
-	        return null;
-	    }
-	}
-</script>
+<script src="/static/layui/layui.js"></script>
 <script>
 		var answer = {};
 		var score = 0;
-		
+		getUrlParam();
     window.onload = function() {
-    	$.get('http://apoc.aikutest.com', {
-    		'm': 'wj',
-    		'c': 'wj',
-    		'a': 'answer',
-    		'id': getUrlParam('id'),
-    		'wid': getUrlParam('wid')
-    	}, function(data) {
-    		if (data.io) {
-    			answer = JSON.parse(data.data)
-    			init();
-    		} else {
-    			console.debug(data.data);
-    		}
-    	}, 'json');
-    
+    	ewindow();
     };
     function init() {
         $.get('/static/wj/topic/'+ getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(),{},function (data) {
             if(data.io){
                 var html = template('script_title', data.data);
-                $("#container_title").html(html);
+                $("#container_title,#atitle").html(html);
 
                 var name = data.data['report']['abbr'];
                 for(var i2 = 0; i2 < data.data['report']['topic'].length; i2++){
                     eval(name +'+='+ Number(eval('answer.q'+Number(data.data['report']['topic'][i2]))));
 										
                 }
-
                 if(score <= 20 && score >= 18){
-                    var html = template('script_1', {"name":data.data['report']['A']});
+                    var html = template('script_1', {"name":data.data['report']['A'],"text":score});
                 }else if(score >= 14 && score <= 17){
-                    var html = template('script_1', {"name":data.data['report']['B']});
+                    var html = template('script_1', {"name":data.data['report']['B'],"text":score});
                 }else if(score >= 8 && score <= 13){
-                    var html = template('script_1', {"name":data.data['report']['C']});
+                    var html = template('script_1', {"name":data.data['report']['C'],"text":score});
                 }else {
-										var html = template('script_1', {"name":data.data['report']['D']});
+										var html = template('script_1', {"name":data.data['report']['D'],"text":score});
 								}
                 $("#container_1").append(html);
 
