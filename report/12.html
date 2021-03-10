@@ -107,7 +107,7 @@
 			};
 
 			function init() {
-				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
+				$.get('http://www.aikutest.com/minitest/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
 					if (data.io) {
 						var html = template('script_title', data.data);
 						$("#atitle,#container_title").html(html);

@@ -72,7 +72,7 @@
 
 		<script>
 			function init() {
-				$.get('/static/wj/list.json', {}, function(data) {
+				$.get('http://www.aikutest.com/minitest/static/wj/list.json', {}, function(data) {
 					if (data.io) {
 						for (var i = 0; i < data.data.length; i++) {
 							var unit = template('script_list', data.data[i]);

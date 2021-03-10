@@ -141,7 +141,7 @@
 			var answer = {};
 
 			function init() {
-				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
+				$.get('http://www.aikutest.com/minitest/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
 					topic = data.data;
 					if (data.io) {
 						var html = template('script_title', topic);
