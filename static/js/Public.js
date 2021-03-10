@@ -44,22 +44,13 @@ function raterInit(){
 	});
 }
 
-function wxsdk(url,jsApiList) {
+function wxsdk(url) {
 	var appid = 'wx7f142ce5ed1b539a';
-	var url = location.href;
-	if (!Array.isArray(jsApiList)) return console.log(data.data);
-	$.get('http://apoc.aikutest.com/?m=wechat&c=api&a=jsapi_signature&url='.url, {}, function (data) {
-		if (data.io) {
-			wx.config({
-				debug: false,
-				appId: appid,
-				timestamp: data.timestamp,
-				nonceStr: data.nonceStr,
-				signature: data.signature,
-				jsApiList: jsApiList
-			});
-		} else {
-			console.log(data.data);
-		}
+	var sign;
+	$.get('http://apoc.aikutest.com/?m=wechat&c=api&a=jsapi_signature&url='+encodeURIComponent(url), {}, function (data) {
+
+		sign = data.data;
 	}, 'json');
+	console.log('2');
+	return sign;
 }
