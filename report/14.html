@@ -80,11 +80,11 @@
 	var answer = {};
 	var url = location.href;
     window.onload = function() {
-		$.ajaxSettings.async = false;
-    	answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
-    	console.log(answer);
-		init();
-		raterInit();
+			$.ajaxSettings.async = false;
+				answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
+				console.log(answer);
+			init();
+			raterInit();
     };
     function init() {
         $.get('/static/wj/topic/'+ getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(),{},function (data) {
