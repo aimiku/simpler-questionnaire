@@ -2,14 +2,8 @@
 	.conta{
 		display: flex;
 		justify-content: center;
-	}
+	}	
 }
-/* @media all and (min-width: 414px) and (max-width: 736px) {
-	.conta{
-		display: flex;
-		justify-content: center;
-	}
-} */
 @media all and (min-width: 598px) and (max-width: 736px) {
 	.layui-form-item {
 		width: 100%;
@@ -116,7 +110,7 @@
 	font-weight: 600;
 } 
 .viewpoint img{
-	height: 75px;
+	height: 60px;
 }
 .layui-field-box {
 	text-indent: 2em; 

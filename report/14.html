@@ -11,14 +11,14 @@
         <title id="atitle">你的内在血型是什么</title>
 
               <!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
-							<link rel="stylesheet" href="/static/layui/css/layui.css" />
-							<link rel="stylesheet" href="/static/css/main.css" />
-              <script src="/static/js/jquery-2.1.4.min.js"></script>
-              <script src="/static/js/bootstrap.min.js"></script>
-              <script src="/static/js/layer/layer.js"></script>
-              <script src="/static/js/template-web.js"></script>
+							<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/layui/css/layui.css" />
+							<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/css/main.css" />
+              <script src="http://www.aikutest.com/minitest/static/js/jquery-2.1.4.min.js"></script>
+              <script src="http://www.aikutest.com/minitest/static/js/bootstrap.min.js"></script>
+              <script src="http://www.aikutest.com/minitest/static/js/layer/layer.js"></script>
+              <script src="http://www.aikutest.com/minitest/static/js/template-web.js"></script>
 		<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
-							<script src="/static/js/Public.js"></script>
+							<script src="http://www.aikutest.com/minitest/static/js/Public.js"></script>
     </head>
 <body>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
@@ -30,7 +30,7 @@
 <script type="text/html" id="script_1">
 		
 		<div class="layui-container conta">
-			<img src="../static/img/answer-options.jpg" style="width: 255px;">
+			<img src="http://www.aikutest.com/minitest/static/img/answer-options.jpg" style="width: 255px;">
 			<div class="position">
 					<h3 style="position: absolute;top: 8px;"><%=text%></h3>
 			</div>
@@ -64,7 +64,7 @@
 <div class="layui-container">
 	
 	<fieldset class="layui-elem-field layui-field-title">
-	  <legend class="viewpoint"><img src="/static/img/chinese-Amber.jpg" /></legend>
+	  <legend class="viewpoint"><img src="http://www.aikutest.com/minitest/static/img/chinese-Amber.jpg" /></legend>
 	  <div class="layui-field-box">
 			内在血型的不同，并没有优劣之分，但是它决定了一个人的个性偏向。所以通过血型看一个人的性格是很准的。但是也不要迷信它，因为一个人的性格在很大程度上取决于后天影响，所以要自觉完善自己！
 		</div>
@@ -75,7 +75,7 @@
 		<div id="test1"></div>
 	</div>
 </div>
-<script src="/static/layui/layui.js"></script>
+<script src="http://www.aikutest.com/minitest/static/layui/layui.js"></script>
 <script>
 	var answer = {};
 	var url = location.href;
@@ -100,23 +100,30 @@
                 $("#container_1").append(html);
 
                 //
-				wxsdk(url,['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']);
+				sign = wxsdk(url);
+				
+				wx.config({
+					debug: false,
+					appId: 'wx7f142ce5ed1b539a',
+					timestamp: sign.timestamp,
+					nonceStr: sign.nonceStr,
+					signature: sign.signature,
+					jsApiList: ['updateTimelineShareData','updateAppMessageShareData','onMenuShareWeibo']
+				});
 				wx.ready(function () {
 					var shareData = {
 						title: data.data['title'],
-						desc: data.data['info'],
+						desc: data.data['describe'],
 						link: url,
-						imgUrl: 'http://www.aikutest.com/minitest/static/img/test/'+getUrlParam('id')+'.jpg'
+						imgUrl: 'http://www.aikutest.com/minitest/static/img/test/'+ data.data['img']
 					};
-					wx.onMenuShareAppMessage(shareData);//分享给好友
-					wx.onMenuShareTimeline(shareData);//分享到朋友圈
-					wx.onMenuShareQQ(shareData);//分享给手机QQ
+					wx.updateAppMessageShareData(shareData);//分享给好友
+					wx.updateTimelineShareData(shareData);//分享到朋友圈
 					wx.onMenuShareWeibo(shareData);//分享腾讯微博
-					wx.onMenuShareQZone(shareData);//分享到QQ空间
 				});
 				wx.error(function (res) {
 					layer.msg(res.errMsg);//错误提示
-
+				
 				});
 
             }else{

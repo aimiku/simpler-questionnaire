@@ -48,7 +48,6 @@ function wxsdk(url) {
 	var appid = 'wx7f142ce5ed1b539a';
 	var sign;
 	$.get('http://apoc.aikutest.com/?m=wechat&c=api&a=jsapi_signature&url='+encodeURIComponent(url), {}, function (data) {
-
 		sign = data.data;
 	}, 'json');
 	console.log('2');

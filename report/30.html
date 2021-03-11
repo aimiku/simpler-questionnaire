@@ -9,13 +9,13 @@
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
 		<title id="atitle">你看人或事物的眼光如何？</title>
-		<link rel="stylesheet" href="/static/layui/css/layui.css" />
-		<link rel="stylesheet" href="/static/css/main.css" />
-		<script src="/static/js/jquery-2.1.4.min.js"></script>
-		<script src="/static/js/bootstrap.min.js"></script>
-		<script src="/static/js/layer/layer.js"></script>
-		<script src="/static/js/template-web.js"></script>
-		<script src="/static/js/Public.js"></script>
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/layui/css/layui.css" />
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/css/main.css" />
+		<script src="http://www.aikutest.com/minitest/static/js/jquery-2.1.4.min.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/layer/layer.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/template-web.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/Public.js?t=20210310"></script>
 	</head>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
@@ -26,7 +26,7 @@
 
 		<script type="text/html" id="script_1">
 			<div class="layui-container conta">
-			<img src="/static/img/answer-options.jpg" style="width: 255px;">
+			<img src="http://www.aikutest.com/minitest/static/img/answer-options.jpg" style="width: 255px;">
 			<div class="position">
 					<h3 style="position: absolute;top: 10px;"><%=text%></h3>
 			</div>
@@ -58,7 +58,7 @@
 
 		<div class="layui-container">
 			<fieldset class="layui-elem-field layui-field-title">
-				<legend class="viewpoint"><img src="/static/img/chinese-Amber.jpg" style="width: 350px;" /></legend>
+				<legend class="viewpoint"><img src="http://www.aikutest.com/minitest/static/img/chinese-Amber.jpg" style="width: 350px;" /></legend>
 				<div class="layui-field-box">
 					我们处在瞬息万变的现代社会中、每个人都要与各种各样的人交往其中有许多不很熟悉或者完全陌生的人，如何在最短的时间内看透一个人洞察他深藏不露的内心玄机，辨别他的本质，已经成为适应社会、认清环境、建立人际网络和成就事业所必须具备的生存技能。这种技能的练就需要你多观察、多学习，观察他人的言行和习惯、因为言行是一个人固有习惯的集中表现、而习惯又是心理使然。
 				</div>
@@ -69,16 +69,21 @@
 			</div>
 			
 		</div>
-		<script src="/static/layui/layui.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/layui/layui.js"></script>
 		<script>
-			var answer;
-			getUrlParam()
+			var answer = {};
+			var url = location.href;
 			window.onload = function() {
-				ewindow();
-			}
+				$.ajaxSettings.async = false;
+						answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
+						console.log(answer);
+					init();
+					raterInit();
+				
+			};
 
 			function init() {
-				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
+				$.get('http://www.aikutest.com/minitest/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
 					if (data.io) {
 						var html = template('script_title', data.data);
 						$("#container_title").html(html);
@@ -87,6 +92,33 @@
 							'answer': data.data['report'][answer['q1']],
 							'text': answer['q1']
 						});
+						
+						sign = wxsdk(url);
+						
+						wx.config({
+							debug: false,
+							appId: 'wx7f142ce5ed1b539a',
+							timestamp: sign.timestamp,
+							nonceStr: sign.nonceStr,
+							signature: sign.signature,
+							jsApiList: ['updateTimelineShareData','updateAppMessageShareData','onMenuShareWeibo']
+						});
+						wx.ready(function () {
+							var shareData = {
+								title: data.data['title'],
+								desc: data.data['describe'],
+								link: url,
+								imgUrl: 'http://www.aikutest.com/minitest/static/img/test/'+ data.data['img']
+							};
+							wx.updateAppMessageShareData(shareData);//分享给好友
+							wx.updateTimelineShareData(shareData);//分享到朋友圈
+							wx.onMenuShareWeibo(shareData);//分享腾讯微博
+						});
+						wx.error(function (res) {
+							layer.msg(res.errMsg);//错误提示
+						
+						});
+						
 						$("#container_1").append(html);
 
 					} else {

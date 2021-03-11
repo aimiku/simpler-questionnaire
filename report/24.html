@@ -135,19 +135,26 @@
 							"text":  Math.round(score) + "分" 
 						}));
 						
-						wxsdk(url,['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']);
+						sign = wxsdk(url);
+						
+						wx.config({
+							debug: false,
+							appId: 'wx7f142ce5ed1b539a',
+							timestamp: sign.timestamp,
+							nonceStr: sign.nonceStr,
+							signature: sign.signature,
+							jsApiList: ['updateTimelineShareData','updateAppMessageShareData','onMenuShareWeibo']
+						});
 						wx.ready(function () {
 							var shareData = {
 								title: data.data['title'],
-								desc: data.data['info'],
+								desc: data.data['describe'],
 								link: url,
 								imgUrl: 'http://www.aikutest.com/minitest/static/img/test/'+ data.data['img']
 							};
-							wx.onMenuShareAppMessage(shareData);//分享给好友
-							wx.onMenuShareTimeline(shareData);//分享到朋友圈
-							wx.onMenuShareQQ(shareData);//分享给手机QQ
+							wx.updateAppMessageShareData(shareData);//分享给好友
+							wx.updateTimelineShareData(shareData);//分享到朋友圈
 							wx.onMenuShareWeibo(shareData);//分享腾讯微博
-							wx.onMenuShareQZone(shareData);//分享到QQ空间
 						});
 						wx.error(function (res) {
 							layer.msg(res.errMsg);//错误提示

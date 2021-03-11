@@ -10,25 +10,28 @@
 		<link rel="icon" href="favicon.ico">
 		<title id="atitle">你是哪种气质类型的人</title>
 		<!-- <link rel="stylesheet" href="../static/css/bootstrap.css" /> -->
-		<link rel="stylesheet" href="../static/layui/css/layui.css" />
-		<link rel="stylesheet" href="../static/css/main.css" />
-		<script src="/static/js/jquery-2.1.4.min.js"></script>
-		<script src="/static/js/template-web.js"></script>
-		<script src="/static/js/Public.js"></script>
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/layui/css/layui.css" />
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/css/main.css" />
+		<script src="http://www.aikutest.com/minitest/static/js/jquery-2.1.4.min.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/template-web.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/Public.js?t=20210310"></script>
 	</head>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
 		<script type="text/html" id="script_title">
 			<%=title%>
-    <p style="font-size: 18px;">若要保留该报告结果，请点击微信右上角添加到收藏</p>
-</script>
+		</script>
+		<script type="text/html" id="script_title_one">
+			<p style="font-size: 18px;">若要保留该报告结果，请点击微信右上角添加到收藏</p>
+		</script>
 
 		<script type="text/html" id="script_1">
 			<div class="layui-container conta">
-				<img src="../static/img/complete-icon1.jpg" style="width: 255px;">
+				<img src="http://www.aikutest.com/minitest/static/img/complete-icon1.jpg" style="width: 255px;">
 				<div class="position">
-						<h3 style="position: absolute;top: 8px;"><%=text%></h3>
+						<h3 style="position: absolute;top: 8px;"><%=text%>分</h3>
 				</div>
 			</div>
 			
@@ -114,7 +117,7 @@
 			</fieldset>
 			
 			<fieldset class="layui-elem-field layui-field-title">
-				<legend class="viewpoint"><img src="../static/img/chinese-Amber.jpg" /></legend>
+				<legend class="viewpoint"><img src="http://www.aikutest.com/minitest/static/img/chinese-Amber.jpg" /></legend>
 				<div class="layui-field-box">
 						气质是心理活动的动态特征，与日常生活中所说的“牌气”、“秉性”相近。气质是人格特征的白然风貌，它的成因主要与大脑的神经活动类型及后天习惯有关。气质类型本身在社会价值评价方面无好坏优劣之分，可以说每一种气质类型中都有积极或消极的成分，在人格的自我完善过程中，应扬长避短。气质不能决定人的思想道德素养和活动成就的高低。各种气质类型的人都可以对社会作出贡献，当然其消板成分也会对人的行为产生和负面影响。
 						在人群中，典型的气质类型者较少，更多的人是综合型。多血质和胆汁质的气质类型易形成外向性格，黏液质和郁质气质类型的人一般较文静和内向。
@@ -127,7 +130,7 @@
 			</div>
 		</div>
 		
-		<script src="/static/layui/layui.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/layui/layui.js"></script>
 		<script>
 			var answer = {};
 			var b = 0;
@@ -135,17 +138,22 @@
 			var m = 0;
 			var d = 0;
 			var list = [];
-			getUrlParam();
+			var url = location.href;
 			window.onload = function() {
-				ewindow();
-				console.log(f(),getUrlParam())
+				$.ajaxSettings.async = false;
+						answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
+						console.log(answer);
+					init();
+					raterInit();
+				
 			};
 			function init() {
-				einit();
-				$.get('/static/wj/topic/' + getUrlParam('id') + '.json', {}, function(data) {
+				$.get('http://www.aikutest.com/minitest/static/wj/topic/' + getUrlParam('id') + '.json', {}, function(data) {
 					if (data.io) {
 						var html = template('script_title', data.data);
+						var htmlnoe = template('script_title_one', data.data);
 						$("#atitle,#container_title").html(html);
+						$("#atitle,#container_title").append(htmlnoe);
 						for (var i = 0; i < data.data['report'].length; i++) {
 							var name = data.data['report'][i]['abbr'];
 
@@ -202,6 +210,31 @@
 							});
 							$("#container_1").append(html);
 						}
+						sign = wxsdk(url);
+						
+						wx.config({
+							debug: false,
+							appId: 'wx7f142ce5ed1b539a',
+							timestamp: sign.timestamp,
+							nonceStr: sign.nonceStr,
+							signature: sign.signature,
+							jsApiList: ['updateTimelineShareData','updateAppMessageShareData','onMenuShareWeibo']
+						});
+						wx.ready(function () {
+							var shareData = {
+								title: data.data['title'],
+								desc: data.data['describe'],
+								link: url,
+								imgUrl: 'http://www.aikutest.com/minitest/static/img/test/'+ data.data['img']
+							};
+							wx.updateAppMessageShareData(shareData);//分享给好友
+							wx.updateTimelineShareData(shareData);//分享到朋友圈
+							wx.onMenuShareWeibo(shareData);//分享腾讯微博
+						});
+						wx.error(function (res) {
+							layer.msg(res.errMsg);//错误提示
+						
+						});
 
 					} else {
 						console.debug(data.data);
