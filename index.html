@@ -9,7 +9,7 @@
 		<meta name="author" content="">
 		<link rel="icon" href="http://www.aikutest.com/minitest/favicon.ico">
 
-		<title>123</title>
+		<title>测评首页</title>
 
 		<!-- <link rel="stylesheet" href="static/css/bootstrap.min.css"> -->
 		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/layui/css/layui.css" />
@@ -28,8 +28,8 @@
 				<div class="layui-card-header">
 					<span class="layui-badge"><%=name%></span>
 				</div>
-				<div class="layui-card-body"style="background: #e6e5e5;">
-					<a ><%=name%></a>
+				<div class="layui-card-body"style="background: #e6e5e5; height: 150px;">
+						<a><%=name%></a>
 				</div>
 			</div>
 		</div>
@@ -81,6 +81,7 @@
 							var unit = template('script_list', data.data[i]);
 							$("#container_list").append(unit);
 						};
+						console.log(data.info.length)
 						
 						sign = wxsdk(url);
 						
@@ -94,10 +95,10 @@
 						});
 						wx.ready(function () {
 							var shareData = {
-								title: data.data['title'],
-								desc: data.data['describe'],
+								title: '埃科小测试',
+								desc: '心理测试列表',
 								link: url,
-								imgUrl: 'http://www.aikutest.com/minitest/static/img/test/'+ data.data['img']
+								imgUrl: 'http://www.aikutest.com/minitest/static/img/test/logo.jpg'
 							};
 							wx.updateAppMessageShareData(shareData);//分享给好友
 							wx.updateTimelineShareData(shareData);//分享到朋友圈
