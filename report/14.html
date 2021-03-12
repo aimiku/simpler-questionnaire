@@ -93,9 +93,9 @@
                 $("#container_title,#atitle").html(html);
 
                 if(answer.q10 != 0)
-                    var html = template('script_1', {"name":data.data['report'][answer.q10]});
+                    var html = template('script_1', {"name":data.data['report'][answer.q10],"text":answer.q10});
                 else if(answer.q11 != 0)
-                    var html = template('script_1', {"name":data.data['report'][answer.q11]});
+                    var html = template('script_1', {"name":data.data['report'][answer.q11],"text":answer.q11});
 								
                 $("#container_1").append(html);
 

@@ -9,26 +9,26 @@
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
 		<title id="atitle">你有很高的创造力吗</title>
-		<link rel="stylesheet" href="../static/layui/css/layui.css" />
-		<link rel="stylesheet" href="../static/css/main.css" />
-		<script src="/static/js/jquery-2.1.4.min.js"></script>
-		<script src="/static/js/bootstrap.min.js"></script>
-		<script src="/static/js/layer/layer.js"></script>
-		<script src="/static/js/template-web.js"></script>
-		<script src="/static/js/Public.js"></script>
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/layui/css/layui.css" />
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/css/main.css" />
+		<script src="http://www.aikutest.com/minitest/static/js/jquery-2.1.4.min.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/layer/layer.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/template-web.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/Public.js"></script>
 	</head>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
-		
+
 		<script type="text/html" id="script_title">
 			<%=title%>
 		</script>
 
 		<script type="text/html" id="script_1">
 			<div class="layui-container conta">
-				<img src="/static/img/complete-icon1.jpg" style="width: 255px;">
+				<img src="http://www.aikutest.com/minitest/static/img/complete-icon1.jpg" style="width: 255px;">
 				<div class="position">
-						<h3 style="position: absolute;top: 8px;"><%=text%></h3>
+						<h3 style="position: absolute;top: 8px;"><%=text%>分</h3>
 				</div>
 			</div>
 			
@@ -58,80 +58,112 @@
 		</div>
 
 		<div class="layui-container">
-			
+
 			<fieldset class="layui-elem-field layui-field-title">
-			  <label class="viewpoint">心理视点:</label>
-			  <div class="layui-field-box">
+				<legend class="viewpoint"><img src="http://www.aikutest.com/minitest/static/img/chinese-Amber.jpg" /></legend>
+				<div class="layui-field-box">
 					创造力是指根据一定的目的和任务运用一切已知条件和信息开展能力思维活动，经过反复研究和实践，产生某种新颖的、独特的、有价值的成果，这种能力即为创造力。
 					创造力是21世纪生存和成功的关键条件，创造力不是天生不变的，实践、教育和主观努力对创造力的形成和发挥都有重大影响。
 				</div>
 			</fieldset>
-			
+
 			<div class="text_">
 				<h4>请给出你的评分</h4>
 				<div id="test1"></div>
 			</div>
 		</div>
 
-		<script src="/static/layui/layui.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/layui/layui.js"></script>
 		<script>
-			var answer = {};
 			var score = 0;
-			getUrlParam();
+			var answer = {};
+			var url = location.href;
 			window.onload = function() {
-				ewindow();
-			};
+					$.ajaxSettings.async = false;
+					answer = getAnswer(getUrlParam('id'), getUrlParam('wid'));
+					console.log(answer);
+					init();
+					raterInit();
 
-			function init() {
-				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
-					if (data.io) {
-						var html = template('script_title', data.data);
-						$("#container_title,#atitle").html(html);
-
-						var name = data.data['report']['abbr'];
-						
-						for (var i = 0; i < data.data['report']['topic'].length; i++) {
-								eval(name + '+=' + Number(eval('answer.q' + Number(data.data['report']['topic'][i]))));
-						}
-						if (score >= 110 && score <= 137) {
-							var html = template('script_1', {
-								"name": data.data['report']['A'],
-								"text": score
-							});
-						} else if (score >= 85 && score <= 109) {
-							var html = template('script_1', {
-								"name": data.data['report']['B'],
-								"text": score
-							});
-						} else if (score >= 58 && score <= 84) {
-							var html = template('script_1', {
-								"name": data.data['report']['C'],
-								"text": score
-							});
-						} else if (score >= 30 && score <= 55) {
-							var html = template('script_1', {
-								"name": data.data['report']['D'],
-								"text": score
-							});
-						} else if (score >= 15 && score <= 29) {
-							var html = template('script_1', {
-								"name": data.data['report']['E'],
-								"text": score
-							});
-						}else {
-							var html = template('script_1', {
-								"name": data.data['report']['F'],
-								"text": score
-							});
-						}
-
-						$("#container_1").append(html);
-
-					} else {
-						console.debug(data.data);
-					}
-				}, 'json');
-
-				console.log('ok');
 			}
+					function init() {
+						$.get('http://www.aikutest.com/minitest/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {},
+							function(data) {
+								if (data.io) {
+									var html = template('script_title', data.data);
+									$("#container_title,#atitle").html(html);
+
+									var name = data.data['report']['abbr'];
+
+									for (var i = 0; i < data.data['report']['topic'].length; i++) {
+										eval(name + '+=' + Number(eval('answer.q' + Number(data.data['report']['topic'][i][0]))));
+									}
+									console.log(eval(name),score)
+									if (score >= 110 && score <= 137) {
+										var html = template('script_1', {
+											"name": data.data['report']['A'],
+											"text": score
+										});
+									} else if (score >= 85 && score <= 109) {
+										var html = template('script_1', {
+											"name": data.data['report']['B'],
+											"text": score
+										});
+									} else if (score >= 58 && score <= 84) {
+										var html = template('script_1', {
+											"name": data.data['report']['C'],
+											"text": score
+										});
+									} else if (score >= 30 && score <= 55) {
+										var html = template('script_1', {
+											"name": data.data['report']['D'],
+											"text": score
+										});
+									} else if (score >= 15 && score <= 29) {
+										var html = template('script_1', {
+											"name": data.data['report']['E'],
+											"text": score
+										});
+									} else {
+										var html = template('script_1', {
+											"name": data.data['report']['F'],
+											"text": score
+										});
+									}
+
+									sign = wxsdk(url);
+
+									wx.config({
+										debug: false,
+										appId: 'wx7f142ce5ed1b539a',
+										timestamp: sign.timestamp,
+										nonceStr: sign.nonceStr,
+										signature: sign.signature,
+										jsApiList: ['updateTimelineShareData', 'updateAppMessageShareData', 'onMenuShareWeibo']
+									});
+									wx.ready(function() {
+										var shareData = {
+											title: data.data['title'],
+											desc: data.data['describe'],
+											link: url,
+											imgUrl: 'http://www.aikutest.com/minitest/static/img/test/' + data.data['img']
+										};
+										wx.updateAppMessageShareData(shareData); //分享给好友
+										wx.updateTimelineShareData(shareData); //分享到朋友圈
+										wx.onMenuShareWeibo(shareData); //分享腾讯微博
+									});
+									wx.error(function(res) {
+										layer.msg(res.errMsg); //错误提示
+
+									});
+
+									$("#container_1").append(html);
+
+								} else {
+									console.debug(data.data);
+								}
+							}, 'json');
+
+						console.log('ok');
+					}
 		</script>

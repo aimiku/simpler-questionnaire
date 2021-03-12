@@ -155,8 +155,7 @@
 						var htmlnoe = template('script_title1', topic);
 						$("#container_title,#atitle").html(html);
 						$("#container_title").append(htmlnoe)
-						$(".information").hide();
-						$('#layui-icon-hide').hide();
+						$('#layui-icon-hide,.information').hide();
 						
 						$(".click_button").click(function() {
 							$(this).hide();
@@ -267,7 +266,6 @@
 					var val;
 					if (topic['topic'][i]['type'] == 'SingleChoice') {
 						val = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
-
 					} else if (topic['topic'][i]['type'] == 'JumpChoice') {
 						val = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
 					} else if (topic['topic'][i]['type'] == 'MultiChoice') {
