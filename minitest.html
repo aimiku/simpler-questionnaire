@@ -10,7 +10,7 @@
 		<link rel="icon" href="http://www.aikutest.com/minitestfavicon.ico">
 		<title id="atitle">测评</title>
 		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/layui/css/layui.css" />
-		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/css/main.css?v=1" />
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/css/main.css?v=255" />
 		<script src="http://www.aikutest.com/minitest/static/js/jquery-2.1.4.min.js"></script>
 		<script src="http://www.aikutest.com/minitest/static/js/bootstrap.min.js"></script>
 		<script src="http://www.aikutest.com/minitest/static/js/layer/layer.js"></script>
@@ -138,8 +138,8 @@
 			document.write(" <script language=\"javascript\" src=\"\/static\/wj\/" + getUrlParam('id') + ".js \" > <\/script>");
 			window.onload = function() {
 				$.ajaxSettings.async = false;
-					answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
-					console.log(answer);
+				answer = getAnswer(getUrlParam('id'), getUrlParam('wid'));
+				console.log(answer);
 				init();
 				layui.use(['layer', 'form', 'element'], function() {
 					layer = layui.layer;
@@ -156,66 +156,68 @@
 		<script>
 			var topic;
 			var answer = {};
+
 			function init() {
-				$.get('http://www.aikutest.com/minitest/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
-					topic = data.data;
-					if (data.io) {
-						var html = template('script_title', topic);
-						var htmlnoe = template('script_title1', topic);
-						$("#container_title,#atitle").html(html);
-						$("#container_title").append(htmlnoe)
-						$('#layui-icon-hide,.information').hide();
-						
-						$(".click_button").click(function() {
-							$(this).hide();
-							$(".information").show();
-							for (var i = 0; i < topic['topic'].length; i++) {
-								var unit = template(topic['topic'][i]['type'], topic['topic'][i]);
-								$("#wj").append(unit);
-							};
-							form.render();
-							$(".layui-form-radio").click(function() {
-								if($(this).siblings("div").is('.radioBg')){
-									$(this).siblings("div").removeClass('radioBg')
-									$(this).addClass('radioBg')
-								}else{
-									$(this).addClass('radioBg')
-								}
-								num_clicks(data_packet('2'));
+				$.get('http://www.aikutest.com/minitest/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {},
+					function(data) {
+						topic = data.data;
+						if (data.io) {
+							var html = template('script_title', topic);
+							var htmlnoe = template('script_title1', topic);
+							$("#container_title,#atitle").html(html);
+							$("#container_title").append(htmlnoe)
+							$('#layui-icon-hide,.information').hide();
+
+							$(".click_button").click(function() {
+								$(this).hide();
+								$(".information").show();
+								for (var i = 0; i < topic['topic'].length; i++) {
+									var unit = template(topic['topic'][i]['type'], topic['topic'][i]);
+									$("#wj").append(unit);
+								};
+								form.render();
+								$(".layui-form-radio").click(function() {
+									if ($(this).siblings("div").is('.radioBg')) {
+										$(this).siblings("div").removeClass('radioBg')
+										$(this).addClass('radioBg')
+									} else {
+										$(this).addClass('radioBg')
+									}
+									num_clicks(data_packet('2'));
+								});
 							});
-						});
-						
-						sign = wxsdk(url);
-						
-						wx.config({
-							debug: false,
-							appId: 'wx7f142ce5ed1b539a',
-							timestamp: sign.timestamp,
-							nonceStr: sign.nonceStr,
-							signature: sign.signature,
-							jsApiList: ['updateTimelineShareData','updateAppMessageShareData','onMenuShareWeibo']
-						});
-						wx.ready(function () {
-							var shareData = {
-								title: data.data['title'],
-								desc: data.data['describe'],
-								link: url,
-								imgUrl: 'http://www.aikutest.com/minitest/static/img/test/'+ data.data['img']
-							};
-							wx.updateAppMessageShareData(shareData);//分享给好友
-							wx.updateTimelineShareData(shareData);//分享到朋友圈
-							wx.onMenuShareWeibo(shareData);//分享腾讯微博
-						});
-						wx.error(function (res) {
-							layer.msg(res.errMsg);//错误提示
-						
-						});
-					} else {
-						console.debug(topic);
-					}
-				}, 'json');
+
+							sign = wxsdk(url);
+
+							wx.config({
+								debug: false,
+								appId: 'wx7f142ce5ed1b539a',
+								timestamp: sign.timestamp,
+								nonceStr: sign.nonceStr,
+								signature: sign.signature,
+								jsApiList: ['updateTimelineShareData', 'updateAppMessageShareData', 'onMenuShareWeibo']
+							});
+							wx.ready(function() {
+								var shareData = {
+									title: data.data['title'],
+									desc: data.data['describe'],
+									link: url,
+									imgUrl: 'http://www.aikutest.com/minitest/static/img/test/' + data.data['img']
+								};
+								wx.updateAppMessageShareData(shareData); //分享给好友
+								wx.updateTimelineShareData(shareData); //分享到朋友圈
+								wx.onMenuShareWeibo(shareData); //分享腾讯微博
+							});
+							wx.error(function(res) {
+								layer.msg(res.errMsg); //错误提示
+
+							});
+						} else {
+							console.debug(topic);
+						}
+					}, 'json');
 			};
-			
+
 			function window_size(winWide) {
 				var num = 0;
 				if (winWide <= 684) {
@@ -245,24 +247,28 @@
 				element.progress('demo', len_process + 10 + '%');
 			}
 
-			function get_multi(no, min = 1, max = 100) {
+			function get_multi(no, min = 10, max = 100) {
 				var row = [];
-					for (var i = 0; i < $('input[name="q' + no + '"]').length; i++) {
-						if ($('input[name="q' + no + '"]')[i].checked == true) {
-							row.push({
-								[i]: $('input[name="q' + no + '"]')[i].value
-							});
-						}
+				console.log(no == 'MultiChoice')
+				if(no.length == 54){
+					console.log(1)
+				}
+				for (var i = 0; i < $('input[name="q' + no + '"]').length; i++) {
+					if ($('input[name="q' + no + '"]')[i].checked == true) {
+						row.push({
+							[i]: $('input[name="q' + no + '"]')[i].value
+						});
 					}
-					if (row.length <= min - 1 || row.length > max) {
-						layer.open({
-							content: "多选题不符合要求",
-							skin: 'msg',
-							time: 3
-						})
-						return;
-					}
-				
+				}
+				if (row.length <= min - 1 || row.length > 100) {
+					layer.open({
+						content: "多选题不符合要求",
+						skin: 'msg',
+						time: 3
+					})
+					return;
+				}
+
 				return JSON.stringify(row);
 			}
 
@@ -312,7 +318,7 @@
 			}
 
 			function wj_submit() {
-				if(!data_packet(1)) return;
+				if (!data_packet(1)) return;
 				answer = data_packet(1);
 				$.post('http://apoc.aikutest.com/?m=wj&c=wj&a=submit&id=' + getUrlParam('id'), {
 					'answer': JSON.stringify(answer)
@@ -325,7 +331,8 @@
 							closeBtn: 0,
 							shadeClose: false,
 							yes: function() {
-								location.href = 'http://www.aikutest.com/minitest/report/' + getUrlParam('id') + '.html?id=' + getUrlParam('id') + '&wid=' + data.data;
+								location.href = 'http://www.aikutest.com/minitest/report/' + getUrlParam('id') + '.html?id=' + getUrlParam(
+									'id') + '&wid=' + data.data;
 							}
 						});
 						// layer.open({
