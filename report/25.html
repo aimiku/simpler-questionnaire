@@ -9,13 +9,14 @@
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
 		<title id="atitle">你是活跃的社交明星吗</title>
-		<link rel="stylesheet" href="/static/layui/css/layui.css" />
-		<link rel="stylesheet" href="/static/css/main.css" />
-		<script src="/static/js/jquery-2.1.4.min.js"></script>
-		<script src="/static/js/bootstrap.min.js"></script>
-		<script src="/static/js/layer/layer.js"></script>
-		<script src="/static/js/template-web.js"></script>
-		<script src="/static/js/Public.js"></script>
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/layui/css/layui.css" />
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/css/main.css" />
+		<script src="http://www.aikutest.com/minitest/static/js/jquery-2.1.4.min.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/bootstrap.min.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/layer/layer.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/template-web.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/Public.js"></script>
 	</head>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
@@ -54,7 +55,7 @@
 
 		<div class="layui-container">
 			<fieldset class="layui-elem-field layui-field-title">
-			  <legend class="viewpoint"><img src="/static/img/chinese-Amber.jpg" /></legend>
+			  <legend class="viewpoint"><img src="http://www.aikutest.com/minitest/static/img/chinese-Amber.jpg" /></legend>
 			  <div class="layui-field-box">
 					逻辑判断广泛应用于调查、审计、数学等方面，具有逻辑判断能力也是从事相关工作者必须具备的一种素质，为了提高在这方面的能力，要求我们平时多思考、多学习、多训练。
 					要理论与实际相结合。理论就是阅读这些文章，进行归纳、推理、判断从而加深对所看文章和科目的理解，慢慢的积累，你会发现不知不觉之中已提高了你的逻辑判断能力。但在平时的工作和学习中，一点一滴地积累更为重要，毕竟理论是运用于实践的前提。
@@ -68,16 +69,19 @@
 			</div>
 			
 		</div>
-		<script src="/static/layui/layui.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/layui/layui.js"></script>
 		<script>
 			var answer = {};
-			getUrlParam();
+			var url = location.href;
 			window.onload = function() {
-				ewindow();
+				$.ajaxSettings.async = false;
+						answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
+					init();
+					raterInit();
 			};
 
 			function init() {
-				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
+				$.get('http://www.aikutest.com/minitest/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {}, function(data) {
 					if (data.io) {
 						var html = template('script_title', data.data);
 						$("#container_title,#atitle").html(html);
@@ -90,6 +94,33 @@
 							}
 							$("#container_1").append(html);
 						}
+						
+						sign = wxsdk(url);
+						
+						wx.config({
+							debug: false,
+							appId: 'wx7f142ce5ed1b539a',
+							timestamp: sign.timestamp,
+							nonceStr: sign.nonceStr,
+							signature: sign.signature,
+							jsApiList: ['updateTimelineShareData','updateAppMessageShareData','onMenuShareWeibo']
+						});
+						wx.ready(function () {
+							var shareData = {
+								title: data.data['title'],
+								desc: data.data['describe'],
+								link: url,
+								imgUrl: 'http://www.aikutest.com/minitest/static/img/test/'+ data.data['img']
+							};
+							wx.updateAppMessageShareData(shareData);//分享给好友
+							wx.updateTimelineShareData(shareData);//分享到朋友圈
+							wx.onMenuShareWeibo(shareData);//分享腾讯微博
+						});
+						wx.error(function (res) {
+							layer.msg(res.errMsg);//错误提示
+						
+						});
+						
 					} else {
 						console.debug(data.data);
 					}

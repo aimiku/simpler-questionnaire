@@ -4,18 +4,19 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
 		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
 		<title id="atitle">学会根据脚步声判断人</title>
-		<link rel="stylesheet" href="../static/layui/css/layui.css" />
-		<link rel="stylesheet" href="../static/css/main.css" />
-		<script src="/static/js/jquery-2.1.4.min.js"></script>
-		<script src="/static/js/layer/layer.js"></script>
-		<script src="/static/js/template-web.js"></script>
-		<script src="/static/js/Public.js"></script>
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/layui/css/layui.css" />
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/css/main.css" />
+		<script src="http://www.aikutest.com/minitest/static/js/jquery-2.1.4.min.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/bootstrap.min.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/layer/layer.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/template-web.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/Public.js"></script>
 	</head>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
@@ -26,7 +27,7 @@
 
 		<script type="text/html" id="script_1">
 			<div class="layui-container conta">
-			<img src="/static/img/answer-options.jpg" style="width: 255px;">
+			<img src="http://www.aikutest.com/minitest/static/img/answer-options.jpg" style="width: 255px;">
 			<div class="position">
 				<h3 style="position: absolute;top: 8px;"><%=text%></h3>
 			</div>
@@ -58,7 +59,7 @@
 
 		<div class="layui-container">
 			<fieldset class="layui-elem-field layui-field-title">
-				<legend class="viewpoint"><img src="../static/img/chinese-Amber.jpg" /></legend>
+				<legend class="viewpoint"><img src="http://www.aikutest.com/minitest/static/img/chinese-Amber.jpg" /></legend>
 				<div class="layui-field-box">
 					我们随意地观察一下周围的人，就会发现每个人在不同的时候都会有不经意的肢体语言，但恰恰是这些不经意之举反映了人们真实的内心世界。表现了人们或是紧张，或是高兴，或是忧郁的情绪。从心理学角度来看的动作也是人们的肢体语言之一，正是由于它往往被人们所忽略，所以实际上，它比其他的肢体语言更真实、准确。人的脚步可能因为某些突发的情
 					而交化，但是每个人都有自己固定的“脚语”。对于熟悉者，你不用看见他本人，仅凭那或急、或轻、或重、或稳的脚步声，就能判断出十之八九了・
@@ -70,13 +71,17 @@
 			</div>
 		</div>
 
-		<script src="/static/layui/layui.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/layui/layui.js"></script>
 		<script>
-			var answer;
-			getUrlParam();
+			var answer = {};
+			var url = location.href;
 			window.onload = function() {
-				ewindow();
-			}
+				$.ajaxSettings.async = false;
+						answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
+					init();
+					raterInit();
+				
+			};
 
 			function init() {
 				$.get('/static/wj/topic/' + getUrlParam('id') + '.json', {}, function(data) {
@@ -87,6 +92,33 @@
 						var html = template('script_1', {
 							'answer': data.data['report'][answer['q1']],
 							'text': answer['q1']
+						});
+						
+						
+						sign = wxsdk(url);
+						
+						wx.config({
+							debug: false,
+							appId: 'wx7f142ce5ed1b539a',
+							timestamp: sign.timestamp,
+							nonceStr: sign.nonceStr,
+							signature: sign.signature,
+							jsApiList: ['updateTimelineShareData','updateAppMessageShareData','onMenuShareWeibo']
+						});
+						wx.ready(function () {
+							var shareData = {
+								title: data.data['title'],
+								desc: data.data['describe'],
+								link: url,
+								imgUrl: 'http://www.aikutest.com/minitest/static/img/test/'+ data.data['img']
+							};
+							wx.updateAppMessageShareData(shareData);//分享给好友
+							wx.updateTimelineShareData(shareData);//分享到朋友圈
+							wx.onMenuShareWeibo(shareData);//分享腾讯微博
+						});
+						wx.error(function (res) {
+							layer.msg(res.errMsg);//错误提示
+						
 						});
 
 						$("#container_1").append(html);

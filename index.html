@@ -17,7 +17,17 @@
 		<script src="http://www.aikutest.com/minitest/static/js/jquery-2.1.4.min.js"></script>
 		<script src="http://www.aikutest.com/minitest/static/js/layer/layer.js"></script>
 		<script src="http://www.aikutest.com/minitest/static/js/template-web.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
 		<script src="http://www.aikutest.com/minitest/static/js/Public.js?t=20210310"></script>
+		<style>
+			.layui-badge{
+				width:220px;
+				overflow:hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				-o-text-overflow:ellipsis;
+			}
+		</style>
 	</head>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
@@ -26,10 +36,13 @@
 		<div style="padding: 10px; background-color: #F2F2F2; cursor: pointer;" class="layui-col-md3">
 			<div class="layui-card" onclick="location.href='minitest.html?id=<%=id%>'">
 				<div class="layui-card-header">
-					<span class="layui-badge"><%=name%></span>
+					<h3 class="layui-badge" style="font-size: 16px;"><%=name%></h3>
 				</div>
-				<div class="layui-card-body"style="background: #e6e5e5; height: 150px;">
-						<a><%=name%></a>
+				<div class="layui-card-body"style="background: #e6e5e5; height: 165px;">
+					<div style="font-size: 12px;display: inline-block; display: flex;justify-content: space-between;">
+						<%=describe%>
+						<img style="height: 45px;" src="http://www.aikutest.com/minitest/static/img/test/<%=img%>" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -75,14 +88,12 @@
 
 		<script>
 			function init() {
-				$.get('http://www.aikutest.com/minitest/static/wj/list.json', {}, function(data) {
+				$.get('http://www.aikutest.com/minitest/static/wj/list.json?t=' + new Date().getMilliseconds(), {}, function(data) {
 					if (data.io) {
-						for (var i = 0; i < data.data.length; i++) {
-							var unit = template('script_list', data.data[i]);
+						for (var i = 0; i < data.data['list_info'].length; i++) {
+							var unit = template('script_list', data.data['list_info'][i]);
 							$("#container_list").append(unit);
 						};
-						console.log(data.info.length)
-						
 						sign = wxsdk(url);
 						
 						wx.config({

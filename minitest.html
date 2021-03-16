@@ -38,19 +38,28 @@
 			padding: 5px;
 			border-radius: 15px;
 		}
+		.layui-form-radio div{
+			padding: 1px 10px 1px 10px;
+		}
+		.layui-form-item .layui-icon{
+			display: none;
+		}
+		.radioBg{
+			background-color: #e6e6e6;
+			border-color: #adadad;
+		}
 </style>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
 		<script type="text/html" id="script_title">
 			<%=title%>
-			
 		</script>
 		<script type="text/html" id="script_title1">
 			<p class="Pull_show" style="padding-top: 35px;font-size: 34px;">
 					<span id="layui-icon-hide" class="layui-icon layui-icon-down"></span>
 			</p>
-			<p id="Pull_hide" style="font-size: 18px;"><%-info%></p>
+			<p id="Pull_hide" style="font-size: 18px;">测试导语<br><p style="text-indent: 2em;font-size: 18px;"><%-info%></p></p>
 			<div class="click_button" style="text-align: center;">
 				<button type="button" class="layui-btn layui-btn-radius layui-btn-primary">点击测评</button>
 			</div>
@@ -58,7 +67,7 @@
 
 		<script type="text/html" id="SingleChoice">
 			<div class="layui-form-item" id="q<%=no%>">
-				<label><%=title%></label>
+				<label><%=no%>.<%=title%></label>
 				<br>
 					<% for(var i = 0; i < opt.length; i++){ %>
 						<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
@@ -69,17 +78,17 @@
 
 		<script type="text/html" id="JumpChoice">
 			<div class="layui-form-item layui-colo-md-4 layui-colo-sm-4 layui-col-xs-4" id="q<%=no%>">
-				<label><%=title%></label>
+				<label><%=no%>.<%=title%></label>
 				<br>
 				<% for(var i = 0; i < opt.length; i++){ %>
-					<input class="radio" type="radio" name="q<%=no%>" value="<%=score[i]%>" <%=action[i]%> ><%=opt[i]%>
+					<input class="radio" type="radio" name="q<%=no%>" title="" value="<%=score[i]%>" <%=action[i]%> ><%=opt[i]%>
 				<% } %>
 			</div>
 			<hr>
 		</script>
 		<script type="text/html" id="MultiChoice">
 			<div class="layui-form-item" id="q<%=no%>">
-				 <label class=""><%=title%></label>
+				 <label><%=no%>.<%=title%></label>
 				 <br />
 				<% for(var i = 0; i < opt.length; i++){ %>
 					<input class="radio" type="checkbox" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
@@ -89,7 +98,7 @@
 		</script>
 		<script type="text/html" id="EnterAnswer">
 			<div class="layui-form-item" id="q<%=no%>">
-				<label><%=title%></label>
+				<label><%=no%>.<%=title%></label>
 				<br>
 				<% for(var i = 0; i < opt.length; i++){ %>
 					<input type="text" required  lay-verify="required" placeholder="请输入你的答案" autocomplete="off" class="layui-input" name="q<%=no%>" value="<%=opt[i]%>">
@@ -166,7 +175,13 @@
 							};
 							form.render();
 							$(".layui-form-radio").click(function() {
-								num_clicks(data_packet(2));
+								if($(this).siblings("div").is('.radioBg')){
+									$(this).siblings("div").removeClass('radioBg')
+									$(this).addClass('radioBg')
+								}else{
+									$(this).addClass('radioBg')
+								}
+								num_clicks(data_packet('2'));
 							});
 						});
 						
@@ -232,21 +247,22 @@
 
 			function get_multi(no, min = 1, max = 100) {
 				var row = [];
-				for (var i = 0; i < $('input[name="q' + no + '"]').length; i++) {
-					if ($('input[name="q' + no + '"]')[i].checked == true) {
-						row.push({
-							[i]: $('input[name="q' + no + '"]')[i].value
-						});
+					for (var i = 0; i < $('input[name="q' + no + '"]').length; i++) {
+						if ($('input[name="q' + no + '"]')[i].checked == true) {
+							row.push({
+								[i]: $('input[name="q' + no + '"]')[i].value
+							});
+						}
 					}
-				}
-				if (row.length <= min - 1 || row.length > max) {
-					layer.open({
-						content: "多选题不符合要求",
-						skin: 'msg',
-						time: 3
-					})
-					return;
-				}
+					if (row.length <= min - 1 || row.length > max) {
+						layer.open({
+							content: "多选题不符合要求",
+							skin: 'msg',
+							time: 3
+						})
+						return;
+					}
+				
 				return JSON.stringify(row);
 			}
 
@@ -262,6 +278,7 @@
 
 			function data_packet(type) {
 				var len = 0;
+				var data = {};
 				for (var i = 0; i < topic['topic'].length; i++) {
 					var val;
 					if (topic['topic'][i]['type'] == 'SingleChoice') {
@@ -276,18 +293,18 @@
 					if (val == null || val == '') {
 						if (type == '1') {
 							scrolltab(topic['topic'][i]['no']);
-							return;
+							return false;
 						}
 					} else {
 						if (type == '1') {
-							answer['q' + topic['topic'][i]['no']] = val;
+							data['q' + topic['topic'][i]['no']] = val;
 						} else {
 							len += 1;
 						}
 					}
 				};
 				if (type == '1') {
-					return answer;
+					return data;
 				} else {
 					return len;
 				}
@@ -295,7 +312,8 @@
 			}
 
 			function wj_submit() {
-				answer = data_packet('1');
+				if(!data_packet(1)) return;
+				answer = data_packet(1);
 				$.post('http://apoc.aikutest.com/?m=wj&c=wj&a=submit&id=' + getUrlParam('id'), {
 					'answer': JSON.stringify(answer)
 				}, function(data) {

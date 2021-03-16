@@ -9,15 +9,14 @@
 		<meta name="author" content="">
 		<link rel="icon" href="favicon.ico">
 		<title id="atitle">你的睡眠还好吗？</title>
-
-		<!-- <link rel="stylesheet" href="/static/css/bootstrap.min.css"> -->
-		<link rel="stylesheet" href="../static/layui/css/layui.css" />
-		<link rel="stylesheet" href="../static/css/main.css" />
-		<script src="/static/js/jquery-2.1.4.min.js"></script>
-		<script src="/static/js/bootstrap.min.js"></script>
-		<script src="/static/js/layer/layer.js"></script>
-		<script src="/static/js/template-web.js"></script>
-		<script src="/static/js/Public.js"></script>
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/layui/css/layui.css" />
+		<link rel="stylesheet" href="http://www.aikutest.com/minitest/static/css/main.css" />
+		<script src="http://www.aikutest.com/minitest/static/js/jquery-2.1.4.min.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/bootstrap.min.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/layer/layer.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/template-web.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/js/Public.js"></script>
 	</head>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
@@ -56,13 +55,13 @@
 
 		<div class="layui-container">
 			<fieldset class="layui-elem-field layui-field-title">
-			  <legend class="viewpoint"><img src="/static/img/chinese-Amber.jpg" /></legend>
+			  <legend class="viewpoint"><img src="http://www.aikutest.com/minitest/static/img/chinese-Amber.jpg" /></legend>
 			  <div class="layui-field-box">
 						所谓睡眠疾病，包括两个方面:一是指睡眠本身发生失调的疾病，如失眠和白日过度瞌睡(睡眠失调)另一个是指在睡眠过程中诱发或发生的疾病，如睡眠呼吸暂停综合症及睡眠期出现的各种异常行为。前者如睡眠呼吸受障碍引起的打鼾，后者是指睡眠期的各种异常的不自主运动和行为，如梦游、夜惊等。
-						保持高质量的睡眠对健康大有裨益，如何才能保持高质量的睡眠呢?
-						(1)睡眠时间，每天保证7-8个小时。
-						(2)睡眠姿势，以略为弯曲的右侧睡为最佳。
-						(3)睡眠环境要安静，另外被得、床等要舒服。
+						保持高质量的睡眠对健康大有裨益，如何才能保持高质量的睡眠呢?<br />
+						(1)睡眠时间，每天保证7-8个小时。<br />
+						(2)睡眠姿势，以略为弯曲的右侧睡为最佳。<br />
+						(3)睡眠环境要安静，另外被得、床等要舒服。<br />
 						(4)睡眠前做好准备工作，如要热水泡脚，头洗脸，免剧烈运动，不吃高热量的食品等。
 				</div>
 			</fieldset>
@@ -72,20 +71,24 @@
 				</div>
 		</div>
 
-		<script src="/static/layui/layui.js"></script>
+		<script src="http://www.aikutest.com/minitest/static/layui/layui.js"></script>
 		<script>
 			var A = 0;
 			var B = 0;
 			var C = 0;
 			var D = 0;
 			var E = 0;
-			getUrlParam();
+			var answer = {};
+			var url = location.href;
 			window.onload = function() {
-				ewindow();
+				$.ajaxSettings.async = false;
+						answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
+					init();
+					raterInit();
+				
 			};
-
 			function init() {
-				$.get('/static/wj/topic/' + getUrlParam('id') + '.json?t='+new Date().getMilliseconds(), {}, function(data) {
+				$.get('http://www.aikutest.com/minitest/static/wj/topic/' + getUrlParam('id') + '.json?t='+new Date().getMilliseconds(), {}, function(data) {
 					if (data.io) {
 						var html = template('script_title', data.data);
 						$("#container_title,#atitle").html(html);
@@ -103,21 +106,32 @@
 								console.log(data.data['report'][i]['abbr'])
 						}
 						
-						// if (A > '0') {
-						// 	$("#container_1").append(template('script_1', {"name":data.data['report'][0]['name']+'('+A+'/13)',"text":A}));
-						// } 
-						// if (B > '0') {
-						// 	$("#container_1").append(template('script_1', {"name":data.data['report'][1]['name']+'('+B+'/7)',"text":B}));
-						// }
-						// if (C > '0') {
-						// 	$("#container_1").append(template('script_1', {"name":data.data['report'][2]['name']+'('+C+'/10)',"text":C}));
-						// }
-						// if (D > '0' ) {
-						// 	$("#container_1").append(template('script_1', {"name":data.data['report'][3]['name']+'('+D+'/5)',"text":D}));
-						// } 
-						// if (E > '0' ){
-						// 	$("#container_1").append(template('script_1', {"name":data.data['report'][4]['name']+'('+E+'/7)',"text":E}));
-						// }
+						sign = wxsdk(url);
+						
+						wx.config({
+							debug: false,
+							appId: 'wx7f142ce5ed1b539a',
+							timestamp: sign.timestamp,
+							nonceStr: sign.nonceStr,
+							signature: sign.signature,
+							jsApiList: ['updateTimelineShareData','updateAppMessageShareData','onMenuShareWeibo']
+						});
+						wx.ready(function () {
+							var shareData = {
+								title: data.data['title'],
+								desc: data.data['describe'],
+								link: url,
+								imgUrl: 'http://www.aikutest.com/minitest/static/img/test/'+ data.data['img']
+							};
+							wx.updateAppMessageShareData(shareData);//分享给好友
+							wx.updateTimelineShareData(shareData);//分享到朋友圈
+							wx.onMenuShareWeibo(shareData);//分享腾讯微博
+						});
+						wx.error(function (res) {
+							layer.msg(res.errMsg);//错误提示
+						
+						});
+						
 					} else {
 						console.debug(data.data);
 					}

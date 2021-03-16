@@ -116,4 +116,10 @@
 	text-indent: 2em; 
 	color: #0000FF;
 }
-/**/
+label{
+	font-size: 16px;
+	font-weight: 600;
+}
+.layui-progress{
+	z-index: 999;
+}
