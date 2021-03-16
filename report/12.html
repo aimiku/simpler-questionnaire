@@ -30,7 +30,7 @@
 			<div class="layui-container conta">
 				<img src="http://www.aikutest.com/minitest/static/img/complete-icon1.jpg" style="width: 255px;">
 				<div class="position"style="width: 80px;">
-						<h3 style="width: 80px;position: absolute;top: 8px;-webkit-line-clamp: 3;"><%=I%></h3>
+						<h3 style="width: 80px;position: absolute;top: 8px;-webkit-line-clamp: 3;"><%=I%>分</h3>
 				</div>
 			</div>
 		</script>
@@ -102,7 +102,6 @@
 			window.onload = function() {
 				$.ajaxSettings.async = false;
 						answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
-						console.log(answer);
 					init();
 					raterInit();
 				

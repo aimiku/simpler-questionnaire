@@ -81,7 +81,6 @@
 			window.onload = function() {
 					$.ajaxSettings.async = false;
 					answer = getAnswer(getUrlParam('id'), getUrlParam('wid'));
-					console.log(answer);
 					init();
 					raterInit();
 
@@ -98,7 +97,7 @@
 									for (var i = 0; i < data.data['report']['topic'].length; i++) {
 										eval(name + '+=' + Number(eval('answer.q' + Number(data.data['report']['topic'][i][0]))));
 									}
-									console.log(eval(name),score)
+									
 									if (score >= 110 && score <= 137) {
 										var html = template('script_1', {
 											"name": data.data['report']['A'],

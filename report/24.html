@@ -81,15 +81,11 @@
 		<script src="http://www.aikutest.com/minitest/static/layui/layui.js"></script>
 		<script>
 			var answer = {};
-			var score = [];
-			var score1 = 0;
-			var score2 = 0;
-			var score3 = 0;
+			var score = 0;
 			var url = location.href;
 			window.onload = function() {
 				$.ajaxSettings.async = false;
 						answer = getAnswer(getUrlParam('id'),getUrlParam('wid'));
-						console.log(answer);
 					init();
 					raterInit();
 			};
@@ -100,39 +96,24 @@
 						var html = template('script_title', data.data);
 						$("#container_title,#atitle").html(html);
 						
-						for (var i = 0; i < data.data["report"].length; i++) {
-							var name = data.data['report'][i]['abbr'];
+							var name = data.data['report']['abbr'];
 							var name1 = '';
-							for (var i2 = 0; i2 < data.data['report'][i]['topic'].length; i2++) {
-								eval(name + '+=' + Number(eval('answer.q' + data.data['report'][i]['topic'][i2])));
+							for (var i2 = 0; i2 < data.data['report']['topic'].length; i2++) {
+								eval(name + '+=' + Number(eval('answer.q' + data.data['report']['topic'][i2])));
 							}
-							for(var i2 = 0; i2 < data.data["report"][i]["info-score"].length; i2++){
-								if(data.data["report"][i]["info-score"][i2][0] <= 9 && data.data["report"][i]["info-score"][i2][1] >= 0){
-									name1+=data.data["report"][i]["info"][i2]
+							var score1=((eval(name)/23)*100)
+							for(var a = 0; a < data.data["report"]["info-score"].length; a++){
+								if(data.data["report"]["info-score"][a][0] <= score1 && data.data["report"]["info-score"][a][1] >= score1){
+									name1=data.data["report"]["info"][a]
 								}
 							}
-							if(answer.q2 == 1){
-								name1+=data.data["report"][1]["info"][0]
-							}	
-						}
-						if(answer.q1 > 0 && answer.q1 < 2){
-								name1+=data.data["report"][0]["info"][3]
-							}else if(answer.q1 > 1 && answer.q1 < 3){
-								name1+=data.data["report"][0]["info"][2]
-							}else if(answer.q1 > 2 && answer.q1 < 4){
-								name1+=data.data["report"][0]["info"][1]
-							}else{
-								name1+=data.data["report"][0]["info"][0]
-							}
 						
-						var score=((score1+score2+score3)/23*100)
-						console.log(score)
 						$("#container_1").prepend(template('script_1', {
 							"name": name1
 						}));
-
+						
 						$("#container_1").prepend(template('script_2', {
-							"text":  Math.round(score) + "分" 
+							"text":  Math.round(score1) + "分" 
 						}));
 						
 						sign = wxsdk(url);
