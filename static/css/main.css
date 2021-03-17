@@ -100,6 +100,7 @@
 }
 .layui-card-body{
 	background: #abe8c4;
+	
 }
 
 /**/
@@ -116,10 +117,29 @@
 	text-indent: 2em; 
 	color: #0000FF;
 }
+.indent{
+	display: block;
+	text-indent: 2em;
+	font-size: 18px;
+}
 label{
 	font-size: 16px;
 	font-weight: 600;
 }
 .layui-progress{
 	z-index: 999;
+}
+.infoline{
+	display: inline-block;
+	display: flex;
+	justify-content: space-between;
+}
+.infoline span{
+	font-size: 12px;
+	line-height: 16px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
 }
