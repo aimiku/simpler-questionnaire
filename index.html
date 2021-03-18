@@ -35,13 +35,13 @@
 <script type="text/html" id="script_list">
 		<div style="padding: 10px; background-color: #F2F2F2; cursor: pointer;" class="layui-col-md3">
 			<div class="layui-card" onclick="location.href='minitest.html?id=<%=id%>'">
-				<div class="layui-card-header">
-					<h3 class="layui-badge" style="font-size: 16px;"><%=name%></h3>
+				<div class="layui-card-header" style="line-height: 45px;">
+					<h3 class="" style="font-size: 16px;"><%=name%></h3>
 				</div>
-				<div class="layui-card-body"style="background: #e6e5e5; height: 165px;">
-					<div style="font-size: 12px;display: inline-block; display: flex;justify-content: space-between;">
-						<%=describe%>
-						<img style="height: 45px;" src="http://www.aikutest.com/minitest/static/img/test/<%=img%>" />
+				<div class="layui-card-body"style="background: #e6e5e5; height: 50px;">
+					<div class="infoline">
+						<span><%=describe%></span>
+						<img style="height: 45px;padding-left: 12px" src="http://www.aikutest.com/minitest/static/img/test/<%=img%>" />
 					</div>
 				</div>
 			</div>

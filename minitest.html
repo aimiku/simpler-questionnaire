@@ -19,48 +19,27 @@
 		<script src="http://www.aikutest.com/minitest/static/js/Public.js?t=20210310"></script>
 	</head>
 	<style>
-		.radio-inline {
-        margin-bottom: 10px;
-        border: 1px solid #00aaee;
-        padding: 5px;
-        padding-left: 10px;
-        border-radius: 10px;
-        margin-left: 10px;
-    }
-		.radio{
-			vertical-align:text-bottom;
-			margin-bottom:-1px;
-			margin-bottom:-2px;
-			border: 1px solid red;
-		}
-		.layui-form-radio{
-			border: 1px solid #00aaee;
-			padding: 5px;
-			border-radius: 15px;
-		}
-		.layui-form-radio div{
-			padding: 1px 10px 1px 10px;
-		}
-		.layui-form-item .layui-icon{
-			display: none;
-		}
-		.radioBg{
-			background-color: #e6e6e6;
-			border-color: #adadad;
-		}
+		.radio-inline {margin-bottom: 10px;border: 1px solid #00aaee;padding: 5px;padding-left: 10px;border-radius: 10px; margin-left: 10px;}
+		.radio{vertical-align:text-bottom;margin-bottom:-1px;margin-bottom:-2px;border: 1px solid red;}
+		.layui-form-radio{border: 1px solid #00aaee;padding: 5px;border-radius: 15px;}
+		.layui-form-radio div{padding: 1px 10px 1px 10px;}
+		.layui-form-item .layui-form-radio .layui-icon{display: none;}
+		.radioBg{background-color: #e6e6e6;border-color: #adadad;}
 </style>
 	<body>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
 		<script type="text/html" id="script_title">
-			<%=title%>
+			<%=title%>?
 		</script>
 		<script type="text/html" id="script_title1">
-			<p class="Pull_show" style="padding-top: 35px;font-size: 34px;">
+			<p class="Pull_show" style="padding-top: 35px;font-size: 34px;display: inline-block;">
 					<span id="layui-icon-hide" class="layui-icon layui-icon-down"></span>
 			</p>
-			<p id="Pull_hide" style="font-size: 18px;">测试导语<br><p style="text-indent: 2em;font-size: 18px;"><%-info%></p></p>
-			<div class="click_button" style="text-align: center;">
+			<p id="Pull_hide" style="font-size: 18px;">测试导语<br>
+				<span class="indent"><%-info%></span>
+			</p>
+			<div class="click_button" style="text-align: center;margin-top: 5px;">
 				<button type="button" class="layui-btn layui-btn-radius layui-btn-primary">点击测评</button>
 			</div>
 		</script>
@@ -81,7 +60,7 @@
 				<label><%=no%>.<%=title%></label>
 				<br>
 				<% for(var i = 0; i < opt.length; i++){ %>
-					<input class="radio" type="radio" name="q<%=no%>" title="" value="<%=score[i]%>" <%=action[i]%> ><%=opt[i]%>
+					<input class="radio" type="radio" name="q<%=no%>" title="<%=opt[i]%>" value="<%=score[i]%>" <%=action[i]%>>
 				<% } %>
 			</div>
 			<hr>
@@ -90,9 +69,9 @@
 			<div class="layui-form-item" id="q<%=no%>">
 				 <label><%=no%>.<%=title%></label>
 				 <br />
-				<% for(var i = 0; i < opt.length; i++){ %>
-					<input class="radio" type="checkbox" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
-				<% } %>
+					<% for(var i = 0; i < opt.length; i++){ %>
+						<input type="checkbox" name="q<%=no%>" value="<%=score[i]%>" title="<%=opt[i]%>">
+					<% } %>
 			</div>
 			<hr>
 		</script>
@@ -147,7 +126,7 @@
 					element = layui.element;
 				});
 				window.onresize = function() {
-					var winWide = document.documentElement.clientWidth;
+					var winWide = document.body.clientWidth;
 					window_size(winWide);
 				};
 			}
@@ -220,7 +199,7 @@
 
 			function window_size(winWide) {
 				var num = 0;
-				if (winWide <= 684) {
+				if (winWide <= 600) {
 					$('#Pull_hide').hide();
 					$('#layui-icon-hide').show();
 					$('#layui-icon-hide').unbind('click').click(function() {});
@@ -247,12 +226,8 @@
 				element.progress('demo', len_process + 10 + '%');
 			}
 
-			function get_multi(no, min = 10, max = 100) {
+			function get_multi(no) {
 				var row = [];
-				console.log(no == 'MultiChoice')
-				if(no.length == 54){
-					console.log(1)
-				}
 				for (var i = 0; i < $('input[name="q' + no + '"]').length; i++) {
 					if ($('input[name="q' + no + '"]')[i].checked == true) {
 						row.push({
@@ -260,16 +235,7 @@
 						});
 					}
 				}
-				if (row.length <= min - 1 || row.length > 100) {
-					layer.open({
-						content: "多选题不符合要求",
-						skin: 'msg',
-						time: 3
-					})
-					return;
-				}
-
-				return JSON.stringify(row);
+				return row;
 			}
 
 			function scrolltab(no) {
@@ -281,7 +247,7 @@
 					$(this).css("background-color", "#FFFFFF");
 				});
 			}
-
+//type=1 获取答案 type=2获取答案数量 -
 			function data_packet(type) {
 				var len = 0;
 				var data = {};
@@ -292,7 +258,15 @@
 					} else if (topic['topic'][i]['type'] == 'JumpChoice') {
 						val = $('input[name="q' + topic['topic'][i]['no'] + '"]:checked').val();
 					} else if (topic['topic'][i]['type'] == 'MultiChoice') {
-						val = get_multi(topic['topic'][i]['no'], topic['topic'][i]['limit']['min'], topic['topic'][i]['limit']['max']);
+						var row = get_multi(topic['topic'][i]['no']);
+						if (row.length <= topic['topic'][i]['limit']['min']-1 || row.length > topic['topic'][i]['limit']['max']) {
+							if(type == '1'){
+								layer.msg("多选题不符合要求:"+"最小不能小于" + topic['topic'][i]['limit']['min'] + "最大不能大于" + topic['topic'][i]['limit']['max'])
+							}
+							val = null
+						}else{
+							val = JSON.stringify(row)
+						}
 					} else if (topic['topic'][i]['type'] == 'EnterAnswer') {
 						val = $('input[name="q' + topic['topic'][i]['no'] + '"]').val();
 					}
