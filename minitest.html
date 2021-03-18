@@ -30,7 +30,7 @@
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65913753" charset="UTF-8"></script>
 
 		<script type="text/html" id="script_title">
-			<%=title%>?
+			<%=title%>
 		</script>
 		<script type="text/html" id="script_title1">
 			<p class="Pull_show" style="padding-top: 35px;font-size: 34px;display: inline-block;">
@@ -157,8 +157,8 @@
 								form.render();
 								$(".layui-form-radio").click(function() {
 									if ($(this).siblings("div").is('.radioBg')) {
-										$(this).siblings("div").removeClass('radioBg')
-										$(this).addClass('radioBg')
+										$(this).siblings("div").removeClass('radioBg');
+										$(this).addClass('radioBg');
 									} else {
 										$(this).addClass('radioBg')
 									}
