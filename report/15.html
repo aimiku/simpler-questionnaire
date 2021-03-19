@@ -26,26 +26,26 @@
 
 		<script type="text/html" id="script_1">
 			<div class="layui-container conta">
-    	<img src="http://www.aikutest.com/minitest/static/img/complete-icon1.jpg" style="width: 255px;">
-    	<div class="position">
-    			<h3 style="position: absolute;top: 8px;"><%=text%>分</h3>
-    	</div>
-    </div>
+				<img src="http://www.aikutest.com/minitest/static/img/complete-icon1.jpg" style="width: 255px;">
+				<div class="position">
+						<h3 style="position: absolute;top: 8px;"><%=text%>分</h3>
+				</div>
+			</div>
     
-    <div class="results">
-    	<div class="layui-card">
-    		<div class="layui-card-header">
-    			<h3>
-    				测试结果:
-    			</h3>
-    		</div>
-    		<div class="layui-card-body">
-    			<%=name%>
-    		</div>
-    	</div>
-    </div>
+			<div class="results">
+				<div class="layui-card">
+					<div class="layui-card-header">
+						<h3>
+							测试结果:
+						</h3>
+					</div>
+					<div class="layui-card-body">
+						<%=name%>
+					</div>
+				</div>
+			</div>
 		
-</script>
+		</script>
 
 
 		<div style="margin-top: -20px;background-color: #604d94;color: #FFF;">
@@ -82,13 +82,14 @@
 			window.onload = function() {
 				$.ajaxSettings.async = false;
 				answer = getAnswer(getUrlParam('id'), getUrlParam('wid'));
+				console.log(answer)
 				init();
 				raterInit();
 
 			};
 
 			function init() {
-				$.get('http://www.aikutest.com/minitest/static/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {},
+				$.get('http://www.aikutest.com/minitest/static/wj/topic/' + getUrlParam('id') + '.json?t=' + new Date().getMilliseconds(), {},
 					function(data) {
 						if (data.io) {
 							var html = template('script_title', data.data);
@@ -99,7 +100,6 @@
 							for (var i2 = 0; i2 < data.data['report']['topic'].length; i2++) {
 								eval(name + '+=' + Number(eval('answer.q' + Number(data.data['report']['topic'][i2]))));
 							}
-
 							if (score <= 30 && score >= 0) {
 								var html = template('script_1', {
 									"name": data.data['report']['A'],
